@@ -8,17 +8,16 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <script src="script.js"></script>
   <header class="topbar">
     <div class="container topbar-inner">
-      <a href="#top" class="brand">
+      <a href="#top" class="brand" aria-label="合同会社Zerquor トップへ移動">
         <div class="brand-mark">Z</div>
         <div class="brand-text">
           <strong>合同会社Zerquor</strong>
           <span>Robust Governance & Security Enablement</span>
         </div>
       </a>
-      <nav class="nav">
+      <nav class="nav" aria-label="主要ナビゲーション">
         <a href="#concept">会社のコンセプト</a>
         <a href="#services">サービス内容</a>
         <a href="#company">企業情報</a>
@@ -38,7 +37,8 @@
           </h1>
           <p class="lead">
             合同会社Zerquorは、企業のセキュリティと統制を一過性の対策で終わらせず、
-            現場に定着する仕組みとして構築することを目指します。
+            現場に定着する仕組みとして構築することを目指します。堅牢性、説明責任、再現性を重視し、
+            経営層から実務担当者まで一貫した支援を提供します。
           </p>
           <div class="hero-actions">
             <a class="button primary" href="#contact">お問い合わせ</a>
@@ -46,12 +46,16 @@
           </div>
         </div>
 
-        <aside class="hero-card fade-up">
+        <aside class="hero-card fade-up" aria-label="Zerquorの特徴">
           <div class="status-label">Core Principles</div>
+          <div class="metric">
+            <strong>3</strong>
+            <span>つの重点領域</span>
+          </div>
           <ul class="check-list">
-            <li>セキュリティ内製化</li>
-            <li>統制設計</li>
-            <li>実務定着</li>
+            <li>セキュリティを内製化できる体制づくり</li>
+            <li>監査・説明に耐えうる統制設計</li>
+            <li>教育を実務へ接続する運用定着支援</li>
           </ul>
         </aside>
       </div>
@@ -59,70 +63,216 @@
 
     <section id="concept">
       <div class="container">
-        <h2>会社のコンセプト</h2>
+        <div class="section-head fade-up">
+          <div>
+            <h2>会社のコンセプト</h2>
+            <p>
+              Zerquorは、企業のセキュリティを単発の対策や外部依存で終わらせず、
+              自社の中で判断し、運用し、継続的に改善できる体制へと育てていくことを重視しています。
+            </p>
+            <p>
+              セキュリティは、ツールを導入するだけでは機能しません。ルール、教育、運用、記録、
+              そして現場での判断基準が揃ってはじめて、組織として実効性を持ちます。
+              Zerquorは、そうした仕組み全体を設計し、実務に根づかせるための支援を行います。
+            </p>
+            <p>
+              目指すのは、「対策している会社」ではなく、
+              「継続できる体制を持つ会社」を増やすことです。
+              中小企業をはじめとした各組織が、過度に属人化せず、
+              監査・取引先説明・日々の業務に耐えうる状態を実現できるよう伴走します。
+            </p>
+          </div>
+        </div>
+
         <div class="grid-3">
-          <div class="card"><h3>堅牢性</h3><p>継続可能な運用設計</p></div>
-          <div class="card"><h3>説明責任</h3><p>監査に耐える統制</p></div>
-          <div class="card"><h3>実務定着</h3><p>教育を現場へ接続</p></div>
+          <article class="card fade-up">
+            <h3>内製化を前提にする</h3>
+            <p>
+              外部に任せ続ける前提ではなく、企業の中に判断と運用の力を残すことを重視します。
+              社内で継続できる仕組みを整えることで、対応力と再現性を高めます。
+            </p>
+          </article>
+          <article class="card fade-up">
+            <h3>説明できる状態をつくる</h3>
+            <p>
+              ルールや実施内容が曖昧なままでは、監査対応や取引先説明に耐えられません。
+              方針、手順、記録を整理し、第三者に説明できる体制づくりを支援します。
+            </p>
+          </article>
+          <article class="card fade-up">
+            <h3>現場で使える形にする</h3>
+            <p>
+              研修資料や規程を作るだけで終わらせず、実際の業務で判断に使える状態まで落とし込みます。
+              実務定着までを含めて支援するのがZerquorの考え方です。
+            </p>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="services">
       <div class="container">
-        <h2>サービス内容</h2>
+        <div class="section-head fade-up">
+          <div>
+            <h2>サービス内容</h2>
+            <p>
+              Zerquorは、セキュリティ・統制・教育を切り分けず、
+              企業の実情に合わせて段階的に支援します。
+              単発の助言ではなく、実際に運用できる状態まで整えることを重視しています。
+            </p>
+          </div>
+        </div>
+
         <div class="grid-3">
-          <div class="card"><h3>内製化支援</h3></div>
-          <div class="card"><h3>研修設計</h3></div>
-          <div class="card"><h3>監査対応</h3></div>
+          <article class="card fade-up">
+            <div class="service-number">01</div>
+            <h3>セキュリティ内製化支援</h3>
+            <p>
+              社内で継続的に判断・改善できる体制づくりを支援します。
+              役割分担の整理、運用ルールの明確化、定例的な確認フローの整備などを通じて、
+              属人化しにくい仕組みへと整えていきます。
+            </p>
+          </article>
+
+          <article class="card fade-up">
+            <div class="service-number">02</div>
+            <h3>教育・研修設計</h3>
+            <p>
+              一般社員向けの基礎教育から、管理職・担当部門向けの実務研修まで、
+              組織の役割に応じた教育プログラムを設計します。
+              単なる理解促進ではなく、現場での判断と行動の変化につながる内容を重視します。
+            </p>
+          </article>
+
+          <article class="card fade-up">
+            <div class="service-number">03</div>
+            <h3>統制整備・監査対応支援</h3>
+            <p>
+              取引先要求や監査対応を見据え、規程、記録、運用フローを整備します。
+              「何を決め、どう実施し、どう残すか」を明確にすることで、
+              継続的に説明責任を果たせる状態づくりを支援します。
+            </p>
+          </article>
+        </div>
+
+        <div class="grid-2 section-gap">
+          <article class="card fade-up">
+            <h3>主な支援テーマ</h3>
+            <ul class="check-list">
+              <li>情報セキュリティ方針・関連規程の整備支援</li>
+              <li>従業員向けセキュリティ教育の企画・実施</li>
+              <li>管理部門・責任者向けの判断支援</li>
+              <li>社内運用フローの見直しと標準化</li>
+              <li>実施記録・説明資料の整備支援</li>
+              <li>取引先要求や監査を見据えた体制整理</li>
+            </ul>
+          </article>
+
+          <article class="card fade-up">
+            <h3>Zerquorが重視する支援方針</h3>
+            <ul class="check-list">
+              <li>導入しやすさより、継続しやすさ</li>
+              <li>単発対応より、再現可能な運用設計</li>
+              <li>資格取得より、現場判断への接続</li>
+              <li>外注依存より、自走できる社内体制</li>
+              <li>資料作成より、実務で使える定着支援</li>
+              <li>部分最適より、全体として機能する仕組みづくり</li>
+            </ul>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="company">
       <div class="container">
-        <h2>企業情報</h2>
-        <table>
-          <tr><th>会社名</th><td>合同会社Zerquor</td></tr>
-          <tr><th>創立者</th><td>仲村 拓馬</td></tr>
-          <tr><th>創立日</th><td>2027年4月1日</td></tr>
-          <tr><th>資本金</th><td>100万円</td></tr>
-          <tr><th>法人番号</th><td>1234567890123</td></tr>
-        </table>
+        <div class="section-head fade-up">
+          <div>
+            <h2>企業情報</h2>
+            <p>
+              掲載内容はコーポレートサイト用の基本情報です。所在地や受付時間など、必要に応じて追加・更新できます。
+            </p>
+          </div>
+        </div>
+
+        <div class="table-wrap fade-up">
+          <table class="table" aria-label="企業情報一覧">
+            <tbody>
+              <tr>
+                <th>会社名</th>
+                <td>合同会社Zerquor</td>
+              </tr>
+              <tr>
+                <th>創立者</th>
+                <td>仲村 拓馬</td>
+              </tr>
+              <tr>
+                <th>創立日</th>
+                <td>2027年4月1日</td>
+              </tr>
+              <tr>
+                <th>資本金</th>
+                <td>100万円</td>
+              </tr>
+              <tr>
+                <th>法人番号</th>
+                <td>1234567890123</td>
+              </tr>
+              <tr>
+                <th>事業内容</th>
+                <td>セキュリティ内製化支援、教育・研修設計、統制整備支援、監査対応支援</td>
+              </tr>
+              <tr>
+                <th>対応領域</th>
+                <td>中小企業向け情報セキュリティ、社内統制、教育定着、運用整備</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
     <section id="contact">
       <div class="container">
-        <h2>お問い合わせ</h2>
+        <div class="section-head fade-up">
+          <div>
+            <h2>お問い合わせ</h2>
+            <p>
+              ご相談・業務提携等のお問い合わせは、以下のフォームより受け付けております。
+              内容確認後、担当者よりご連絡いたします。
+            </p>
+          </div>
+        </div>
 
-        <p>
-          ご相談・業務提携等のお問い合わせは、以下のフォームより受け付けております。
-        </p>
+        <div class="contact-panel">
+          <div class="contact-box fade-up">
+            <h3>お問い合わせフォーム</h3>
 
-        <p>
-          原則として2営業日以内にご返信いたします。
-        </p>
+            <p>
+              原則として2営業日以内にご返信いたします。
+            </p>
 
-        <a 
-          href="https://forms.cloud.microsoft/r/5SDSdVxsuP"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button primary"
-        >
-          お問い合わせフォームへ
-        </a>
+            <a
+              href="https://forms.cloud.microsoft/r/5SDSdVxsuP"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="button primary"
+            >
+              お問い合わせフォームへ
+            </a>
 
-        <p class="notice">
-          Microsoft Formsを利用したお問い合わせフォームです。
-        </p>
+            <p class="notice">
+              Microsoft Formsを利用したお問い合わせフォームです。
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div>© <span id="year"></span> Zerquor LLC</div>
+      <div>© <span id="year"></span> Zerquor LLC. All Rights Reserved.</div>
+      <div>合同会社Zerquor | Security / Governance / Enablement</div>
     </div>
   </footer>
 
