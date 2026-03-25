@@ -40,16 +40,3 @@ const activateNav = () => {
 
 window.addEventListener('scroll', activateNav);
 activateNav();
-
-const form = document.getElementById('contactForm');
-const formMessage = document.getElementById('formMessage');
-
-if (form && formMessage) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const formData = new FormData(form);
-    const name = formData.get('name');
-    formMessage.textContent = `${name} 様、お問い合わせありがとうございます。このデモサイトでは送信処理は実装していません。実運用時にはサーバー連携またはフォームサービスと接続してください。`;
-    form.reset();
-  });
-}
