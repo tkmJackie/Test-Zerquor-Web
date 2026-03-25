@@ -1,10 +1,8 @@
-// 年号自動更新
 const yearEl = document.getElementById('year');
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
-// フェードイン（安全版）
 const faders = document.querySelectorAll('.fade-up');
 
 if ('IntersectionObserver' in window) {
@@ -12,32 +10,33 @@ if ('IntersectionObserver' in window) {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        io.unobserve(entry.target);
       }
     });
-  });
+  }, { threshold: 0.16 });
 
   faders.forEach((el) => io.observe(el));
 } else {
   faders.forEach((el) => el.classList.add('visible'));
 }
 
-// ナビの現在位置ハイライト（安全版）
 const navLinks = document.querySelectorAll('.nav a');
-const sections = document.querySelectorAll('section[id]');
+const sections = [...document.querySelectorAll('main section[id]')];
 
-window.addEventListener('scroll', () => {
-  let current = '';
+const activateNav = () => {
+  const offset = window.scrollY + 120;
+  let currentId = '';
 
   sections.forEach((section) => {
-    if (window.scrollY >= section.offsetTop - 120) {
-      current = section.id;
+    if (offset >= section.offsetTop) {
+      currentId = section.id;
     }
   });
 
   navLinks.forEach((link) => {
-    link.classList.remove('active');
-    if (link.getAttribute('href') === '#' + current) {
-      link.classList.add('active');
-    }
+    link.classList.toggle('active', link.getAttribute('href') === `#${currentId}`);
   });
-});
+};
+
+window.addEventListener('scroll', activateNav);
+window.addEventListener('load', activateNav);
