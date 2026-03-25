@@ -3,266 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>合同会社Zerquor | 企業サイト</title>
-  <meta name="description" content="合同会社Zerquorの企業サイト。セキュリティ内製化支援、教育、実務定着支援を提供します。" />
-  <link rel="stylesheet" href="styles.css" />
+  <title>合同会社Zerquor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Mincho ProN", "Yu Mincho", serif;
+      background: #ffffff;
+      color: #222;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+    }
+
+    nav a {
+      margin-right: 20px;
+      color: #555;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: normal;
+      margin-top: 60px;
+    }
+
+    h2 {
+      margin-top: 60px;
+      font-size: 22px;
+      border-left: 4px solid #333;
+      padding-left: 10px;
+    }
+
+    p {
+      color: #444;
+    }
+
+    .section {
+      margin-bottom: 60px;
+    }
+
+    .box {
+      border: 1px solid #ddd;
+      padding: 20px;
+      margin-top: 20px;
+      background: #fafafa;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f5f5f5;
+      width: 180px;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #333;
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid #ddd;
+      margin-top: 80px;
+      padding: 20px 0;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a href="#top" class="brand" aria-label="合同会社Zerquor トップへ移動">
-        <div class="brand-mark">Z</div>
-        <div class="brand-text">
-          <strong>合同会社Zerquor</strong>
-          <span>Robust Governance & Security Enablement</span>
-        </div>
-      </a>
-      <nav class="nav" aria-label="主要ナビゲーション">
-        <a href="#concept">会社のコンセプト</a>
-        <a href="#services">サービス内容</a>
-        <a href="#company">企業情報</a>
-        <a href="#contact">お問い合わせ</a>
-      </nav>
+
+<header>
+  <div class="container">
+    <strong>合同会社Zerquor</strong>
+    <nav>
+      <a href="#concept">コンセプト</a>
+      <a href="#services">サービス</a>
+      <a href="#company">企業情報</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="section">
+    <h1>継続できるセキュリティ体制を構築する</h1>
+    <p>
+      Zerquorは、企業のセキュリティを一過性の対策で終わらせず、
+      継続可能な仕組みとして定着させることを目的としています。
+    </p>
+  </section>
+
+  <section id="concept" class="section">
+    <h2>会社のコンセプト</h2>
+    <div class="box">
+      <p>・内製化できるセキュリティ体制の構築</p>
+      <p>・監査・説明に耐えうる統制設計</p>
+      <p>・教育を実務へ接続する運用支援</p>
     </div>
-  </header>
+  </section>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="fade-up">
-          <div class="eyebrow">Governance / Security / Internal Capability</div>
-          <h1>
-            守るだけではなく、<br />
-            <span>継続できる仕組み</span>を設計する。
-          </h1>
-          <p class="lead">
-            合同会社Zerquorは、企業のセキュリティと統制を一過性の対策で終わらせず、
-            現場に定着する仕組みとして構築することを目指します。堅牢性、説明責任、再現性を重視し、
-            経営層から実務担当者まで一貫した支援を提供します。
-          </p>
-          <div class="hero-actions">
-            <a class="button primary" href="#contact">お問い合わせ</a>
-            <a class="button secondary" href="#services">サービスを見る</a>
-          </div>
-        </div>
-
-        <aside class="hero-card fade-up" aria-label="Zerquorの特徴">
-          <div class="status-label">Core Principles</div>
-          <div class="metric">
-            <strong>3</strong>
-            <span>つの重点領域</span>
-          </div>
-          <ul class="check-list">
-            <li>セキュリティを内製化できる体制づくり</li>
-            <li>監査・説明に耐えうる統制設計</li>
-            <li>教育を実務へ接続する運用定着支援</li>
-          </ul>
-        </aside>
-      </div>
-    </section>
-
-    <section id="concept">
-      <div class="container">
-        <div class="section-head fade-up">
-          <div>
-            <h2>会社のコンセプト</h2>
-            <p>
-              Zerquorは、外部依存の対症療法ではなく、企業が自ら判断し、維持し、改善できる状態をつくるための伴走型支援を提供します。
-            </p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card fade-up">
-            <h3>堅牢性</h3>
-            <p>
-              セキュリティやガバナンスを、属人的な運用ではなく、組織として継続可能なルール・手順・教育へ落とし込みます。
-            </p>
-          </article>
-          <article class="card fade-up">
-            <h3>説明責任</h3>
-            <p>
-              監査対応や取引先説明に耐えうる形で、方針・手順・実施記録を整え、企業としての信頼基盤を強化します。
-            </p>
-          </article>
-          <article class="card fade-up">
-            <h3>実務定着</h3>
-            <p>
-              研修で終わらせず、現場で使える判断軸・チェック体制・運用ルールへ接続し、日常業務に根づかせます。
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="container">
-        <div class="section-head fade-up">
-          <div>
-            <h2>サービス内容</h2>
-            <p>
-              セキュリティ・統制・教育を分断せず、企業の実情に応じて段階的に支援します。
-            </p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card fade-up">
-            <div class="service-number">01</div>
-            <h3>セキュリティ内製化支援</h3>
-            <p>
-              社内で継続的に判断・改善できるよう、役割整理、体制設計、ルール整備、定例運用の確立を支援します。
-            </p>
-          </article>
-          <article class="card fade-up">
-            <div class="service-number">02</div>
-            <h3>教育・研修設計</h3>
-            <p>
-              一般社員、管理職、担当部門向けに、実務につながる研修プログラムを設計・提供します。理解だけでなく、行動変容まで見据えます。
-            </p>
-          </article>
-          <article class="card fade-up">
-            <div class="service-number">03</div>
-            <h3>統制・監査対応支援</h3>
-            <p>
-              規程、記録、運用フローの整備を通じて、取引先要求や監査対応に耐えうる統制の構築を支援します。
-            </p>
-          </article>
-        </div>
-
-        <div class="grid-2 section-gap">
-          <article class="card fade-up">
-            <h3>想定支援メニュー</h3>
-            <ul class="check-list">
-              <li>情報セキュリティ方針・関連規程の整備支援</li>
-              <li>従業員向けセキュリティ教育の企画・実施</li>
-              <li>管理部門・責任者向け判断支援</li>
-              <li>社内運用フローの見直しと標準化</li>
-            </ul>
-          </article>
-          <article class="card fade-up">
-            <h3>Zerquorが重視すること</h3>
-            <ul class="check-list">
-              <li>導入しやすさより、継続しやすさ</li>
-              <li>単発施策より、再現可能な運用設計</li>
-              <li>資格取得より、現場判断への接続</li>
-              <li>外注依存より、自走できる社内体制</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="company">
-      <div class="container">
-        <div class="section-head fade-up">
-          <div>
-            <h2>企業情報</h2>
-            <p>
-              掲載内容はコーポレートサイト用の基本情報です。所在地や受付時間など、必要に応じて追加・更新できます。
-            </p>
-          </div>
-        </div>
-
-        <div class="table-wrap fade-up">
-          <table class="table" aria-label="企業情報一覧">
-            <tbody>
-              <tr>
-                <th>会社名</th>
-                <td>合同会社Zerquor</td>
-              </tr>
-              <tr>
-                <th>創立者</th>
-                <td>仲村 拓馬</td>
-              </tr>
-              <tr>
-                <th>創立日</th>
-                <td>2027年4月1日</td>
-              </tr>
-              <tr>
-                <th>資本金</th>
-                <td>100万円</td>
-              </tr>
-              <tr>
-                <th>法人番号</th>
-                <td>1234567890123</td>
-              </tr>
-              <tr>
-                <th>事業内容</th>
-                <td>セキュリティ内製化支援、教育・研修設計、統制整備支援、監査対応支援</td>
-              </tr>
-              <tr>
-                <th>対応領域</th>
-                <td>中小企業向け情報セキュリティ、社内統制、教育定着、運用整備</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact">
-      <div class="container">
-        <div class="section-head fade-up">
-          <div>
-            <h2>お問い合わせ</h2>
-            <p>
-              ご相談、業務提携、研修・支援のご依頼など、お気軽にお問い合わせください。
-            </p>
-          </div>
-        </div>
-
-        <div class="contact-panel">
-          <div class="contact-box fade-up">
-            <h3>ご連絡先</h3>
-            <p class="notice">実運用時にはメールアドレス・所在地・受付時間を正式な情報へ差し替えてください。</p>
-            <div class="contact-list">
-              <div class="contact-item">
-                <small>Email</small>
-                <strong><a href="mailto:info@zerquor.example">info@zerquor.example</a></strong>
-              </div>
-              <div class="contact-item">
-                <small>受付時間</small>
-                <strong>平日 9:00 - 18:00</strong>
-              </div>
-              <div class="contact-item">
-                <small>お問い合わせ内容</small>
-                <strong>サービス相談 / 研修依頼 / 業務提携 / その他</strong>
-              </div>
-            </div>
-          </div>
-
-          <div class="contact-box fade-up">
-            <h3>お問い合わせフォーム</h3>
-            <form id="contactForm">
-              <label>
-                お名前
-                <input type="text" name="name" placeholder="例：山田 太郎" required />
-              </label>
-              <label>
-                メールアドレス
-                <input type="email" name="email" placeholder="例：sample@example.com" required />
-              </label>
-              <label>
-                お問い合わせ内容
-                <textarea name="message" placeholder="ご相談内容をご記入ください。" required></textarea>
-              </label>
-              <button type="submit" class="button primary">送信する</button>
-            </form>
-            <p class="notice" id="formMessage" aria-live="polite"></p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© <span id="year"></span> Zerquor LLC. All Rights Reserved.</div>
-      <div>合同会社Zerquor | Security / Governance / Enablement</div>
+  <section id="services" class="section">
+    <h2>サービス内容</h2>
+    <div class="box">
+      <p>・セキュリティ内製化支援</p>
+      <p>・教育・研修設計</p>
+      <p>・統制整備・監査対応支援</p>
     </div>
-  </footer>
+  </section>
 
-  <script src="script.js"></script>
+  <section id="company" class="section">
+    <h2>企業情報</h2>
+    <table>
+      <tr><th>会社名</th><td>合同会社Zerquor</td></tr>
+      <tr><th>創立者</th><td>仲村 拓馬</td></tr>
+      <tr><th>創立日</th><td>2027年4月1日</td></tr>
+      <tr><th>資本金</th><td>100万円</td></tr>
+      <tr><th>法人番号</th><td>1234567890123</td></tr>
+    </table>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>お問い合わせ</h2>
+    <p>
+      ご相談・ご依頼は以下のフォームより受け付けております。
+    </p>
+    <a href="https://forms.cloud.microsoft/r/5SDSdVxsuP" target="_blank" class="button">
+      お問い合わせフォーム
+    </a>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    © Zerquor LLC
+  </div>
+</footer>
+
 </body>
 </html>
