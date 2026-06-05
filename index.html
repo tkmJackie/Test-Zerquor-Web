@@ -1,173 +1,124 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Zerquor | セキュリティ教育・内製化支援</title>
-  <meta name="description" content="Zerquorは、中小企業向けにセキュリティ教育とセキュリティ内製化支援を提供します。" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <header class="site-header">
-    <div class="container header-container">
-      <a href="#" class="logo">Zerquor</a>
 
-      <nav class="nav">
-        <a href="#concept">コンセプト</a>
-        <a href="#services">サービス</a>
-        <a href="#events">セミナー</a>
-        <a href="#company">会社概要</a>
-        <a href="#contact">お問い合わせ</a>
-      </nav>
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">Zerquor</div>
+    <nav class="nav">
+      <a href="#about">私たちについて</a>
+      <a href="#services">サービス</a>
+      <a href="#company">会社概要</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="hero-label">Security Education & Internalization Support</p>
+      <h1>セキュリティを、<br>企業の中に根づかせる。</h1>
+      <p class="hero-text">
+        Zerquorは、中小企業向けにセキュリティ教育と内製化支援を提供し、
+        自社で判断し、継続できるセキュリティ体制づくりを支援します。
+      </p>
+      <a href="#contact" class="button">お問い合わせ</a>
     </div>
-  </header>
+  </section>
 
-  <main>
-    <section class="hero">
-      <div class="container">
-        <p class="hero-label">Security Education / Internalization Support</p>
-        <h1>中小企業のセキュリティを、<br>現場で使える力に変える。</h1>
-        <p class="hero-text">
-          Zerquorは、セキュリティ教育・偽メール対策・内製化支援を通じて、
-          企業が自社で守れる体制づくりを支援します。
-        </p>
+  <section id="about" class="section">
+    <div class="section-inner">
+      <h2>私たちについて</h2>
+      <p>
+        セキュリティは、専門部署だけが担うものではありません。
+        経営層、管理職、一般社員、IT担当者がそれぞれの立場で正しく判断できることが、
+        企業全体の安全性を高めます。
+      </p>
+      <p>
+        Zerquorは、難しい知識を現場で使える形に変え、
+        継続的に運用できるセキュリティ体制の構築を支援します。
+      </p>
+    </div>
+  </section>
 
-        <div class="hero-buttons">
-          <a href="#contact" class="btn btn-primary">相談する</a>
-          <a href="#services" class="btn btn-secondary">サービスを見る</a>
-        </div>
-      </div>
-    </section>
+  <section id="services" class="section section-gray">
+    <div class="section-inner">
+      <h2>サービス</h2>
 
-    <section class="section" id="concept">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">CONCEPT</span>
-          <h2>セキュリティを、特別な人だけのものにしない。</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>セキュリティ教育</h3>
           <p>
-            難しい専門用語だけで終わらせず、経営層・管理職・一般社員・IT担当者が、
-            それぞれの立場で判断できる状態を目指します。
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section section-gray" id="services">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">SERVICES</span>
-          <h2>サービス</h2>
-          <p>
-            教育と伴走支援を組み合わせ、継続できるセキュリティ体制づくりを支援します。
+            新入社員、一般社員、管理職、経営層向けに、
+            役割に応じたセキュリティ研修を提供します。
           </p>
         </div>
 
-        <div class="card-grid">
-          <article class="card">
-            <h3>セキュリティ教育</h3>
-            <p>
-              新入社員、一般社員、管理職、経営層向けに、
-              役割に合わせたセキュリティ研修を提供します。
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>偽メール対策セミナー</h3>
-            <p>
-              フィッシングメールや不審URLを題材に、
-              実践形式で判断力を高めるセミナーを行います。
-            </p>
-          </article>
-
-          <article class="card">
-            <h3>セキュリティ内製化支援</h3>
-            <p>
-              外部任せにしすぎない体制を作り、
-              社内で継続できる運用に落とし込みます。
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section events-section" id="events">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">SEMINAR</span>
-          <h2>開催予定セミナー</h2>
+        <div class="card">
+          <h3>偽メール対策</h3>
           <p>
-            Zerquorが開催するセキュリティセミナー・勉強会情報です。
+            フィッシングメールや不審URLを題材に、
+            実践的な判断力を身につける研修を行います。
           </p>
         </div>
 
-        <div id="connpass-events" class="events-grid">
-          <p class="events-message">イベント情報を読み込み中...</p>
-        </div>
-
-        <div class="events-footer">
-          <a
-            href="https://zerquor.connpass.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-primary"
-          >
-            connpassで一覧を見る
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="company">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">COMPANY</span>
-          <h2>会社概要</h2>
-        </div>
-
-        <dl class="company-list">
-          <div>
-            <dt>会社名</dt>
-            <dd>合同会社 Zerquor</dd>
-          </div>
-          <div>
-            <dt>代表者</dt>
-            <dd>仲村 拓馬</dd>
-          </div>
-          <div>
-            <dt>事業内容</dt>
-            <dd>セキュリティ教育、セキュリティ内製化支援、セミナー運営</dd>
-          </div>
-        </dl>
-      </div>
-    </section>
-
-    <section class="section section-gray contact-section" id="contact">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">CONTACT</span>
-          <h2>お問い合わせ</h2>
+        <div class="card">
+          <h3>セキュリティ内製化支援</h3>
           <p>
-            研修、セミナー、セキュリティ内製化支援に関するご相談はこちらからお問い合わせください。
+            外部任せにしすぎない体制をつくり、
+            社内で継続できる運用へ落とし込みます。
           </p>
         </div>
-
-        <a
-          href="https://forms.office.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary"
-        >
-          お問い合わせフォームへ
-        </a>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer class="site-footer">
-    <p>&copy; Zerquor LLC. All rights reserved.</p>
-  </footer>
+  <section id="company" class="section">
+    <div class="section-inner">
+      <h2>会社概要</h2>
 
-  <script src="script.js"></script>
+      <table class="company-table">
+        <tr>
+          <th>会社名</th>
+          <td>合同会社 Zerquor</td>
+        </tr>
+        <tr>
+          <th>代表者</th>
+          <td>仲村 拓馬</td>
+        </tr>
+        <tr>
+          <th>事業内容</th>
+          <td>セキュリティ教育、セキュリティ内製化支援</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section id="contact" class="section section-gray contact">
+    <div class="section-inner">
+      <h2>お問い合わせ</h2>
+      <p>
+        研修・セキュリティ内製化支援に関するご相談は、
+        お問い合わせフォームよりご連絡ください。
+      </p>
+      <a href="https://forms.office.com/" target="_blank" rel="noopener noreferrer" class="button">
+        お問い合わせフォームへ
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p>&copy; Zerquor LLC. All rights reserved.</p>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
