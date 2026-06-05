@@ -41,8 +41,6 @@ img {
   margin: 0 auto;
 }
 
-/* Header / Navigation */
-
 .topbar {
   position: sticky;
   top: 0;
@@ -110,8 +108,6 @@ img {
   color: #ffffff;
   background: var(--accent);
 }
-
-/* Hero */
 
 .hero {
   padding: 84px 0 60px;
@@ -197,8 +193,6 @@ img {
   margin-top: 30px;
 }
 
-/* Buttons */
-
 .button {
   display: inline-flex;
   align-items: center;
@@ -228,8 +222,6 @@ img {
   color: var(--text);
   border-color: var(--line);
 }
-
-/* Shared cards */
 
 .hero-card,
 .card,
@@ -279,14 +271,13 @@ img {
   margin-bottom: 4px;
 }
 
-/* Sections / layout */
-
 section {
   padding: 34px 0;
 }
 
 .section-emphasis {
-  background: linear-gradient(180deg, rgba(59, 109, 246, 0.04), rgba(59, 109, 246, 0));
+  background:
+    linear-gradient(180deg, rgba(59, 109, 246, 0.04), rgba(59, 109, 246, 0));
 }
 
 .section-head {
@@ -376,8 +367,6 @@ section {
   text-align: center;
 }
 
-/* Lists */
-
 .check-list {
   display: grid;
   gap: 12px;
@@ -418,8 +407,6 @@ section {
   font-weight: 600;
 }
 
-/* Flow */
-
 .flow-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -455,8 +442,6 @@ section {
   color: var(--muted);
   font-size: 0.94rem;
 }
-
-/* Tables / price / company */
 
 .table-wrap {
   overflow: hidden;
@@ -511,8 +496,6 @@ tr:last-child td {
   color: var(--accent);
   font-weight: 700;
 }
-
-/* FAQ */
 
 .faq-list {
   display: grid;
@@ -577,11 +560,10 @@ tr:last-child td {
   color: var(--muted);
 }
 
-/* Connpass events */
-
 .events-section {
   padding: 42px 0;
-  background: linear-gradient(180deg, rgba(59, 109, 246, 0.04), rgba(59, 109, 246, 0));
+  background:
+    linear-gradient(180deg, rgba(59, 109, 246, 0.04), rgba(59, 109, 246, 0));
 }
 
 .events-scroll {
@@ -669,8 +651,6 @@ tr:last-child td {
   text-align: center;
 }
 
-/* Cycle image */
-
 .cycle-section {
   padding: 42px 0;
 }
@@ -690,8 +670,6 @@ tr:last-child td {
   height: auto;
   border-radius: 16px;
 }
-
-/* Contact */
 
 .contact-box {
   padding: 28px;
@@ -740,8 +718,6 @@ tr:last-child td {
   font-size: 0.88rem;
 }
 
-/* Footer */
-
 .footer {
   background: #ffffff;
   border-top: 1px solid var(--line);
@@ -759,8 +735,6 @@ tr:last-child td {
   font-size: 0.9rem;
 }
 
-/* Animation */
-
 .fade-up {
   opacity: 0;
   transform: translateY(20px);
@@ -771,8 +745,6 @@ tr:last-child td {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Responsive */
 
 @media (max-width: 980px) {
   .hero-grid,
