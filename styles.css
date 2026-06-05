@@ -37,8 +37,6 @@ a {
   margin: 0 auto;
 }
 
-/* Header */
-
 .topbar {
   position: sticky;
   top: 0;
@@ -106,8 +104,6 @@ a {
   color: #ffffff;
   background: var(--accent);
 }
-
-/* Hero */
 
 .hero {
   padding: 84px 0 60px;
@@ -193,8 +189,6 @@ a {
   margin-top: 30px;
 }
 
-/* Buttons */
-
 .button {
   display: inline-flex;
   align-items: center;
@@ -224,8 +218,6 @@ a {
   color: var(--text);
   border-color: var(--line);
 }
-
-/* Cards */
 
 .hero-card,
 .card,
@@ -274,8 +266,6 @@ a {
   font-size: 0.9rem;
   margin-bottom: 4px;
 }
-
-/* Sections */
 
 section {
   padding: 34px 0;
@@ -373,8 +363,6 @@ section {
   text-align: center;
 }
 
-/* Lists */
-
 .check-list {
   display: grid;
   gap: 12px;
@@ -415,8 +403,6 @@ section {
   font-weight: 600;
 }
 
-/* Flow */
-
 .flow-list {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -452,8 +438,6 @@ section {
   color: var(--muted);
   font-size: 0.94rem;
 }
-
-/* Tables */
 
 .table-wrap {
   overflow: hidden;
@@ -509,11 +493,25 @@ tr:last-child td {
   font-weight: 700;
 }
 
-/* FAQ */
-
 .faq-list {
   display: grid;
   gap: 12px;
+}
+
+.faq-category {
+  margin-bottom: 56px;
+}
+
+.faq-category h2 {
+  margin: 0 0 20px;
+  padding-left: 14px;
+  border-left: 5px solid var(--accent);
+  font-size: clamp(1.35rem, 3vw, 1.85rem);
+  line-height: 1.35;
+}
+
+.faq-category .faq-item + .faq-item {
+  margin-top: 12px;
 }
 
 .faq-item {
@@ -526,7 +524,7 @@ tr:last-child td {
 
 .faq-item summary {
   cursor: pointer;
-  padding: 18px 22px;
+  padding: 18px 52px 18px 22px;
   font-weight: 700;
   color: var(--text);
   list-style: none;
@@ -558,8 +556,6 @@ tr:last-child td {
   color: var(--muted);
 }
 
-/* Cycle Image */
-
 .cycle-section {
   padding: 42px 0;
 }
@@ -579,8 +575,6 @@ tr:last-child td {
   height: auto;
   border-radius: 16px;
 }
-
-/* Contact */
 
 .contact-box {
   padding: 28px;
@@ -629,8 +623,6 @@ tr:last-child td {
   font-size: 0.88rem;
 }
 
-/* Footer */
-
 .footer {
   background: #ffffff;
   border-top: 1px solid var(--line);
@@ -648,8 +640,6 @@ tr:last-child td {
   font-size: 0.9rem;
 }
 
-/* Animation */
-
 .fade-up {
   opacity: 0;
   transform: translateY(20px);
@@ -660,8 +650,6 @@ tr:last-child td {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Responsive */
 
 @media (max-width: 980px) {
   .hero-grid,
