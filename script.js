@@ -1,16 +1,9 @@
-// =========================================
-// Footer year
-// =========================================
 const yearEl = document.getElementById('year');
 
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
-
-// =========================================
-// Fade up animation
-// =========================================
 const faders = document.querySelectorAll('.fade-up');
 
 if ('IntersectionObserver' in window) {
@@ -30,15 +23,11 @@ if ('IntersectionObserver' in window) {
   faders.forEach((el) => el.classList.add('visible'));
 }
 
-
-// =========================================
-// Active navigation
-// =========================================
 const navLinks = document.querySelectorAll('.nav a');
 const sections = [...document.querySelectorAll('main section[id]')];
 
 const activateNav = () => {
-  const offset = window.scrollY + 140;
+  const offset = window.scrollY + 130;
   let currentId = '';
 
   sections.forEach((section) => {
@@ -56,10 +45,6 @@ const activateNav = () => {
 window.addEventListener('scroll', activateNav, { passive: true });
 window.addEventListener('load', activateNav);
 
-
-// =========================================
-// Smooth close for mobile navigation feel
-// =========================================
 navLinks.forEach((link) => {
   link.addEventListener('click', () => {
     navLinks.forEach((item) => item.classList.remove('active'));
