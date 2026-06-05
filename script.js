@@ -10,7 +10,7 @@ async function loadConnpassEvents() {
   }
 
   try {
-    const response = await fetch("https://api.zerquor.com/connpass-events");
+    const response = await fetch("https://connpass-api.tkm12325.workers.dev/");
 
     if (!response.ok) {
       throw new Error("イベント情報の取得に失敗しました。");
@@ -21,7 +21,9 @@ async function loadConnpassEvents() {
 
     if (events.length === 0) {
       container.innerHTML = `
-        <p class="events-message">現在、開催予定のセミナーはありません。</p>
+        <p class="events-message">
+          現在募集中のセミナーはありません。
+        </p>
       `;
       return;
     }
@@ -41,30 +43,24 @@ async function loadConnpassEvents() {
 
 function createEventCard(event) {
   const title = escapeHtml(event.title || "タイトル未定");
-  const eventUrl = escapeHtml(event.event_url || "#");
+  const eventUrl = escapeHtml(event.event_url || "https://zerquor.connpass.com/");
   const dateText = escapeHtml(formatEventDate(event.started_at));
-  const place = escapeHtml(event.place || event.address || "オンライン / 詳細はconnpassをご確認ください");
-  const accepted = Number.isFinite(event.accepted) ? event.accepted : null;
-  const limit = Number.isFinite(event.limit) ? event.limit : null;
-
-  let metaText = "";
-
-  if (accepted !== null && limit !== null && limit > 0) {
-    metaText = `${accepted} / ${limit} 名`;
-  } else if (accepted !== null) {
-    metaText = `${accepted} 名参加予定`;
-  } else {
-    metaText = "詳細はconnpassをご確認ください";
-  }
+  const place = escapeHtml(
+    event.place || event.address || "オンライン / 詳細はconnpassをご確認ください"
+  );
 
   return `
     <article class="event-card">
       <p class="event-date">${dateText}</p>
       <h3 class="event-title">${title}</h3>
       <p class="event-place">${place}</p>
-      <p class="event-meta">${escapeHtml(metaText)}</p>
-      <a class="event-link" href="${eventUrl}" target="_blank" rel="noopener noreferrer">
-        詳細・申込みを見る
+      <a
+        class="event-link"
+        href="${eventUrl}"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        詳細を見る
       </a>
     </article>
   `;
