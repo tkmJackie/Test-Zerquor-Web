@@ -16,9 +16,7 @@ if ("IntersectionObserver" in window) {
         }
       });
     },
-    {
-      threshold: 0.16
-    }
+    { threshold: 0.16 }
   );
 
   faders.forEach((el) => io.observe(el));
@@ -30,9 +28,7 @@ const navLinks = document.querySelectorAll(".nav a");
 const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
 navLinks.forEach((link) => {
-  const href = link.getAttribute("href");
-
-  if (href === currentPath) {
+  if (link.getAttribute("href") === currentPath) {
     link.classList.add("active");
   }
 });
@@ -55,13 +51,22 @@ async function loadEvents() {
 
     const events = await response.json();
     const normalizedEvents = Array.isArray(events) ? events : [];
+    const now = new Date();
 
     const upcomingEvents = normalizedEvents
-      .filter((event) => isUpcomingEvent(event))
+      .filter((event) => {
+        const eventDate = new Date(event.date);
+        if (Number.isNaN(eventDate.getTime())) return true;
+        return eventDate >= now;
+      })
       .sort((a, b) => new Date(a.date) - new Date(b.date));
 
     const pastEvents = normalizedEvents
-      .filter((event) => !isUpcomingEvent(event))
+      .filter((event) => {
+        const eventDate = new Date(event.date);
+        if (Number.isNaN(eventDate.getTime())) return false;
+        return eventDate < now;
+      })
       .sort((a, b) => new Date(b.date) - new Date(a.date));
 
     if (topUpcomingEventsContainer) {
@@ -84,36 +89,10 @@ async function loadEvents() {
       </p>
     `;
 
-    if (topUpcomingEventsContainer) {
-      topUpcomingEventsContainer.innerHTML = message;
-    }
-
-    if (eventsPageUpcomingContainer) {
-      eventsPageUpcomingContainer.innerHTML = message;
-    }
-
-    if (pastEventsContainer) {
-      pastEventsContainer.innerHTML = message;
-    }
+    if (topUpcomingEventsContainer) topUpcomingEventsContainer.innerHTML = message;
+    if (eventsPageUpcomingContainer) eventsPageUpcomingContainer.innerHTML = message;
+    if (pastEventsContainer) pastEventsContainer.innerHTML = message;
   }
-}
-
-function isUpcomingEvent(event) {
-  if (event.status === "past") {
-    return false;
-  }
-
-  if (event.status === "upcoming") {
-    return true;
-  }
-
-  const eventDate = new Date(event.date);
-
-  if (Number.isNaN(eventDate.getTime())) {
-    return true;
-  }
-
-  return eventDate >= new Date();
 }
 
 function renderEvents(container, events, type) {
@@ -136,6 +115,7 @@ function createEventCard(event, type) {
   const date = escapeHtml(formatEventDate(event.date));
   const description = escapeHtml(event.description || "");
   const image = escapeHtml(event.image || "");
+  const category = escapeHtml(event.category || "");
 
   const imageHtml = image
     ? `
@@ -145,20 +125,21 @@ function createEventCard(event, type) {
     `
     : "";
 
+  const categoryHtml = category
+    ? `<p class="event-category">${category}</p>`
+    : "";
+
   return `
     <article class="event-card">
       ${imageHtml}
 
       <div class="event-body">
+        ${categoryHtml}
         <p class="event-date">${date}</p>
         <h3 class="event-title">${title}</h3>
         <p class="event-place">${place}</p>
 
-        ${
-          description
-            ? `<p class="event-description">${description}</p>`
-            : ""
-        }
+        ${description ? `<p class="event-description">${description}</p>` : ""}
 
         <a
           class="event-link"
@@ -174,15 +155,11 @@ function createEventCard(event, type) {
 }
 
 function formatEventDate(dateString) {
-  if (!dateString) {
-    return "開催日未定";
-  }
+  if (!dateString) return "開催日未定";
 
   const date = new Date(dateString);
 
-  if (Number.isNaN(date.getTime())) {
-    return "開催日未定";
-  }
+  if (Number.isNaN(date.getTime())) return "開催日未定";
 
   return date.toLocaleDateString("ja-JP", {
     year: "numeric",
