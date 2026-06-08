@@ -1,47 +1,108 @@
-const yearEl = document.getElementById("year");
+/* =====================================
+   Header / Footer Common Parts
+===================================== */
 
-if (yearEl) {
-  yearEl.textContent = new Date().getFullYear();
-}
+async function loadCommonParts() {
+  try {
+    const headerArea = document.getElementById("header");
 
-const faders = document.querySelectorAll(".fade-up");
+    if (headerArea) {
+      const response = await fetch("header.html");
+      headerArea.innerHTML = await response.text();
+    }
 
-if ("IntersectionObserver" in window) {
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-          io.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.16 }
-  );
+    const footerArea = document.getElementById("footer");
 
-  faders.forEach((el) => io.observe(el));
-} else {
-  faders.forEach((el) => el.classList.add("visible"));
-}
+    if (footerArea) {
+      const response = await fetch("footer.html");
+      footerArea.innerHTML = await response.text();
+    }
 
-const navLinks = document.querySelectorAll(".nav a");
-const currentPath = window.location.pathname.split("/").pop() || "index.html";
+    setCurrentNav();
+    setFooterYear();
 
-navLinks.forEach((link) => {
-  if (link.getAttribute("href") === currentPath) {
-    link.classList.add("active");
+  } catch (error) {
+    console.error("共通パーツの読み込みに失敗しました", error);
   }
-});
-
-const topUpcomingEventsContainer = document.getElementById("upcoming-events");
-const eventsPageUpcomingContainer = document.getElementById("events-page-upcoming");
-const pastEventsContainer = document.getElementById("past-events");
-
-if (topUpcomingEventsContainer || eventsPageUpcomingContainer || pastEventsContainer) {
-  loadEvents();
 }
+
+function setCurrentNav() {
+  const currentPath =
+    window.location.pathname.split("/").pop() || "index.html";
+
+  const navLinks = document.querySelectorAll(".nav a");
+
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("href");
+
+    if (href === currentPath) {
+      link.classList.add("active");
+    }
+  });
+}
+
+function setFooterYear() {
+  const yearEl = document.getElementById("year");
+
+  if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
+}
+
+/* =====================================
+   Fade Animation
+===================================== */
+
+function initializeFadeAnimation() {
+  const faders = document.querySelectorAll(".fade-up");
+
+  if ("IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.16
+      }
+    );
+
+    faders.forEach((element) => {
+      observer.observe(element);
+    });
+  } else {
+    faders.forEach((element) => {
+      element.classList.add("visible");
+    });
+  }
+}
+
+/* =====================================
+   Event Loading
+===================================== */
 
 async function loadEvents() {
+  const topUpcomingEventsContainer =
+    document.getElementById("upcoming-events");
+
+  const eventsPageUpcomingContainer =
+    document.getElementById("events-page-upcoming");
+
+  const pastEventsContainer =
+    document.getElementById("past-events");
+
+  if (
+    !topUpcomingEventsContainer &&
+    !eventsPageUpcomingContainer &&
+    !pastEventsContainer
+  ) {
+    return;
+  }
+
   try {
     const response = await fetch("events.json");
 
@@ -50,48 +111,63 @@ async function loadEvents() {
     }
 
     const events = await response.json();
-    const normalizedEvents = Array.isArray(events) ? events : [];
+
     const now = new Date();
 
-    const upcomingEvents = normalizedEvents
+    const upcomingEvents = events
       .filter((event) => {
         const eventDate = new Date(event.date);
-        if (Number.isNaN(eventDate.getTime())) return true;
+
+        if (Number.isNaN(eventDate.getTime())) {
+          return false;
+        }
+
         return eventDate >= now;
       })
-      .sort((a, b) => new Date(a.date) - new Date(b.date));
+      .sort((a, b) => {
+        return new Date(a.date) - new Date(b.date);
+      });
 
-    const pastEvents = normalizedEvents
+    const pastEvents = events
       .filter((event) => {
         const eventDate = new Date(event.date);
-        if (Number.isNaN(eventDate.getTime())) return false;
+
+        if (Number.isNaN(eventDate.getTime())) {
+          return false;
+        }
+
         return eventDate < now;
       })
-      .sort((a, b) => new Date(b.date) - new Date(a.date));
+      .sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+      });
 
     if (topUpcomingEventsContainer) {
-      renderEvents(topUpcomingEventsContainer, upcomingEvents.slice(0, 8), "upcoming");
+      renderEvents(
+        topUpcomingEventsContainer,
+        upcomingEvents.slice(0, 10),
+        "upcoming"
+      );
     }
 
     if (eventsPageUpcomingContainer) {
-      renderEvents(eventsPageUpcomingContainer, upcomingEvents, "upcoming");
+      renderEvents(
+        eventsPageUpcomingContainer,
+        upcomingEvents,
+        "upcoming"
+      );
     }
 
     if (pastEventsContainer) {
-      renderEvents(pastEventsContainer, pastEvents, "past");
+      renderEvents(
+        pastEventsContainer,
+        pastEvents,
+        "past"
+      );
     }
+
   } catch (error) {
     console.error(error);
-
-    const message = `
-      <p class="events-message">
-        イベント情報を取得できませんでした。
-      </p>
-    `;
-
-    if (topUpcomingEventsContainer) topUpcomingEventsContainer.innerHTML = message;
-    if (eventsPageUpcomingContainer) eventsPageUpcomingContainer.innerHTML = message;
-    if (pastEventsContainer) pastEventsContainer.innerHTML = message;
   }
 }
 
@@ -99,67 +175,106 @@ function renderEvents(container, events, type) {
   if (!events || events.length === 0) {
     container.innerHTML = `
       <p class="events-message">
-        ${type === "past" ? "過去のセミナー情報はまだありません。" : "現在、開催予定のセミナーはありません。"}
+        ${
+          type === "past"
+            ? "過去のセミナー情報はまだありません。"
+            : "現在、開催予定のセミナーはありません。"
+        }
       </p>
     `;
     return;
   }
 
-  container.innerHTML = events.map((event) => createEventCard(event, type)).join("");
+  container.innerHTML = events
+    .map((event) => createEventCard(event, type))
+    .join("");
 }
 
 function createEventCard(event, type) {
   const title = escapeHtml(event.title || "タイトル未定");
   const url = escapeHtml(event.url || "#");
-  const place = escapeHtml(event.place || "オンライン / 詳細はリンク先をご確認ください");
+  const place = escapeHtml(event.place || "");
   const date = escapeHtml(formatEventDate(event.date));
   const description = escapeHtml(event.description || "");
-  const image = escapeHtml(event.image || "");
   const category = escapeHtml(event.category || "");
-
-  const imageHtml = image
-    ? `
-      <div class="event-image-wrap">
-        <img src="${image}" alt="${title}" class="event-image" />
-      </div>
-    `
-    : "";
-
-  const categoryHtml = category
-    ? `<p class="event-category">${category}</p>`
-    : "";
+  const image = escapeHtml(event.image || "");
 
   return `
     <article class="event-card">
-      ${imageHtml}
+
+      ${
+        image
+          ? `
+          <div class="event-image-wrap">
+            <img
+              src="${image}"
+              alt="${title}"
+              class="event-image"
+            />
+          </div>
+        `
+          : ""
+      }
 
       <div class="event-body">
-        ${categoryHtml}
-        <p class="event-date">${date}</p>
-        <h3 class="event-title">${title}</h3>
-        <p class="event-place">${place}</p>
 
-        ${description ? `<p class="event-description">${description}</p>` : ""}
+        ${
+          category
+            ? `
+            <div class="event-category">
+              ${category}
+            </div>
+          `
+            : ""
+        }
+
+        <div class="event-date">
+          ${date}
+        </div>
+
+        <h3 class="event-title">
+          ${title}
+        </h3>
+
+        <div class="event-place">
+          ${place}
+        </div>
+
+        ${
+          description
+            ? `
+            <p class="event-description">
+              ${description}
+            </p>
+          `
+            : ""
+        }
 
         <a
-          class="event-link"
           href="${url}"
           target="_blank"
           rel="noopener noreferrer"
+          class="event-link"
         >
-          ${type === "past" ? "開催ページを見る" : "詳細を見る"}
+          ${
+            type === "past"
+              ? "開催ページを見る"
+              : "詳細を見る"
+          }
         </a>
+
       </div>
+
     </article>
   `;
 }
 
 function formatEventDate(dateString) {
-  if (!dateString) return "開催日未定";
-
   const date = new Date(dateString);
 
-  if (Number.isNaN(date.getTime())) return "開催日未定";
+  if (Number.isNaN(date.getTime())) {
+    return "開催日未定";
+  }
 
   return date.toLocaleDateString("ja-JP", {
     year: "numeric",
@@ -169,11 +284,22 @@ function formatEventDate(dateString) {
   });
 }
 
-function escapeHtml(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text;
+  return div.innerHTML;
 }
+
+/* =====================================
+   Initialize
+===================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  await loadCommonParts();
+
+  initializeFadeAnimation();
+
+  await loadEvents();
+
+});
