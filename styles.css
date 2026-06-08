@@ -895,8 +895,8 @@ tr:last-child td {
   }
 
 .site-logo {
-  width: 32px;
-  height: 32px;
+  height: 50px;
+  width: auto;
 }
 
 .topbar {
