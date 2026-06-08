@@ -1,255 +1,199 @@
-// =========================================
-// Footer year
-// =========================================
-
 const yearEl = document.getElementById("year");
 
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
 }
 
-
-// =========================================
-// Fade animation
-// =========================================
-
-const fadeTargets = document.querySelectorAll(".fade-up");
+const faders = document.querySelectorAll(".fade-up");
 
 if ("IntersectionObserver" in window) {
-  const observer = new IntersectionObserver(
+  const io = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target);
+          io.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.15,
+      threshold: 0.16
     }
   );
 
-  fadeTargets.forEach((target) => observer.observe(target));
+  faders.forEach((el) => io.observe(el));
 } else {
-  fadeTargets.forEach((target) => {
-    target.classList.add("visible");
-  });
+  faders.forEach((el) => el.classList.add("visible"));
 }
 
-
-// =========================================
-// Active navigation
-// =========================================
-
 const navLinks = document.querySelectorAll(".nav a");
-
-const currentPage =
-  window.location.pathname.split("/").pop() || "index.html";
+const currentPath = window.location.pathname.split("/").pop() || "index.html";
 
 navLinks.forEach((link) => {
   const href = link.getAttribute("href");
 
-  if (href === currentPage) {
+  if (href === currentPath) {
     link.classList.add("active");
   }
 });
 
+const topUpcomingEventsContainer = document.getElementById("upcoming-events");
+const eventsPageUpcomingContainer = document.getElementById("events-page-upcoming");
+const pastEventsContainer = document.getElementById("past-events");
 
-// =========================================
-// Connpass RSS
-// =========================================
-
-const WORKER_BASE_URL =
-  "https://connpass-api.tkm12325.workers.dev";
-
-const upcomingContainer =
-  document.getElementById("upcoming-events");
-
-const allEventsContainer =
-  document.getElementById("all-events");
-
-if (upcomingContainer) {
-  loadUpcomingEvents();
+if (topUpcomingEventsContainer || eventsPageUpcomingContainer || pastEventsContainer) {
+  loadEvents();
 }
 
-if (allEventsContainer) {
-  loadAllEvents();
-}
-
-
-// =========================================
-// TOPページ
-// =========================================
-
-async function loadUpcomingEvents() {
+async function loadEvents() {
   try {
-    const response = await fetch(
-      `${WORKER_BASE_URL}/events`
-    );
+    const response = await fetch("events.json");
 
     if (!response.ok) {
-      throw new Error("イベント取得失敗");
+      throw new Error("events.json の取得に失敗しました");
     }
 
-    const data = await response.json();
+    const events = await response.json();
+    const normalizedEvents = Array.isArray(events) ? events : [];
 
-    const events = Array.isArray(data.events)
-      ? data.events
-      : [];
+    const upcomingEvents = normalizedEvents
+      .filter((event) => isUpcomingEvent(event))
+      .sort((a, b) => new Date(a.date) - new Date(b.date));
 
-    if (events.length === 0) {
-      upcomingContainer.innerHTML = `
-        <p class="events-message">
-          現在開催予定のセミナーはありません。
-        </p>
-      `;
-      return;
+    const pastEvents = normalizedEvents
+      .filter((event) => !isUpcomingEvent(event))
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    if (topUpcomingEventsContainer) {
+      renderEvents(topUpcomingEventsContainer, upcomingEvents.slice(0, 8), "upcoming");
     }
 
-    upcomingContainer.innerHTML = events
-      .slice(0, 10)
-      .map(createEventCard)
-      .join("");
+    if (eventsPageUpcomingContainer) {
+      renderEvents(eventsPageUpcomingContainer, upcomingEvents, "upcoming");
+    }
 
+    if (pastEventsContainer) {
+      renderEvents(pastEventsContainer, pastEvents, "past");
+    }
   } catch (error) {
     console.error(error);
 
-    upcomingContainer.innerHTML = `
+    const message = `
       <p class="events-message">
         イベント情報を取得できませんでした。
       </p>
     `;
+
+    if (topUpcomingEventsContainer) {
+      topUpcomingEventsContainer.innerHTML = message;
+    }
+
+    if (eventsPageUpcomingContainer) {
+      eventsPageUpcomingContainer.innerHTML = message;
+    }
+
+    if (pastEventsContainer) {
+      pastEventsContainer.innerHTML = message;
+    }
   }
 }
 
+function isUpcomingEvent(event) {
+  if (event.status === "past") {
+    return false;
+  }
 
-// =========================================
-// セミナー一覧ページ
-// =========================================
+  if (event.status === "upcoming") {
+    return true;
+  }
 
-async function loadAllEvents() {
-  try {
-    const response = await fetch(
-      `${WORKER_BASE_URL}/events`
-    );
+  const eventDate = new Date(event.date);
 
-    if (!response.ok) {
-      throw new Error("イベント取得失敗");
-    }
+  if (Number.isNaN(eventDate.getTime())) {
+    return true;
+  }
 
-    const data = await response.json();
+  return eventDate >= new Date();
+}
 
-    const events = Array.isArray(data.events)
-      ? data.events
-      : [];
-
-    if (events.length === 0) {
-      allEventsContainer.innerHTML = `
-        <p class="events-message">
-          イベントがありません。
-        </p>
-      `;
-      return;
-    }
-
-    allEventsContainer.innerHTML = events
-      .map(createEventCard)
-      .join("");
-
-  } catch (error) {
-    console.error(error);
-
-    allEventsContainer.innerHTML = `
+function renderEvents(container, events, type) {
+  if (!events || events.length === 0) {
+    container.innerHTML = `
       <p class="events-message">
-        イベント情報を取得できませんでした。
+        ${type === "past" ? "過去のセミナー情報はまだありません。" : "現在、開催予定のセミナーはありません。"}
       </p>
     `;
+    return;
   }
+
+  container.innerHTML = events.map((event) => createEventCard(event, type)).join("");
 }
 
+function createEventCard(event, type) {
+  const title = escapeHtml(event.title || "タイトル未定");
+  const url = escapeHtml(event.url || "#");
+  const place = escapeHtml(event.place || "オンライン / 詳細はリンク先をご確認ください");
+  const date = escapeHtml(formatEventDate(event.date));
+  const description = escapeHtml(event.description || "");
+  const image = escapeHtml(event.image || "");
 
-// =========================================
-// Event Card
-// =========================================
-
-function createEventCard(event) {
-  const title = escapeHtml(
-    event.title || "タイトル未設定"
-  );
-
-  const eventUrl = escapeHtml(
-    event.event_url || "#"
-  );
-
-  const date = formatDate(
-    event.started_at
-  );
-
-  const summary = escapeHtml(
-    event.summary || ""
-  );
+  const imageHtml = image
+    ? `
+      <div class="event-image-wrap">
+        <img src="${image}" alt="${title}" class="event-image" />
+      </div>
+    `
+    : "";
 
   return `
     <article class="event-card">
-      <p class="event-date">
-        ${date}
-      </p>
+      ${imageHtml}
 
-      <h3 class="event-title">
-        ${title}
-      </h3>
+      <div class="event-body">
+        <p class="event-date">${date}</p>
+        <h3 class="event-title">${title}</h3>
+        <p class="event-place">${place}</p>
 
-      <p class="event-place">
-        ${summary}
-      </p>
+        ${
+          description
+            ? `<p class="event-description">${description}</p>`
+            : ""
+        }
 
-      <a
-        class="event-link"
-        href="${eventUrl}"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        詳細を見る
-      </a>
+        <a
+          class="event-link"
+          href="${url}"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          ${type === "past" ? "開催ページを見る" : "詳細を見る"}
+        </a>
+      </div>
     </article>
   `;
 }
 
-
-// =========================================
-// Date format
-// =========================================
-
-function formatDate(dateString) {
+function formatEventDate(dateString) {
   if (!dateString) {
-    return "日付未定";
+    return "開催日未定";
   }
 
   const date = new Date(dateString);
 
-  if (isNaN(date.getTime())) {
-    return "日付未定";
+  if (Number.isNaN(date.getTime())) {
+    return "開催日未定";
   }
 
-  return date.toLocaleDateString(
-    "ja-JP",
-    {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      weekday: "short",
-    }
-  );
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "short"
+  });
 }
 
-
-// =========================================
-// HTML Escape
-// =========================================
-
-function escapeHtml(text) {
-  return String(text || "")
+function escapeHtml(value) {
+  return String(value ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
