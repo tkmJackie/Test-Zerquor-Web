@@ -894,9 +894,9 @@ tr:last-child td {
     border-radius: 12px;
   }
 
-  .site-logo {
-  width: 56px;
-  height: 56px;
+.site-logo {
+  width: 36px;
+  height: 36px;
   object-fit: contain;
   flex-shrink: 0;
 }
