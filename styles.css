@@ -903,6 +903,12 @@ tr:last-child td {
   padding: 8px 0;
 }
 
+.topbar-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media (max-width: 720px) {
   .site-logo {
     width: 44px;
