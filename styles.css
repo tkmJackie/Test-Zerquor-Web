@@ -41,6 +41,10 @@ img {
   margin: 0 auto;
 }
 
+/* =========================
+   Header
+========================= */
+
 .topbar {
   position: sticky;
   top: 0;
@@ -54,52 +58,67 @@ img {
   justify-content: space-between;
   align-items: center;
   gap: 24px;
-  padding: 16px 0;
+  padding: 12px 0;
 }
+
+/* =========================
+   Logo
+========================= */
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   min-width: 0;
+  flex-shrink: 0;
+  text-decoration: none;
 }
 
-.brand-mark {
-  width: 40px;
-  height: 40px;
-  background: var(--accent);
-  color: #ffffff;
-  border-radius: 10px;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+/* Zマーク */
+.logo-icon {
+  height: 24px;
+  width: auto;
+  display: block;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
-.brand-text strong {
+/* Zerquor文字 */
+.company-logo {
+  height: 16px;
+  width: auto;
   display: block;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
-.brand-text span {
+/* 旧ロゴ指定が残っていても暴れないようにする */
+.site-logo {
+  height: 24px;
+  width: auto;
   display: block;
-  font-size: 0.78rem;
-  color: var(--muted);
+  object-fit: contain;
 }
+
+/* =========================
+   Navigation
+========================= */
 
 .nav {
   display: flex;
+  align-items: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
   gap: 8px;
+  margin-left: auto;
 }
 
 .nav a {
   color: var(--muted);
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 999px;
-  font-size: 0.92rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
@@ -894,28 +913,24 @@ tr:last-child td {
     border-radius: 12px;
   }
 
+  .topbar-inner {
+    gap: 12px;
+    padding: 10px 0;
+  }
 
-/* ===== Logo Fix ===== */
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-width: 0;
-  flex-shrink: 0;
-}
+  .brand {
+    gap: 8px;
+  }
 
-.site-logo {
-  height: 48px;
-  width: auto;
-  max-width: 220px;
-  display: block;
-  object-fit: contain;
-}
+  .logo-icon {
+    height: 22px;
+  }
 
-@media (max-width: 720px) {
+  .company-logo {
+    height: 14px;
+  }
+
   .site-logo {
-    height: 40px;
-    width: auto;
-    max-width: 180px;
+    height: 22px;
   }
 }
