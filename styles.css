@@ -1204,3 +1204,29 @@ tr:last-child td {
   box-shadow:
     0 2px 6px rgba(0,0,0,.08);
 }
+
+.ai-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ai-icon {
+  flex-shrink: 0;
+}
+
+.ai-icon img {
+  width: 36px;
+  height: 36px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  border: 1px solid #dbe3f0;
+
+  object-fit: contain;
+
+  padding: 4px;
+}
