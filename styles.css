@@ -937,7 +937,7 @@ tr:last-child td {
     height: 22px;
   }
 
-  /* =========================
+/* =========================
    Footer
 ========================= */
 
@@ -948,15 +948,18 @@ tr:last-child td {
 }
 
 .footer-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  width: min(calc(100% - 40px), var(--max));
+  margin: 0 auto;
+  padding: 44px 0;
+
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
   gap: 80px;
-  padding: 48px 0;
+  align-items: start;
 }
 
 .footer-brand {
-  max-width: 360px;
+  text-align: left;
 }
 
 .footer-logo {
@@ -967,13 +970,13 @@ tr:last-child td {
 }
 
 .footer-logo-icon {
-  height: 32px;
+  height: 28px;
   width: auto;
   display: block;
 }
 
 .footer-company-name {
-  font-size: 1.4rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: var(--text);
 }
@@ -985,27 +988,28 @@ tr:last-child td {
 }
 
 .footer-links {
-  display: flex;
-  gap: 72px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(120px, 1fr));
+  gap: 48px;
 }
 
 .footer-column {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-width: 120px;
+  gap: 8px;
+  text-align: left;
 }
 
 .footer-column h4 {
   margin: 0 0 8px;
-  color: var(--text);
   font-size: 0.95rem;
+  color: var(--text);
 }
 
 .footer-column a {
+  display: block;
   color: var(--muted);
-  font-size: 0.92rem;
-  transition: color 0.2s ease;
+  font-size: 0.9rem;
 }
 
 .footer-column a:hover {
@@ -1014,7 +1018,7 @@ tr:last-child td {
 
 .footer-bottom {
   border-top: 1px solid var(--line);
-  padding: 16px 0;
+  padding: 16px 20px;
   text-align: center;
   color: var(--muted);
   font-size: 0.86rem;
@@ -1022,16 +1026,13 @@ tr:last-child td {
 
 @media (max-width: 720px) {
   .footer-container {
-    flex-direction: column;
+    grid-template-columns: 1fr;
     gap: 28px;
     padding: 36px 0;
   }
-
+  
   .footer-links {
-    gap: 48px;
-  }
-
-  .footer-logo-icon {
-    height: 28px;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
   }
 }
