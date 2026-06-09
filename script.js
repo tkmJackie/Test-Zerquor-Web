@@ -302,7 +302,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadEvents();
 
   initializeAIChat();
-})
+});
 
 /* =========================
    Zerquor AI Chat
@@ -401,5 +401,3 @@ function initializeAIChat() {
     return div;
   }
 }
-);
-                         );
