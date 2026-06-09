@@ -380,10 +380,25 @@ form.addEventListener("submit", async (e) => {
     const answerText =
       responseData.answer || "回答を取得できませんでした。";
 
-    messages.insertAdjacentHTML(
-      "beforeend",
-      `<div class="ai-message"></div>`
-    );
+   messages.insertAdjacentHTML(
+     "beforeend",
+     `
+     <div class="ai-row">
+   
+       <div class="ai-avatar">
+         <img
+           src="images/logo.png"
+           alt="Zerquor"
+         >
+       </div>
+   
+       <div class="ai-message">
+         ${answerText}
+       </div>
+   
+     </div>
+     `
+   );
 
     const aiMessage = messages.lastElementChild;
     aiMessage.textContent = answerText;
