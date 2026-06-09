@@ -295,14 +295,15 @@ function escapeHtml(text) {
 ===================================== */
 
 document.addEventListener("DOMContentLoaded", async () => {
-
   await loadCommonParts();
 
   initializeFadeAnimation();
 
   await loadEvents();
 
-}
+  initializeAIChat();
+});
+
 /* =========================
    Zerquor AI Chat
 ========================= */
@@ -400,8 +401,5 @@ function initializeAIChat() {
     return div;
   }
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  initializeAIChat();
-});
+);
                          );
