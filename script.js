@@ -382,24 +382,13 @@ function initializeAIChat() {
 
       messages.insertAdjacentHTML(
         "beforeend",
-        `
-        <div class="ai-message-wrap">
-          <img
-            src="images/AI-robo.png"
-            class="ai-message-avatar"
-            alt="AI"
-          >
-
-          <div class="ai-message"></div>
-        </div>
-        `
+        `<div class="ai-message"></div>`
       );
-
-      const aiMessage =
-        messages.lastElementChild.querySelector(".ai-message");
-
+      
+      const aiMessage = messages.lastElementChild;
       aiMessage.textContent = answerText;
 
+       
       const oldButton =
         document.getElementById("ai-contact-link");
 
