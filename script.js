@@ -302,7 +302,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadEvents();
 
   initializeAIChat();
-});
+})
 
 /* =========================
    Zerquor AI Chat
