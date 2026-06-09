@@ -1075,17 +1075,7 @@ tr:last-child td {
 }
 
 .ai-chat-window {
-  display: none;
-  position: absolute;
-  right: 0;
-  bottom: 64px;
-  width: 360px;
-  max-width: calc(100vw - 32px);
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 16px;
-  box-shadow: 0 18px 50px rgba(15, 23, 42, 0.2);
-  overflow: hidden;
+  position: relative;
 }
 
 .ai-chat-window.open {
