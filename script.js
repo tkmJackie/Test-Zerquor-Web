@@ -200,7 +200,7 @@ function createEventCard(event, type) {
   const image = escapeHtml(event.image || "");
 
   return `
-    <article class="event-card">
+    <article class="event-card ${type === "past" ? "past-event" : "upcoming-event"}">
 
       ${
         image
@@ -311,9 +311,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 const ZERQUOR_AI_WORKER_URL = "https://zerquor-ai.tkm12325.workers.dev";
 
 function initializeAIChat() {
+  if (document.getElementById("ai-chat")) {
+    return;
+  }
+
   const chatHtml = `
-    <div class="ai-chat">
-      <button class="ai-chat-button" id="ai-chat-button">
+    <div class="ai-chat" id="ai-chat">
+      <button class="ai-chat-button" id="ai-chat-button" type="button">
         AI相談
       </button>
 
@@ -323,7 +327,7 @@ function initializeAIChat() {
             <strong>Zerquor AI相談</strong>
             <span>セキュリティの質問にお答えします</span>
           </div>
-          <button id="ai-chat-close">×</button>
+          <button id="ai-chat-close" type="button" aria-label="閉じる">×</button>
         </div>
 
         <div class="ai-chat-messages" id="ai-chat-messages">
@@ -353,6 +357,10 @@ function initializeAIChat() {
   const form = document.getElementById("ai-chat-form");
   const input = document.getElementById("ai-chat-input");
   const messages = document.getElementById("ai-chat-messages");
+
+  if (!button || !windowEl || !close || !form || !input || !messages) {
+    return;
+  }
 
   button.addEventListener("click", () => {
     windowEl.classList.toggle("open");
