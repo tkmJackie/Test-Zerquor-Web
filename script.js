@@ -360,7 +360,10 @@ function initializeAIChat() {
      <div class="ai-row">
    
        <div class="ai-icon">
-         🤖
+         <img
+           src="images/logo.png"
+           alt="Zerquor"
+         >
        </div>
    
        <div class="ai-message">
