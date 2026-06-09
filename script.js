@@ -354,13 +354,22 @@ function initializeAIChat() {
       return;
     }
 
-    messages.insertAdjacentHTML(
-      "beforeend",
-      `<div class="user-message"></div>`
-    );
-
-    const userMessage = messages.lastElementChild;
-    userMessage.textContent = question;
+   messages.insertAdjacentHTML(
+     "beforeend",
+     `
+     <div class="ai-row">
+   
+       <div class="ai-icon">
+         🤖
+       </div>
+   
+       <div class="ai-message">
+         ${answerText}
+       </div>
+   
+     </div>
+     `
+   );
 
     input.value = "";
 
