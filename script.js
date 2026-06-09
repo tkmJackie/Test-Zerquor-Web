@@ -381,24 +381,24 @@ function initializeAIChat() {
 const answerText =
   responseData.answer || "回答を取得できませんでした。";
 
-messages.insertAdjacentHTML(
-  "beforeend",
-  `
-  <div class="ai-message-wrap">
-
-    <img
-      src="images/AI-robo.png"
-      class="ai-message-avatar"
-      alt="AI"
-    >
-
-    <div class="ai-message">
-      ${answerText}
-    </div>
-
-  </div>
-  `
-);
+   messages.insertAdjacentHTML(
+     "beforeend",
+     `
+     <div class="ai-message-wrap">
+   
+       <img
+         src="images/AI-robo.png"
+         class="ai-message-avatar"
+         alt="AI"
+       >
+   
+       <div class="ai-message">
+         ${answerText}
+       </div>
+   
+     </div>
+     `
+   );
 
 const aiMessage = messages.lastElementChild;
 aiMessage.textContent = answerText;
