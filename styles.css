@@ -1061,7 +1061,7 @@ tr:last-child td {
   border-radius: 999px;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 8px 20px rgba(6, 199, 85, 0.35);
+  box-shadow: none;
 }
 
 .ai-chat-window {
