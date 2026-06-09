@@ -345,106 +345,94 @@ function initializeAIChat() {
      windowEl.classList.remove("open");
    });
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    const question = input.value.trim();
+  const question = input.value.trim();
 
-    if (!question) {
-      return;
+  if (!question) {
+    return;
+  }
+
+  messages.insertAdjacentHTML(
+    "beforeend",
+    `<div class="user-message"></div>`
+  );
+
+  const userMessage = messages.lastElementChild;
+  userMessage.textContent = question;
+
+  input.value = "";
+
+  try {
+    const response = await fetch(ZERQUOR_AI_WORKER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: question
+      })
+    });
+
+    const responseData = await response.json();
+
+    const answerText =
+      responseData.answer || "回答を取得できませんでした。";
+
+    messages.insertAdjacentHTML(
+      "beforeend",
+      `<div class="ai-message"></div>`
+    );
+
+    const aiMessage = messages.lastElementChild;
+    aiMessage.textContent = answerText;
+
+    const oldButton =
+      document.getElementById("ai-contact-link");
+
+    if (oldButton) {
+      oldButton.remove();
     }
 
-   messages.insertAdjacentHTML(
-     "beforeend",
-     `<div class="ai-message"></div>`
-   );
-   
-   const aiMessage = messages.lastElementChild;
-   aiMessage.textContent = answerText;
+    const contactKeywords = [
+      "お問い合わせ",
+      "問い合わせ",
+      "ご相談",
+      "相談してください",
+      "フォーム",
+      "見積",
+      "個別",
+      "詳しく"
+    ];
 
-    try {
-      const response = await fetch(ZERQUOR_AI_WORKER_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          message: question
-        })
-      });
+    const needContact = contactKeywords.some((word) =>
+      answerText.includes(word)
+    );
 
-      const responseData = await response.json();
-
-      const answerText =
-        responseData.answer || "回答を取得できませんでした。";
-
-      messages.insertAdjacentHTML(
-        "beforeend",
-        `<div class="ai-message"></div>`
-      );
-      
-      const aiMessage = messages.lastElementChild;
-      aiMessage.textContent = answerText;
-
-       
-      const oldButton =
-        document.getElementById("ai-contact-link");
-
-      if (oldButton) {
-        oldButton.remove();
-      }
-
-      const contactKeywords = [
-        "お問い合わせ",
-        "問い合わせ",
-        "ご相談",
-        "相談してください",
-        "フォーム",
-        "見積",
-        "個別",
-        "詳しく"
-      ];
-
-      const needContact = contactKeywords.some((word) =>
-        answerText.includes(word)
-      );
-
-      if (needContact) {
-        messages.insertAdjacentHTML(
-          "beforeend",
-          `
-          <a
-            id="ai-contact-link"
-            href="contact.html"
-            class="ai-contact-button"
-          >
-            お問い合わせする
-          </a>
-          `
-        );
-      }
-
-      messages.scrollTop = messages.scrollHeight;
-
-    } catch (error) {
+    if (needContact) {
       messages.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="ai-message-wrap">
-          <img
-            src="images/AI-robo.png"
-            class="ai-message-avatar"
-            alt="AI"
-          >
-
-          <div class="ai-message">
-            エラーが発生しました。
-          </div>
-        </div>
+        <a
+          id="ai-contact-link"
+          href="contact.html"
+          class="ai-contact-button"
+        >
+          お問い合わせする
+        </a>
         `
       );
-
-      console.error(error);
     }
-  });
-}
+
+    messages.scrollTop = messages.scrollHeight;
+
+  } catch (error) {
+    messages.insertAdjacentHTML(
+      "beforeend",
+      `<div class="ai-message">エラーが発生しました。</div>`
+    );
+
+    console.error(error);
+  }
+});
