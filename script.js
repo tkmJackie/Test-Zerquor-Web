@@ -452,10 +452,6 @@ function initializeAIChat() {
           </div>
           `
         );
-
-  console.error(error);
-}
-
       console.error(error);
     }
   });
