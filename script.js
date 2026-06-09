@@ -376,9 +376,10 @@ function initializeAIChat() {
       });
 
       const data = await response.json();
+      const responseData = await response.json();
 
 const answerText =
-  data.answer || "回答を取得できませんでした。";
+  responseData.answer || "回答を取得できませんでした。";
 
 messages.insertAdjacentHTML(
   "beforeend",
