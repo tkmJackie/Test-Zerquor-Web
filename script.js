@@ -375,32 +375,38 @@ function initializeAIChat() {
         })
       });
 
-      const data = await response.json();
       const responseData = await response.json();
 
-const answerText =
-  responseData.answer || "回答を取得できませんでした。";
+      const answerText =
+        responseData.answer || "回答を取得できませんでした。";
 
-   messages.insertAdjacentHTML(
-     "beforeend",
-     `
-     ...
-     ${answerText}
-     ...
-     `
-   );
+      messages.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="ai-message-wrap">
+          <img
+            src="images/AI-robo.png"
+            class="ai-message-avatar"
+            alt="AI"
+          >
 
-const aiMessage = messages.lastElementChild;
-aiMessage.textContent = answerText;
+          <div class="ai-message"></div>
+        </div>
+        `
+      );
 
-// 既存のお問い合わせボタンを削除
-const oldButton = document.getElementById("ai-contact-link");
+      const aiMessage =
+        messages.lastElementChild.querySelector(".ai-message");
+
+      aiMessage.textContent = answerText;
+
+      const oldButton =
+        document.getElementById("ai-contact-link");
 
       if (oldButton) {
         oldButton.remove();
       }
-      
-      // お問い合わせが必要そうな場合だけ表示
+
       const contactKeywords = [
         "お問い合わせ",
         "問い合わせ",
@@ -411,97 +417,15 @@ const oldButton = document.getElementById("ai-contact-link");
         "個別",
         "詳しく"
       ];
-      
+
       const needContact = contactKeywords.some((word) =>
         answerText.includes(word)
       );
-      
+
       if (needContact) {
         messages.insertAdjacentHTML(
           "beforeend",
           `
-            <a
-              id="ai-contact-link"
-              href="contact.html"
-              class="ai-contact-button"
-            >
-              お問い合わせする
-            </a>
-          `
-        );
-      }
-      
-      messages.scrollTop = messages.scrollHeight;
-
-      messages.insertAdjacentHTML(
-        form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const question = input.value.trim();
-
-  if (!question) {
-    return;
-  }
-
-  messages.insertAdjacentHTML(
-    "beforeend",
-    `<div class="user-message"></div>`
-  );
-
-  const userMessage = messages.lastElementChild;
-  userMessage.textContent = question;
-
-  input.value = "";
-
-  try {
-    const response = await fetch(ZERQUOR_AI_WORKER_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: question
-      })
-    });
-
-    const responseData = await response.json();
-
-    const answerText =
-      responseData.answer || "回答を取得できませんでした。";
-
-    messages.insertAdjacentHTML(
-      "beforeend",
-      `<div class="ai-message"></div>`
-    );
-
-    const aiMessage = messages.lastElementChild;
-    aiMessage.textContent = answerText;
-
-    const oldButton = document.getElementById("ai-contact-link");
-
-    if (oldButton) {
-      oldButton.remove();
-    }
-
-    const contactKeywords = [
-      "お問い合わせ",
-      "問い合わせ",
-      "ご相談",
-      "相談してください",
-      "フォーム",
-      "見積",
-      "個別",
-      "詳しく"
-    ];
-
-    const needContact = contactKeywords.some((word) =>
-      answerText.includes(word)
-    );
-
-    if (needContact) {
-      messages.insertAdjacentHTML(
-        "beforeend",
-        `
           <a
             id="ai-contact-link"
             href="contact.html"
@@ -509,29 +433,28 @@ const oldButton = document.getElementById("ai-contact-link");
           >
             お問い合わせする
           </a>
-        `
-      );
-    }
-
-    messages.scrollTop = messages.scrollHeight;
-
-  } catch (error) {
-    messages.insertAdjacentHTML(
-      "beforeend",
-      `<div class="ai-message">エラーが発生しました。</div>`
-    );
-
-    console.error(error);
-  }
-});
-               );
+          `
+        );
+      }
 
       messages.scrollTop = messages.scrollHeight;
 
     } catch (error) {
       messages.insertAdjacentHTML(
         "beforeend",
-        `<div class="ai-message">エラーが発生しました。</div>`
+        `
+        <div class="ai-message-wrap">
+          <img
+            src="images/AI-robo.png"
+            class="ai-message-avatar"
+            alt="AI"
+          >
+
+          <div class="ai-message">
+            エラーが発生しました。
+          </div>
+        </div>
+        `
       );
 
       console.error(error);
