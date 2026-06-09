@@ -311,6 +311,62 @@ document.addEventListener("DOMContentLoaded", async () => {
 const ZERQUOR_AI_WORKER_URL = "https://zerquor-ai.tkm12325.workers.dev";
 
 function initializeAIChat() {
+  if (document.getElementById("ai-chat-style")) {
+    return;
+  }
+
+  const style = document.createElement("style");
+  style.id = "ai-chat-style";
+  style.textContent = `
+    .ai-chat {
+      position: fixed !important;
+      right: 24px !important;
+      bottom: 24px !important;
+      z-index: 99999 !important;
+      width: auto !important;
+    }
+
+    .ai-chat-button {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      border: none !important;
+      background: #3b6df6 !important;
+      color: #ffffff !important;
+      padding: 14px 18px !important;
+      border-radius: 999px !important;
+      font-weight: 700 !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18) !important;
+      cursor: pointer !important;
+    }
+
+    .ai-chat-window {
+      display: none;
+      position: absolute !important;
+      right: 0 !important;
+      bottom: 62px !important;
+      width: 360px !important;
+      max-width: calc(100vw - 32px) !important;
+      background: #ffffff !important;
+      border: 1px solid #e5e7eb !important;
+      border-radius: 18px !important;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.16) !important;
+      overflow: hidden !important;
+    }
+
+    .ai-chat-window.open {
+      display: block !important;
+    }
+  `;
+  document.head.appendChild(style);
+
+  if (document.getElementById("ai-chat")) {
+    return;
+  }
+
+  const chatHtml = `
+
+function initializeAIChat() {
   if (document.getElementById("ai-chat")) {
     return;
   }
