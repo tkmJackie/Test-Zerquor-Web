@@ -326,41 +326,6 @@ const ZERQUOR_AI_WORKER_URL =
 
 function initializeAIChat() {
 
-  if (document.getElementById("ai-chat")) {
-    return;
-  }
-
-  const chatHtml = `
-    <div class="ai-chat" id="ai-chat">
-      <button class="ai-chat-button" id="ai-chat-button" type="button">
-        AI相談
-      </button>
-
-      <div class="ai-chat-window" id="ai-chat-window">
-        <div class="ai-chat-header">
-          <strong>Zerquor AI相談</strong>
-          <button id="ai-chat-close" type="button">×</button>
-        </div>
-
-        <div class="ai-chat-messages" id="ai-chat-messages">
-          <div class="ai-message">
-            こんにちは。セキュリティ研修・内製化支援・基本対策についてお気軽にご相談ください。
-          </div>
-        </div>
-
-        <form id="ai-chat-form" class="ai-chat-form">
-          <input
-            id="ai-chat-input"
-            type="text"
-            placeholder="質問を入力してください"
-            required
-          />
-          <button type="submit">送信</button>
-        </form>
-      </div>
-    </div>
-  `;
-
   document.body.insertAdjacentHTML("beforeend", chatHtml);
 
   const button = document.getElementById("ai-chat-button");
