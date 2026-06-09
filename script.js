@@ -296,11 +296,8 @@ function escapeHtml(text) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadCommonParts();
-
   await loadAIChat();
-
   initializeFadeAnimation();
-
   await loadEvents();
 });
 
@@ -337,137 +334,129 @@ function initializeAIChat() {
     return;
   }
 
-   button.addEventListener("click", () => {
-     windowEl.classList.toggle("open");
-   });
-   
-   close.addEventListener("click", () => {
-     windowEl.classList.remove("open");
-   });
+  button.addEventListener("click", () => {
+    windowEl.classList.toggle("open");
+  });
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  close.addEventListener("click", () => {
+    windowEl.classList.remove("open");
+  });
 
-  const question = input.value.trim();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-  if (!question) {
-    return;
-  }
+    const question = input.value.trim();
 
-  messages.insertAdjacentHTML(
-    "beforeend",
-    `<div class="user-message"></div>`
-  );
-
-  const userMessage = messages.lastElementChild;
-  userMessage.textContent = question;
-
-  input.value = "";
-
-  try {
-    const response = await fetch(ZERQUOR_AI_WORKER_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: question
-      })
-    });
-
-    const responseData = await response.json();
-
-    const answerText =
-      responseData.answer || "回答を取得できませんでした。";
-
-   messages.insertAdjacentHTML(
-     "beforeend",
-     `
-     <div class="ai-row">
-   
-       <div class="ai-avatar">
-         <img
-           src="images/logo.png"
-           alt="Zerquor"
-         >
-       </div>
-   
-       <div class="ai-message">
-         ${answerText}
-       </div>
-   
-     </div>
-     `
-   );
-
-    const aiMessage = messages.lastElementChild;
-    aiMessage.textContent = answerText;
-
-    const oldButton =
-      document.getElementById("ai-contact-link");
-
-    if (oldButton) {
-      oldButton.remove();
+    if (!question) {
+      return;
     }
 
-    const contactKeywords = [
-      "お問い合わせ",
-      "問い合わせ",
-      "ご相談",
-      "相談してください",
-      "フォーム",
-      "見積",
-      "個別",
-      "詳しく"
-    ];
-
-    const needContact = contactKeywords.some((word) =>
-      answerText.includes(word)
-    );
-
-    if (needContact) {
-messages.insertAdjacentHTML(
-  "beforeend",
-  `
-  <div class="ai-row">
-
-    <div class="ai-avatar">
-      <img
-        src="images/logo.png"
-        alt="Zerquor"
-      >
-    </div>
-
-    <div class="ai-message">
-      ${answerText}
-    </div>
-
-  </div>
-  `
-);
-    }
-
-    messages.scrollTop = messages.scrollHeight;
-
-  } catch (error) {
     messages.insertAdjacentHTML(
       "beforeend",
-      <div class="ai-row">
-
-        <div class="ai-avatar">
-          <img
-            src="images/logo.png"
-            alt="Zerquor"
-          >
-        </div>
-      
-        <div class="ai-message">
-          エラーが発生しました。
-        </div>
-</div>
+      `<div class="user-message"></div>`
     );
 
-    console.error(error);
-  }
-});
+    const userMessage = messages.lastElementChild;
+    userMessage.textContent = question;
+
+    input.value = "";
+
+    try {
+      const response = await fetch(ZERQUOR_AI_WORKER_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: question
+        })
+      });
+
+      const responseData = await response.json();
+
+      const answerText =
+        responseData.answer || "回答を取得できませんでした。";
+
+      messages.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="ai-row">
+          <div class="ai-avatar">
+            <img
+              src="images/logo.png"
+              alt="Zerquor"
+            >
+          </div>
+
+          <div class="ai-message"></div>
+        </div>
+        `
+      );
+
+      const aiMessage =
+        messages.lastElementChild.querySelector(".ai-message");
+
+      aiMessage.textContent = answerText;
+
+      const oldButton =
+        document.getElementById("ai-contact-link");
+
+      if (oldButton) {
+        oldButton.remove();
+      }
+
+      const contactKeywords = [
+        "お問い合わせ",
+        "問い合わせ",
+        "ご相談",
+        "相談してください",
+        "フォーム",
+        "見積",
+        "個別",
+        "詳しく"
+      ];
+
+      const needContact = contactKeywords.some((word) =>
+        answerText.includes(word)
+      );
+
+      if (needContact) {
+        messages.insertAdjacentHTML(
+          "beforeend",
+          `
+          <a
+            id="ai-contact-link"
+            href="contact.html"
+            class="ai-contact-button"
+          >
+            お問い合わせする
+          </a>
+          `
+        );
+      }
+
+      messages.scrollTop = messages.scrollHeight;
+
+    } catch (error) {
+      messages.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="ai-row">
+          <div class="ai-avatar">
+            <img
+              src="images/logo.png"
+              alt="Zerquor"
+            >
+          </div>
+
+          <div class="ai-message">
+            エラーが発生しました。
+          </div>
+        </div>
+        `
+      );
+
+      console.error(error);
+    }
+  });
 }
