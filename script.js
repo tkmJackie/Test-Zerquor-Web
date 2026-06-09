@@ -434,10 +434,6 @@ const oldButton = document.getElementById("ai-contact-link");
         `<div class="ai-message"></div>`
       );
 
-      const aiMessage = messages.lastElementChild;
-      aiMessage.textContent =
-        data.answer || "回答を取得できませんでした。";
-
       messages.scrollTop = messages.scrollHeight;
 
     } catch (error) {
