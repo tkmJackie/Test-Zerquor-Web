@@ -426,18 +426,25 @@ form.addEventListener("submit", async (e) => {
     );
 
     if (needContact) {
-      messages.insertAdjacentHTML(
-        "beforeend",
-        `
-        <a
-          id="ai-contact-link"
-          href="contact.html"
-          class="ai-contact-button"
-        >
-          お問い合わせする
-        </a>
-        `
-      );
+messages.insertAdjacentHTML(
+  "beforeend",
+  `
+  <div class="ai-row">
+
+    <div class="ai-avatar">
+      <img
+        src="images/logo.png"
+        alt="Zerquor"
+      >
+    </div>
+
+    <div class="ai-message">
+      ${answerText}
+    </div>
+
+  </div>
+  `
+);
     }
 
     messages.scrollTop = messages.scrollHeight;
