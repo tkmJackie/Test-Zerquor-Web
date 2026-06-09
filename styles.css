@@ -1165,31 +1165,6 @@ tr:last-child td {
   font-weight: 700;
 }
 
-.ai-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.ai-icon {
-  width: 36px;
-  height: 36px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: #2563eb;
-  color: #fff;
-
-  border-radius: 50%;
-
-  flex-shrink: 0;
-
-  font-size: 18px;
-}
-
 .ai-message {
   background: #ffffff;
   color: #1a2433;
@@ -1203,30 +1178,4 @@ tr:last-child td {
 
   box-shadow:
     0 2px 6px rgba(0,0,0,.08);
-}
-
-.ai-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.ai-icon {
-  flex-shrink: 0;
-}
-
-.ai-icon img {
-  width: 36px;
-  height: 36px;
-
-  border-radius: 50%;
-
-  background: #ffffff;
-
-  border: 1px solid #dbe3f0;
-
-  object-fit: contain;
-
-  padding: 4px;
 }
