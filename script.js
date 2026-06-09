@@ -308,9 +308,11 @@ document.addEventListener("DOMContentLoaded", async () => {
    Zerquor AI Chat
 ========================= */
 
-const ZERQUOR_AI_WORKER_URL = "https://zerquor-ai.tkm12325.workers.dev";
+const ZERQUOR_AI_WORKER_URL =
+  "https://zerquor-ai.tkm12325.workers.dev";
 
 function initializeAIChat() {
+
   if (document.getElementById("ai-chat")) {
     return;
   }
@@ -323,25 +325,22 @@ function initializeAIChat() {
 
       <div class="ai-chat-window" id="ai-chat-window">
         <div class="ai-chat-header">
-          <div>
-            <strong>Zerquor AI相談</strong>
-            <span>セキュリティの質問にお答えします</span>
-          </div>
-          <button id="ai-chat-close" type="button" aria-label="閉じる">×</button>
+          <strong>Zerquor AI相談</strong>
+          <button id="ai-chat-close" type="button">×</button>
         </div>
 
         <div class="ai-chat-messages" id="ai-chat-messages">
-          <div class="ai-message assistant">
+          <div class="ai-message">
             こんにちは。セキュリティ研修・内製化支援・基本対策についてお気軽にご相談ください。
           </div>
         </div>
 
-        <form class="ai-chat-form" id="ai-chat-form">
+        <form id="ai-chat-form" class="ai-chat-form">
           <input
             id="ai-chat-input"
             type="text"
             placeholder="質問を入力してください"
-            autocomplete="off"
+            required
           />
           <button type="submit">送信</button>
         </form>
@@ -358,10 +357,6 @@ function initializeAIChat() {
   const input = document.getElementById("ai-chat-input");
   const messages = document.getElementById("ai-chat-messages");
 
-  if (!button || !windowEl || !close || !form || !input || !messages) {
-    return;
-  }
-
   button.addEventListener("click", () => {
     windowEl.classList.toggle("open");
   });
@@ -370,16 +365,21 @@ function initializeAIChat() {
     windowEl.classList.remove("open");
   });
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const message = input.value.trim();
-    if (!message) return;
+    const question = input.value.trim();
 
-    addAIMessage("user", message);
+    if (!question) {
+      return;
+    }
+
+    messages.insertAdjacentHTML(
+      "beforeend",
+      `<div class="user-message">${question}</div>`
+    );
+
     input.value = "";
-
-    const loading = addAIMessage("assistant", "回答を生成中です...");
 
     try {
       const response = await fetch(ZERQUOR_AI_WORKER_URL, {
@@ -387,25 +387,28 @@ function initializeAIChat() {
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ message })
+        body: JSON.stringify({
+          message: question
+        })
       });
 
       const data = await response.json();
 
-      loading.remove();
-      addAIMessage("assistant", data.answer || "申し訳ありません。回答できませんでした。");
+      messages.insertAdjacentHTML(
+        "beforeend",
+        `<div class="ai-message">${data.answer}</div>`
+      );
+
+      messages.scrollTop = messages.scrollHeight;
+
     } catch (error) {
-      loading.remove();
-      addAIMessage("assistant", "通信エラーが発生しました。時間をおいて再度お試しください。");
+
+      messages.insertAdjacentHTML(
+        "beforeend",
+        `<div class="ai-message">エラーが発生しました。</div>`
+      );
+
+      console.error(error);
     }
   });
-
-  function addAIMessage(role, text) {
-    const div = document.createElement("div");
-    div.className = `ai-message ${role}`;
-    div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
-    return div;
-  }
 }
