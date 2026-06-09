@@ -452,7 +452,19 @@ messages.insertAdjacentHTML(
   } catch (error) {
     messages.insertAdjacentHTML(
       "beforeend",
-      `<div class="ai-message">エラーが発生しました。</div>`
+      <div class="ai-row">
+
+        <div class="ai-avatar">
+          <img
+            src="images/logo.png"
+            alt="Zerquor"
+          >
+        </div>
+      
+        <div class="ai-message">
+          エラーが発生しました。
+        </div>
+</div>
     );
 
     console.error(error);
