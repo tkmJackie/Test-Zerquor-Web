@@ -91,6 +91,18 @@ img {
   color: var(--accent);
 }
 
+@media (max-width: 720px) {
+
+  .logo-icon {
+    height: 24px;
+  }
+
+  .company-name {
+    font-size: 1.1rem;
+  }
+
+}
+
 /* =========================
    Navigation
 ========================= */
