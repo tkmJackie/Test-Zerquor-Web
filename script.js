@@ -308,6 +308,19 @@ document.addEventListener("DOMContentLoaded", async () => {
    Zerquor AI Chat
 ========================= */
 
+async function loadAIChat() {
+  const container = document.getElementById("ai-chat-container");
+
+  if (!container) return;
+
+  const response = await fetch("ai-chat.html");
+  const html = await response.text();
+
+  container.innerHTML = html;
+
+  initializeAIChat();
+}
+
 const ZERQUOR_AI_WORKER_URL =
   "https://zerquor-ai.tkm12325.workers.dev";
 
