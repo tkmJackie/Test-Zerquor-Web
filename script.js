@@ -337,13 +337,13 @@ function initializeAIChat() {
     return;
   }
 
-  button.addEventListener("click", () => {
-    windowEl.classList.toggle("open");
-  });
-
-  close.addEventListener("click", () => {
-    windowEl.classList.remove("open");
-  });
+   button.addEventListener("click", () => {
+     windowEl.classList.toggle("open");
+   });
+   
+   close.addEventListener("click", () => {
+     windowEl.classList.remove("open");
+   });
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
