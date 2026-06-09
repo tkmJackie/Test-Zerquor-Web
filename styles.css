@@ -1046,6 +1046,13 @@ tr:last-child td {
    AI Chat
 ========================= */
 
+.ai-chat-hero img {
+  width: 100%;
+  max-height: 180px;
+  object-fit: contain;
+  display: block;
+}
+
 .ai-chat {
   position: fixed;
   right: 24px;
