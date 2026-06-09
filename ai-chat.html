@@ -1,27 +1,106 @@
 <div class="ai-chat" id="ai-chat">
-  <button class="ai-chat-button" id="ai-chat-button">
-    AI相談
+
+  <!-- 開閉ボタン -->
+
+  <button
+    class="ai-chat-button"
+    id="ai-chat-button"
+    type="button"
+  >
+    <img
+      src="images/AI-robo.png"
+      alt="AI"
+      class="ai-button-avatar"
+    >
+
+    <span>
+      🤖 AI相談
+    </span>
   </button>
 
-  <div class="ai-chat-window" id="ai-chat-window">
+  <!-- チャットウィンドウ -->
+
+  <div
+    class="ai-chat-window"
+    id="ai-chat-window"
+  >
+
+    <!-- ヘッダー -->
+
     <div class="ai-chat-header">
-      <strong>Zerquor AI相談</strong>
-      <button id="ai-chat-close">×</button>
-    </div>
 
-    <div class="ai-chat-messages" id="ai-chat-messages">
-      <div class="ai-message">
-        こんにちは。セキュリティに関するご相談を承ります。
+      <div class="ai-chat-title">
+
+        <img
+          src="images/AI-robo.png"
+          alt="AI"
+          class="ai-avatar"
+        >
+
+        <div>
+
+          <strong>
+            Zerquor AI
+          </strong>
+
+          <div class="ai-status">
+            セキュリティアシスタント
+          </div>
+
+        </div>
+
       </div>
+
+      <button
+        id="ai-chat-close"
+        class="ai-chat-close"
+        type="button"
+      >
+        ✕
+      </button>
+
     </div>
 
-    <form id="ai-chat-form" class="ai-chat-form">
+    <!-- メッセージ -->
+
+    <div
+      class="ai-chat-messages"
+      id="ai-chat-messages"
+    >
+
+      <div class="ai-message">
+
+        こんにちは。
+
+        セキュリティ研修、
+        内製化支援、
+        セミナー情報など
+        お気軽にご相談ください。
+
+      </div>
+
+    </div>
+
+    <!-- 入力欄 -->
+
+    <form
+      id="ai-chat-form"
+      class="ai-chat-form"
+    >
+
       <input
-        id="ai-chat-input"
         type="text"
+        id="ai-chat-input"
         placeholder="質問を入力してください"
+        autocomplete="off"
       >
-      <button type="submit">送信</button>
+
+      <button type="submit">
+        送信
+      </button>
+
     </form>
+
   </div>
+
 </div>
