@@ -950,55 +950,62 @@ tr:last-child td {
 .footer-container {
   display: flex;
   justify-content: space-between;
-  gap: 60px;
-  padding: 50px 0;
+  align-items: flex-start;
+  gap: 80px;
+  padding: 48px 0;
 }
 
 .footer-brand {
-  max-width: 320px;
+  max-width: 360px;
 }
 
 .footer-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
 }
 
 .footer-logo-icon {
-  height: 28px;
+  height: 32px;
   width: auto;
+  display: block;
 }
 
 .footer-company-name {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--text);
 }
 
 .footer-description {
+  margin: 0;
   color: var(--muted);
   font-size: 0.95rem;
 }
 
 .footer-links {
   display: flex;
-  gap: 60px;
+  gap: 72px;
 }
 
 .footer-column {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-width: 120px;
 }
 
 .footer-column h4 {
-  margin: 0 0 10px;
-  font-size: 1rem;
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: 0.95rem;
 }
 
 .footer-column a {
   color: var(--muted);
-  transition: 0.2s;
+  font-size: 0.92rem;
+  transition: color 0.2s ease;
 }
 
 .footer-column a:hover {
@@ -1006,20 +1013,25 @@ tr:last-child td {
 }
 
 .footer-bottom {
-  text-align: center;
   border-top: 1px solid var(--line);
-  padding: 18px;
+  padding: 16px 0;
+  text-align: center;
   color: var(--muted);
-  font-size: 0.9rem;
-}
-@media (max-width: 768px) {
-
-.footer-container {
-  flex-direction: column;
-  gap: 30px;
+  font-size: 0.86rem;
 }
 
-.footer-links {
-  gap: 30px;
-}
+@media (max-width: 720px) {
+  .footer-container {
+    flex-direction: column;
+    gap: 28px;
+    padding: 36px 0;
+  }
+
+  .footer-links {
+    gap: 48px;
+  }
+
+  .footer-logo-icon {
+    height: 28px;
+  }
 }
