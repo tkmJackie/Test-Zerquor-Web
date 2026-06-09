@@ -1156,3 +1156,31 @@ tr:last-child td {
   align-items: center;
   gap: 10px;
 }
+
+.ai-message-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.ai-message-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.ai-message {
+  background: #0f172a;
+  color: #e2e8f0;
+
+  padding: 12px;
+  border-radius: 16px 16px 16px 4px;
+
+  max-width: 80%;
+  line-height: 1.7;
+
+  border-left: 3px solid #3b82f6;
+}
