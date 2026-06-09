@@ -297,11 +297,11 @@ function escapeHtml(text) {
 document.addEventListener("DOMContentLoaded", async () => {
   await loadCommonParts();
 
+  await loadAIChat();
+
   initializeFadeAnimation();
 
   await loadEvents();
-
-  initializeAIChat();
 });
 
 /* =========================
