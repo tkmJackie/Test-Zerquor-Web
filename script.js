@@ -356,25 +356,11 @@ function initializeAIChat() {
 
    messages.insertAdjacentHTML(
      "beforeend",
-     `
-     <div class="ai-row">
-   
-       <div class="ai-icon">
-         <img
-           src="images/logo.png"
-           alt="Zerquor"
-         >
-       </div>
-   
-       <div class="ai-message">
-         ${answerText}
-       </div>
-   
-     </div>
-     `
+     `<div class="ai-message"></div>`
    );
-
-    input.value = "";
+   
+   const aiMessage = messages.lastElementChild;
+   aiMessage.textContent = answerText;
 
     try {
       const response = await fetch(ZERQUOR_AI_WORKER_URL, {
