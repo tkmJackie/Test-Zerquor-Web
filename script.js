@@ -384,19 +384,9 @@ const answerText =
    messages.insertAdjacentHTML(
      "beforeend",
      `
-     <div class="ai-message-wrap">
-   
-       <img
-         src="images/AI-robo.png"
-         class="ai-message-avatar"
-         alt="AI"
-       >
-   
-       <div class="ai-message">
-         ${answerText}
-       </div>
-   
-     </div>
+     ...
+     ${answerText}
+     ...
      `
    );
 
