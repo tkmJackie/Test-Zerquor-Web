@@ -1106,7 +1106,6 @@ tr:last-child td {
   padding: 14px;
 }
 
-.ai-message,
 .user-message {
   max-width: 78%;
   padding: 10px 13px;
@@ -1114,12 +1113,6 @@ tr:last-child td {
   border-radius: 18px;
   line-height: 1.6;
   font-size: 0.95rem;
-}
-
-.ai-message {
-  background: #ffffff;
-  color: #1a2433;
-  border-bottom-left-radius: 4px;
 }
 
 .user-message {
@@ -1175,16 +1168,6 @@ tr:last-child td {
   text-decoration: none;
 }
 
-.ai-message {
-  background: #ffffff;
-  color: #1a2433;
-  padding: 12px;
-  border-radius: 18px;
-  border-top-left-radius: 4px;
-  max-width: 80%;
-  border: 1px solid #dbe3f0;
-}
-
 .ai-row {
   display: flex;
   align-items: flex-start;
@@ -1208,9 +1191,11 @@ tr:last-child td {
 
 .ai-message {
   background: #ffffff;
+  color: #1a2433;
   padding: 12px;
   border-radius: 18px;
   border-top-left-radius: 4px;
   max-width: 80%;
+  border: 1px solid #dbe3f0;
   line-height: 1.7;
 }
