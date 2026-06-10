@@ -855,6 +855,17 @@ tr:last-child td {
   background: #e5e7eb !important;
 }
 
+.past-event .event-link {
+  background: #9ca3af;
+  color: #ffffff;
+  border-color: #9ca3af;
+}
+
+.past-event .event-link:hover {
+  background: #6b7280;
+  border-color: #6b7280;
+}
+
 /* =========================
    Footer
 ========================= */
