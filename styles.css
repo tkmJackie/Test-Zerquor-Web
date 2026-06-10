@@ -1372,6 +1372,13 @@ tr:last-child td {
   transform: translateX(4px);
 }
 
+@media (max-width: 720px) {
+  .representative-copy,
+  .achievement-card {
+    padding: 22px;
+  }
+}
+
 /* =========================
    Achievement Detail Page
 ========================= */
