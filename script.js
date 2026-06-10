@@ -289,7 +289,7 @@ function formatEventDate(dateString) {
 ===================================== */
 
 const ZENN_FEED_WORKER_URL =
-  "https://zerquor-zenn-feed.zerquor.workers.dev";
+  "zerquor-zenn-feed.tkm12325.workers.dev";
 
 async function loadZennArticles() {
   const container = document.getElementById("zenn-articles");
