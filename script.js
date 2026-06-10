@@ -532,5 +532,4 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeFadeAnimation();
   await loadEvents();
   await loadZennArticles();
-  await loadTopZennArticles();
 });
