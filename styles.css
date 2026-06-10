@@ -1540,15 +1540,105 @@ tr:last-child td {
 }
 
 /* =========================
-   Zenn Blog
+   Blog
 ========================= */
 
-.blog-preview-section {
-  padding: 60px 0;
+.blog-intro-section {
+  padding: 34px 0;
+}
+
+.blog-list-section {
+  padding: 42px 0 64px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.blog-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.blog-card time {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.blog-card h3 {
+  margin: 0 0 12px;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+.blog-card p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.blog-card a {
+  display: inline-flex;
+  color: var(--accent);
+  font-weight: 800;
 }
 
 .blog-loading {
-  text-align: center;
-  color: var(--muted);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
   padding: 24px;
+  color: var(--muted);
+}
+
+/* =========================
+   CTA
+========================= */
+
+.cta-section {
+  padding: 54px 0 72px;
+}
+
+.cta-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 34px;
+  text-align: center;
+}
+
+.cta-card h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.cta-card p {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+@media (max-width: 980px) {
+  .blog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .blog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-card {
+    padding: 24px;
+  }
 }
