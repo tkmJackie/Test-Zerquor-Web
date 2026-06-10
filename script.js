@@ -289,7 +289,7 @@ function formatEventDate(dateString) {
 ===================================== */
 
 const ZENN_FEED_WORKER_URL =
-  "zerquor-zenn-feed.tkm12325.workers.dev";
+  "https://zerquor-zenn-feed.tkm12325.workers.dev";
 
 async function loadZennArticles() {
   const container = document.getElementById("zenn-articles");
@@ -299,7 +299,7 @@ async function loadZennArticles() {
   }
 
   try {
-    const response = await fetch(zerquor-zenn-feed.tkm12325.workers.dev);
+    const response = await fetch(ZENN_FEED_WORKER_URL);
 
     if (!response.ok) {
       throw new Error("Zenn記事の取得に失敗しました");
