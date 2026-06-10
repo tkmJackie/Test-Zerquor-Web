@@ -299,7 +299,7 @@ async function loadZennArticles() {
   }
 
   try {
-    const response = await fetch(ZENN_FEED_WORKER_URL);
+    const response = await fetch(zerquor-zenn-feed.tkm12325.workers.dev);
 
     if (!response.ok) {
       throw new Error("Zenn記事の取得に失敗しました");
