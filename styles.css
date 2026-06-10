@@ -1538,3 +1538,17 @@ tr:last-child td {
     padding: 22px;
   }
 }
+
+/* =========================
+   Zenn Blog
+========================= */
+
+.blog-preview-section {
+  padding: 60px 0;
+}
+
+.blog-loading {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px;
+}
