@@ -292,99 +292,32 @@ const ZENN_FEED_WORKER_URL =
   "https://zerquor-zenn-feed.tkm12325.workers.dev";
 
 async function loadZennArticles() {
-  const container = document.getElementById("zenn-articles");
+  const containers = [
+    document.getElementById("zenn-articles"),
+    document.getElementById("top-zenn-articles")
+  ].filter(Boolean);
 
-  if (!container) {
-    return;
-  }
+  if (containers.length === 0) return;
 
   try {
-    const response = await fetch(ZENN_FEED_WORKER_URL);
+    const response = await fetch("https://あなたのRSS用WorkerのURL");
 
     if (!response.ok) {
-      throw new Error("Zenn記事の取得に失敗しました");
+      throw new Error("記事の取得に失敗しました");
     }
 
     const articles = await response.json();
 
-    if (!articles || articles.length === 0) {
-      container.innerHTML = `
-        <p class="events-message">
-          現在、表示できる記事はありません。
-        </p>
-      `;
-      return;
-    }
-
-     async function loadTopZennArticles() {
-     const container =
-       document.getElementById("zenn-articles-top");
-   
-     if (!container) {
-       return;
-     }
-   
-     try {
-       const response =
-         await fetch(ZENN_FEED_WORKER_URL);
-   
-       const articles =
-         await response.json();
-   
-       container.innerHTML = articles
-         .slice(0, 3)
-         .map((article) => {
-           return `
-             <article class="blog-card">
-   
-               <div class="blog-date">
-                 ${formatZennDate(article.pubDate)}
-               </div>
-   
-               <h3>
-                 ${escapeHtml(article.title)}
-               </h3>
-   
-               <p>
-                 ${escapeHtml(article.description)}
-               </p>
-   
-               <a
-                 href="${escapeHtml(article.link)}"
-                 target="_blank"
-                 rel="noopener noreferrer"
-               >
-                 記事を読む →
-               </a>
-   
-             </article>
-           `;
-         })
-         .join("");
-   
-     } catch (error) {
-       console.error(error);
-     }
-   }
-
-    container.innerHTML = articles
+    const html = articles
+      .slice(0, 3)
       .map((article) => {
         return `
           <article class="blog-card">
-            <div class="blog-date">
-              ${escapeHtml(formatZennDate(article.pubDate))}
-            </div>
-
-            <h3>
-              ${escapeHtml(article.title)}
-            </h3>
-
-            <p>
-              ${escapeHtml(article.description)}
-            </p>
-
+            <time>${article.date}</time>
+            <h3>${article.title}</h3>
+            <p>${article.description}</p>
             <a
-              href="${escapeHtml(article.link)}"
+              href="${article.url}"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -395,31 +328,22 @@ async function loadZennArticles() {
       })
       .join("");
 
+    containers.forEach((container) => {
+      container.innerHTML = html;
+    });
+
   } catch (error) {
     console.error(error);
 
-    container.innerHTML = `
-      <p class="events-message">
-        記事情報を取得できませんでした。
-      </p>
-    `;
+    containers.forEach((container) => {
+      container.innerHTML = `
+        <div class="blog-loading">
+          記事を読み込めませんでした。
+        </div>
+      `;
+    });
   }
 }
-
-function formatZennDate(dateString) {
-  const date = new Date(dateString);
-
-  if (Number.isNaN(date.getTime())) {
-    return "";
-  }
-
-  return date.toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
-}
-
 /* =====================================
    Zerquor AI Chat
 ===================================== */
