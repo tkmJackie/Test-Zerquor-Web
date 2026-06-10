@@ -289,7 +289,7 @@ function formatEventDate(dateString) {
 ===================================== */
 
 const ZENN_FEED_WORKER_URL =
-  "https://zerquor-zenn-feed.あなたのworkers名.workers.dev";
+  "https://zerquor-zenn-feed.zerquor.workers.dev";
 
 async function loadZennArticles() {
   const container = document.getElementById("zenn-articles");
@@ -315,6 +315,57 @@ async function loadZennArticles() {
       `;
       return;
     }
+
+     async function loadTopZennArticles() {
+     const container =
+       document.getElementById("zenn-articles-top");
+   
+     if (!container) {
+       return;
+     }
+   
+     try {
+       const response =
+         await fetch(ZENN_FEED_WORKER_URL);
+   
+       const articles =
+         await response.json();
+   
+       container.innerHTML = articles
+         .slice(0, 3)
+         .map((article) => {
+           return `
+             <article class="blog-card">
+   
+               <div class="blog-date">
+                 ${formatZennDate(article.pubDate)}
+               </div>
+   
+               <h3>
+                 ${escapeHtml(article.title)}
+               </h3>
+   
+               <p>
+                 ${escapeHtml(article.description)}
+               </p>
+   
+               <a
+                 href="${escapeHtml(article.link)}"
+                 target="_blank"
+                 rel="noopener noreferrer"
+               >
+                 記事を読む →
+               </a>
+   
+             </article>
+           `;
+         })
+         .join("");
+   
+     } catch (error) {
+       console.error(error);
+     }
+   }
 
     container.innerHTML = articles
       .map((article) => {
@@ -553,12 +604,9 @@ function escapeHtml(text) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadCommonParts();
-
   await loadAIChat();
-
   initializeFadeAnimation();
-
   await loadEvents();
-
   await loadZennArticles();
+  await loadTopZennArticles();
 });
