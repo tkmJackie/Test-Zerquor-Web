@@ -300,7 +300,7 @@ async function loadZennArticles() {
   if (containers.length === 0) return;
 
   try {
-    const response = await fetch("https://あなたのRSS用WorkerのURL");
+    const response = await fetch("https://zerquor-zenn-feed.tkm12325.workers.dev");
 
     if (!response.ok) {
       throw new Error("記事の取得に失敗しました");
