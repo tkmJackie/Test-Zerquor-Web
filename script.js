@@ -258,8 +258,8 @@ function createEventCard(event, type) {
         >
           ${
             type === "past"
-              ? "開催ページを見る"
-              : "詳細を見る"
+             ? "開催済み"
+             : "詳細を見る"
           }
         </a>
 
