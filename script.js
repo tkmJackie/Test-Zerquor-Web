@@ -284,38 +284,113 @@ function formatEventDate(dateString) {
   });
 }
 
-function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
+/* =====================================
+   Zenn Blog Loading
+===================================== */
+
+const ZENN_FEED_WORKER_URL =
+  "https://zerquor-zenn-feed.あなたのworkers名.workers.dev";
+
+async function loadZennArticles() {
+  const container = document.getElementById("zenn-articles");
+
+  if (!container) {
+    return;
+  }
+
+  try {
+    const response = await fetch(ZENN_FEED_WORKER_URL);
+
+    if (!response.ok) {
+      throw new Error("Zenn記事の取得に失敗しました");
+    }
+
+    const articles = await response.json();
+
+    if (!articles || articles.length === 0) {
+      container.innerHTML = `
+        <p class="events-message">
+          現在、表示できる記事はありません。
+        </p>
+      `;
+      return;
+    }
+
+    container.innerHTML = articles
+      .map((article) => {
+        return `
+          <article class="blog-card">
+            <div class="blog-date">
+              ${escapeHtml(formatZennDate(article.pubDate))}
+            </div>
+
+            <h3>
+              ${escapeHtml(article.title)}
+            </h3>
+
+            <p>
+              ${escapeHtml(article.description)}
+            </p>
+
+            <a
+              href="${escapeHtml(article.link)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              記事を読む →
+            </a>
+          </article>
+        `;
+      })
+      .join("");
+
+  } catch (error) {
+    console.error(error);
+
+    container.innerHTML = `
+      <p class="events-message">
+        記事情報を取得できませんでした。
+      </p>
+    `;
+  }
+}
+
+function formatZennDate(dateString) {
+  const date = new Date(dateString);
+
+  if (Number.isNaN(date.getTime())) {
+    return "";
+  }
+
+  return date.toLocaleDateString("ja-JP", {
+    year: "numeric",
+    month: "long",
+    day: "numeric"
+  });
 }
 
 /* =====================================
-   Initialize
-===================================== */
-
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadCommonParts();
-  await loadAIChat();
-  initializeFadeAnimation();
-  await loadEvents();
-});
-
-/* =========================
    Zerquor AI Chat
-========================= */
+===================================== */
 
 async function loadAIChat() {
   const container = document.getElementById("ai-chat-container");
 
-  if (!container) return;
+  if (!container) {
+    return;
+  }
 
-  const response = await fetch("ai-chat.html");
-  const html = await response.text();
+  try {
+    const response = await fetch("ai-chat.html");
+    const html = await response.text();
 
-  container.innerHTML = html;
+    container.innerHTML = html;
 
-  initializeAIChat();
+    initializeAIChat();
+
+  } catch (error) {
+    console.error("AIチャットの読み込みに失敗しました", error);
+  }
 }
 
 const ZERQUOR_AI_WORKER_URL =
@@ -413,14 +488,15 @@ function initializeAIChat() {
         "フォーム",
         "見積",
         "個別",
-        "詳しく"
+        "詳しく",
+        "無料相談"
       ];
 
       const needContact = contactKeywords.some((word) =>
         answerText.includes(word)
       );
 
-      if (needContact) {
+      if (responseData.showContactButton || needContact) {
         messages.insertAdjacentHTML(
           "beforeend",
           `
@@ -437,22 +513,52 @@ function initializeAIChat() {
 
       messages.scrollTop = messages.scrollHeight;
 
-      } catch (error) {
-        messages.insertAdjacentHTML(
-          "beforeend",
-          `
-          <div class="ai-row">
-            <div class="ai-avatar">
-              <img src="images/logo.png" alt="Zerquor">
-            </div>
-      
-            <div class="ai-message">
-              エラーが発生しました。
-            </div>
+    } catch (error) {
+      messages.insertAdjacentHTML(
+        "beforeend",
+        `
+        <div class="ai-row">
+          <div class="ai-avatar">
+            <img
+              src="images/logo.png"
+              alt="Zerquor"
+            >
           </div>
-          `
-        );
+
+          <div class="ai-message">
+            エラーが発生しました。
+          </div>
+        </div>
+        `
+      );
+
       console.error(error);
     }
   });
 }
+
+/* =====================================
+   Utility
+===================================== */
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text || "";
+  return div.innerHTML;
+}
+
+/* =====================================
+   Initialize
+===================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadCommonParts();
+
+  await loadAIChat();
+
+  initializeFadeAnimation();
+
+  await loadEvents();
+
+  await loadZennArticles();
+});
