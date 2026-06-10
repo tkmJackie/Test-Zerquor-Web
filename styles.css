@@ -1048,7 +1048,7 @@ tr:last-child td {
 
 .ai-chat {
   position: fixed;
-  right: 24px;
+  right: 40px;
   bottom: 24px;
   z-index: 9999;
 }
