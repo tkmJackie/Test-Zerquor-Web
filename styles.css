@@ -1714,3 +1714,29 @@ tr:last-child td {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================
+   Policy
+========================= */
+
+.policy-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 0 60px;
+}
+
+.policy-content h2 {
+  margin-top: 40px;
+  margin-bottom: 16px;
+  font-size: 1.4rem;
+}
+
+.policy-content p,
+.policy-content li {
+  line-height: 1.9;
+  color: var(--muted);
+}
+
+.policy-content ul {
+  padding-left: 24px;
+}
