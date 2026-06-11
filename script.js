@@ -317,26 +317,32 @@ async function loadZennArticles() {
       throw new Error("記事の取得に失敗しました");
     }
 
-    const articles = await response.json();
+const articles = await response.json();
 
-    const html = articles
-      .slice(0, 3)
-      .map((article) => {
-        return `
-          <article class="blog-card">
-            <time>${article.date}</time>
-            <h3>${article.title}</h3>
-            <p>${article.description}</p>
-            <a
-              href="${article.url}"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              記事を読む →
-            </a>
-          </article>
-        `;
-      })
+const html = articles
+     .slice(0, 3)
+     .map((article) => {
+       const date = new Date(article.pubDate).toLocaleDateString("ja-JP");
+   
+       return `
+         <article class="blog-card">
+           <time>${date}</time>
+   
+           <h3>${article.title}</h3>
+   
+           <p>${article.description}</p>
+   
+           <a
+             href="${article.link}"
+             target="_blank"
+             rel="noopener noreferrer"
+             class="blog-read-button"
+           >
+             記事を読む →
+           </a>
+         </article>
+       `;
+     })
       .join("");
 
     containers.forEach((container) => {
