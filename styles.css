@@ -1333,6 +1333,28 @@ tr:last-child td {
   color: var(--muted);
 }
 
+.profile-role {
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.representative-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 24px 0;
+}
+
+.representative-highlights span {
+  background: rgba(37,99,235,.08);
+  color: var(--accent);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: .9rem;
+  font-weight: 600;
+}
+
 @media (max-width: 720px) {
   .representative-copy,
   .achievement-card {
