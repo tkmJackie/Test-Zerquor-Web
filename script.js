@@ -18,6 +18,17 @@ async function loadCommonParts() {
       footerArea.innerHTML = await response.text();
     }
 
+     const ctaArea =
+  document.getElementById("cta");
+
+   if (ctaArea) {
+     const response =
+       await fetch("cta.html");
+
+  ctaArea.innerHTML =
+    await response.text();
+}
+
     setCurrentNav();
     setFooterYear();
 
