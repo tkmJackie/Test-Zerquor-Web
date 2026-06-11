@@ -429,7 +429,7 @@ function initializeAIChat() {
     input.value = "";
 
     try {
-      const response = await fetch(zerquor-zenn-feed.tkm12325.workers.dev, {
+      const response = await fetch("https://zerquor-ai.tkm12325.workers.dev", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
