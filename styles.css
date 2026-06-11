@@ -1421,15 +1421,13 @@ tr:last-child td {
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   padding: 14px 24px;
-
   border-radius: 999px;
-
   background: linear-gradient(
     135deg,
     #2563eb,
     #1e40af
+    color: #ffffff;
   );
 
   color: #ffffff;
