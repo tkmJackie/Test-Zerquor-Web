@@ -1914,4 +1914,108 @@ tr:last-child td {
   .representative-profile-main h3 {
     font-size: 1.5rem;
   }
+
+  /* =========================
+   Achievement Detail
+========================= */
+
+.achievement-detail-section {
+  padding: 60px 0;
+}
+
+.representative-copy {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 34px;
+  margin-bottom: 28px;
+}
+
+.representative-copy h2 {
+  margin: 0 0 16px;
+  font-size: clamp(1.7rem, 4vw, 2.8rem);
+  line-height: 1.35;
+}
+
+.representative-copy p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.achievement-detail-list {
+  display: grid;
+  gap: 24px;
+}
+
+.achievement-detail-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 32px;
+}
+
+.achievement-detail-card > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--accent);
+
+  font-size: 0.9rem;
+  font-weight: 900;
+  margin-bottom: 18px;
+}
+
+.achievement-detail-card h3 {
+  margin: 0 0 16px;
+  font-size: 1.35rem;
+  line-height: 1.5;
+}
+
+.achievement-lead {
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.8;
+  margin-bottom: 22px;
+}
+
+.achievement-detail-block {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.achievement-detail-block h4 {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 0.98rem;
+}
+
+.achievement-detail-block ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.achievement-detail-block p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+@media (max-width: 720px) {
+  .representative-copy,
+  .achievement-detail-card {
+    padding: 24px;
+  }
+}
 }
