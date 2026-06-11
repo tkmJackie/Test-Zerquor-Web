@@ -1762,3 +1762,156 @@ tr:last-child td {
 .policy-content ul {
   padding-left: 24px;
 }
+
+/* =========================
+   Company Page
+========================= */
+
+.company-overview-section {
+  padding: 40px 0 24px;
+}
+
+.representative-profile-section {
+  padding: 60px 0;
+}
+
+.representative-simple-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 36px;
+  box-shadow: var(--shadow);
+}
+
+.representative-profile-main {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 26px;
+}
+
+.representative-symbol {
+  width: 76px;
+  height: 76px;
+  border-radius: 22px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(37, 99, 235, 0.16),
+      rgba(37, 99, 235, 0.04)
+    );
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.representative-symbol span {
+  color: var(--accent);
+  font-size: 2.4rem;
+  font-weight: 900;
+}
+
+.representative-profile-main h3 {
+  margin: 0 0 8px;
+  font-size: 2rem;
+}
+
+.profile-role {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.representative-profile-body p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.representative-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 26px 0;
+}
+
+.representative-highlights span {
+  background: rgba(37, 99, 235, 0.08);
+  color: var(--accent);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.company-stats-section {
+  padding: 60px 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(37, 99, 235, 0.04),
+      rgba(37, 99, 235, 0)
+    );
+}
+
+.company-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.company-stat-card {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.company-stat-number {
+  margin-bottom: 12px;
+  color: var(--accent);
+  font-size: 2.4rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.company-stat-card h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.company-stat-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+@media (max-width: 980px) {
+  .company-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .representative-simple-card {
+    padding: 24px;
+  }
+
+  .representative-profile-main {
+    align-items: flex-start;
+  }
+
+  .representative-symbol {
+    width: 58px;
+    height: 58px;
+    border-radius: 18px;
+  }
+
+  .representative-symbol span {
+    font-size: 1.8rem;
+  }
+
+  .representative-profile-main h3 {
+    font-size: 1.5rem;
+  }
+}
