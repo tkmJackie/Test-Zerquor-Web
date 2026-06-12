@@ -549,4 +549,291 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeFadeAnimation();
   await loadEvents();
   await loadZennArticles();
+}
+
+　// ==============================
+// Zerquor 共通 JavaScript
+// ==============================
+
+// Cloudflare Worker URL
+// 自分のWorker URLに変更してください
+const WORKER_URL = "https://あなたのworker名.あなたのサブドメイン.workers.dev";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadCommonParts();
+  setCurrentNav();
+  setFooterYear();
+  initializeAIChat();
+});
+
+// ==============================
+// header.html / footer.html 読み込み
+// ==============================
+async function loadCommonParts() {
+  const headerTarget = document.getElementById("site-header");
+  const footerTarget = document.getElementById("site-footer");
+
+  if (headerTarget) {
+    try {
+      const headerResponse = await fetch("header.html");
+
+      if (headerResponse.ok) {
+        headerTarget.innerHTML = await headerResponse.text();
+      } else {
+        console.warn("header.html を読み込めませんでした。");
+      }
+    } catch (error) {
+      console.error("header.html の読み込みエラー:", error);
+    }
+  }
+
+  if (footerTarget) {
+    try {
+      const footerResponse = await fetch("footer.html");
+
+      if (footerResponse.ok) {
+        footerTarget.innerHTML = await footerResponse.text();
+      } else {
+        console.warn("footer.html を読み込めませんでした。");
+      }
+    } catch (error) {
+      console.error("footer.html の読み込みエラー:", error);
+    }
+  }
+}
+
+// ==============================
+// 現在ページのナビゲーションを active にする
+// ==============================
+function setCurrentNav() {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll(".site-nav a");
+
+  navLinks.forEach((link) => {
+    const href = link.getAttribute("href");
+
+    if (!href) {
+      return;
+    }
+
+    const normalizedHref = href.replace("./", "");
+
+    if (
+      currentPath.endsWith(normalizedHref) ||
+      (currentPath.endsWith("/") && normalizedHref === "index.html") ||
+      (currentPath.endsWith("/") && normalizedHref === "/")
+    ) {
+      link.classList.add("active");
+    }
+  });
+}
+
+// ==============================
+// フッターの年を自動更新
+// ==============================
+function setFooterYear() {
+  const yearElements = document.querySelectorAll("[data-current-year]");
+  const currentYear = new Date().getFullYear();
+
+  yearElements.forEach((element) => {
+    element.textContent = currentYear;
+  });
+}
+
+// ==============================
+// AIチャット初期化
+// ==============================
+function initializeAIChat() {
+  createAIChatElements();
+
+  const chatButton = document.getElementById("aiChatButton");
+  const chatWindow = document.getElementById("aiChatWindow");
+  const chatClose = document.getElementById("aiChatClose");
+  const chatSend = document.getElementById("aiChatSend");
+  const chatInput = document.getElementById("aiChatInput");
+
+  if (!chatButton || !chatWindow || !chatClose || !chatSend || !chatInput) {
+    return;
+  }
+
+  chatButton.addEventListener("click", () => {
+    chatWindow.classList.toggle("open");
+
+    if (chatWindow.classList.contains("open")) {
+      chatInput.focus();
+    }
+  });
+
+  chatClose.addEventListener("click", () => {
+    chatWindow.classList.remove("open");
+  });
+
+  chatSend.addEventListener("click", async () => {
+    await handleAIChatSend();
+  });
+
+  chatInput.addEventListener("keydown", async (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      await handleAIChatSend();
+    }
+  });
+}
+
+// ==============================
+// AIチャットHTMLを生成
+// ==============================
+function createAIChatElements() {
+  if (document.getElementById("aiChatButton")) {
+    return;
+  }
+
+  const chatWrapper = document.createElement("div");
+  chatWrapper.className = "ai-chat";
+
+  chatWrapper.innerHTML = `
+    <button id="aiChatButton" class="ai-chat-button" type="button" aria-label="AIチャットを開く">
+      AI
+    </button>
+
+    <div id="aiChatWindow" class="ai-chat-window" aria-live="polite">
+      <div class="ai-chat-header">
+        <div>
+          <p class="ai-chat-title">Zerquor AI</p>
+          <p class="ai-chat-subtitle">サービスやセミナーについて質問できます</p>
+        </div>
+        <button id="aiChatClose" class="ai-chat-close" type="button" aria-label="AIチャットを閉じる">
+          ×
+        </button>
+      </div>
+
+      <div id="aiChatMessages" class="ai-chat-messages">
+        <div class="ai-chat-message ai">
+          こんにちは。Zerquorのサービスや開催予定セミナーについて質問できます。
+        </div>
+      </div>
+
+      <div class="ai-chat-form">
+        <textarea id="aiChatInput" class="ai-chat-input" rows="2" placeholder="質問を入力してください"></textarea>
+        <button id="aiChatSend" class="ai-chat-send" type="button">
+          送信
+        </button>
+      </div>
+    </div>
+  `;
+
+  document.body.appendChild(chatWrapper);
+}
+
+// ==============================
+// AIチャット送信処理
+// ==============================
+async function handleAIChatSend() {
+  const chatInput = document.getElementById("aiChatInput");
+  const chatSend = document.getElementById("aiChatSend");
+
+  if (!chatInput || !chatSend) {
+    return;
+  }
+
+  const userMessage = chatInput.value.trim();
+
+  if (!userMessage) {
+    return;
+  }
+
+  appendChatMessage("user", userMessage);
+
+  chatInput.value = "";
+  chatSend.disabled = true;
+  chatSend.textContent = "送信中";
+
+  const loadingId = appendChatMessage("ai", "確認しています...");
+
+  try {
+    const answer = await sendAIMessage(userMessage);
+
+    removeChatMessageById(loadingId);
+    appendChatMessage("ai", answer);
+  } catch (error) {
+    console.error("AIチャット処理エラー:", error);
+
+    removeChatMessageById(loadingId);
+    appendChatMessage(
+      "ai",
+      "申し訳ありません。AIチャットでエラーが発生しました。時間をおいて再度お試しください。"
+    );
+  } finally {
+    chatSend.disabled = false;
+    chatSend.textContent = "送信";
+    chatInput.focus();
+  }
+}
+
+// ==============================
+// Workerへ質問を送信
+// ==============================
+async function sendAIMessage(userMessage) {
+  const response = await fetch(WORKER_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      message: userMessage
+    })
+  });
+
+  let data;
+
+  try {
+    data = await response.json();
+  } catch (error) {
+    throw new Error("WorkerからJSON形式のレスポンスを取得できませんでした。");
+  }
+
+  if (!response.ok) {
+    console.error("AI Error:", data);
+    throw new Error(data.error || "AIチャットでエラーが発生しました。");
+  }
+
+  return data.answer || "申し訳ありません。回答を取得できませんでした。";
+}
+
+// ==============================
+// チャットメッセージ追加
+// ==============================
+function appendChatMessage(type, message) {
+  const chatMessages = document.getElementById("aiChatMessages");
+
+  if (!chatMessages) {
+    return null;
+  }
+
+  const messageId = `chat-message-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+
+  const messageElement = document.createElement("div");
+  messageElement.id = messageId;
+  messageElement.className = `ai-chat-message ${type}`;
+  messageElement.textContent = message;
+
+  chatMessages.appendChild(messageElement);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  return messageId;
+}
+
+// ==============================
+// 指定メッセージ削除
+// ==============================
+function removeChatMessageById(messageId) {
+  if (!messageId) {
+    return;
+  }
+
+  const messageElement = document.getElementById(messageId);
+
+  if (messageElement) {
+    messageElement.remove();
+  }
 });
