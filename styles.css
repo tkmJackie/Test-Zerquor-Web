@@ -162,6 +162,10 @@ img {
   overflow-wrap: anywhere;
 }
 
+.hero h1 .hero-title-accent {
+  color: #dc2626;
+}
+
 .hero h1 span {
   color: var(--accent);
 }
