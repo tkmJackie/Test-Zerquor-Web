@@ -515,6 +515,16 @@ section {
   font-weight: 700;
 }
 
+.price-guide-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.price-guide-grid .price-guide-card {
+  width: calc((100% - 40px) / 3);
+}
 
 /* =========================
    Action Area
