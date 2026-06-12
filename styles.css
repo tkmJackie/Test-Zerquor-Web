@@ -164,11 +164,11 @@ img {
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-size: clamp(2.1rem, 4.4vw, 3.8rem);
   line-height: 1.2;
   letter-spacing: 0.02em;
   word-break: normal;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .hero h1 .hero-title-accent {
