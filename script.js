@@ -463,6 +463,7 @@ function initializeAIChat() {
         messages.lastElementChild.querySelector(".ai-message");
 
       aiMessage.textContent = answerText;
+      renderAIActionButtons(responseData);
 
       const oldButton =
         document.getElementById("ai-contact-link");
@@ -549,3 +550,76 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadEvents();
   await loadZennArticles();
 });
+
+/* =====================================
+   AI Chat Action Buttons
+   AIの回答内容に応じて、問い合わせ・セミナー・ブログのボタンを表示する処理
+===================================== */
+
+function renderAIActionButtons(responseData) {
+  const messages = document.getElementById("ai-chat-messages");
+
+  if (!messages || !responseData) {
+    return;
+  }
+
+  const buttonGroup = document.createElement("div");
+  buttonGroup.className = "ai-action-buttons";
+
+  let hasButton = false;
+
+  if (responseData.showContactButton) {
+    const contactButton = createAIButton(
+      "お問い合わせする",
+      "contact.html",
+      false
+    );
+
+    buttonGroup.appendChild(contactButton);
+    hasButton = true;
+  }
+
+  if (responseData.showSeminarButton && responseData.seminarUrl) {
+    const seminarButton = createAIButton(
+      responseData.seminarButtonText || "セミナー詳細を見る",
+      responseData.seminarUrl,
+      true
+    );
+
+    buttonGroup.appendChild(seminarButton);
+    hasButton = true;
+  }
+
+  if (responseData.showBlogButton && responseData.blogUrl) {
+    const blogButton = createAIButton(
+      responseData.blogButtonText || "ブログを読む",
+      responseData.blogUrl,
+      true
+    );
+
+    buttonGroup.appendChild(blogButton);
+    hasButton = true;
+  }
+
+  if (!hasButton) {
+    return;
+  }
+
+  messages.appendChild(buttonGroup);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function createAIButton(label, href, isExternal) {
+  const link = document.createElement("a");
+
+  link.className = "ai-contact-button";
+  link.href = href;
+  link.textContent = label;
+
+  if (isExternal) {
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+  }
+
+  return link;
+}
