@@ -2056,4 +2056,32 @@ tr:last-child td {
     padding: 24px;
   }
 }
+
+/* =========================
+   AI Chat Action Buttons
+========================= */
+
+.ai-action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 8px 0 12px;
+}
+
+.ai-contact-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #0f172a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.ai-contact-button:hover {
+  opacity: 0.85;
+}
 }
