@@ -744,6 +744,18 @@ tr:last-child td {
   color: #dc2626;
 }
 
+@media (max-width: 980px) {
+  .price-guide-grid .price-guide-card {
+    width: calc((100% - 20px) / 2);
+  }
+}
+
+@media (max-width: 720px) {
+  .price-guide-grid .price-guide-card {
+    width: 100%;
+  }
+}
+
 /* =========================
    FAQ
    FAQページ専用のアコーディオン
