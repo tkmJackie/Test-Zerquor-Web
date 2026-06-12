@@ -142,10 +142,6 @@ img {
   padding: 84px 0 60px;
 }
 
-.hero-title-line {
-  white-space: nowrap;
-}
-
 .hero h1 .hero-title-accent {
   color: #dc2626;
   white-space: nowrap;
@@ -171,8 +167,17 @@ img {
   overflow-wrap: normal;
 }
 
+.hero-title-line {
+  white-space: nowrap;
+}
+
 .hero h1 .hero-title-accent {
   color: #dc2626;
+  white-space: nowrap;
+}
+
+.hero-step {
+  margin-top: 36px;
 }
 
 .hero h1 span {
@@ -360,10 +365,6 @@ img {
   padding-bottom: 18px;
   border-bottom: 1px solid var(--line);
   margin-bottom: 18px;
-}
-
-.hero-step {
-  margin-top: 36px;
 }
 
 .metric strong {
