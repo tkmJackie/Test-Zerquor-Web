@@ -154,7 +154,8 @@ img {
   font-size: clamp(2.2rem, 5vw, 4.2rem);
   line-height: 1.2;
   letter-spacing: 0.02em;
-  word-break: keep-all;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .hero h1 span {
