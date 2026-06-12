@@ -142,6 +142,15 @@ img {
   padding: 84px 0 60px;
 }
 
+.hero-title-line {
+  white-space: nowrap;
+}
+
+.hero h1 .hero-title-accent {
+  color: #dc2626;
+  white-space: nowrap;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
