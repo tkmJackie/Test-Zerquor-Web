@@ -686,6 +686,53 @@ tr:last-child td {
   font-weight: 700;
 }
 
+/* =========================
+   Price Guide
+   料金ページの選び方ガイド
+========================= */
+
+.price-guide-section {
+  padding: 34px 0 20px;
+}
+
+.price-guide-card {
+  position: relative;
+}
+
+.price-guide-label {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(59, 109, 246, 0.08);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.price-guide-card h3 {
+  margin: 0 0 12px;
+}
+
+.price-guide-card p {
+  margin: 0;
+}
+
+.price-guide-recommend {
+  border-color: rgba(220, 38, 38, 0.28);
+  background:
+    linear-gradient(
+      180deg,
+      rgba(220, 38, 38, 0.05),
+      #ffffff
+    );
+}
+
+.price-guide-recommend .price-guide-label {
+  background: rgba(220, 38, 38, 0.08);
+  color: #dc2626;
+}
 
 /* =========================
    FAQ
