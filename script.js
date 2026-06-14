@@ -465,44 +465,6 @@ function initializeAIChat() {
       aiMessage.textContent = answerText;
       renderAIActionButtons(responseData);
 
-      const oldButton =
-        document.getElementById("ai-contact-link");
-
-      if (oldButton) {
-        oldButton.remove();
-      }
-
-      const contactKeywords = [
-        "お問い合わせ",
-        "問い合わせ",
-        "ご相談",
-        "相談してください",
-        "フォーム",
-        "見積",
-        "個別",
-        "詳しく",
-        "無料相談"
-      ];
-
-      const needContact = contactKeywords.some((word) =>
-        answerText.includes(word)
-      );
-
-      if (responseData.showContactButton || needContact) {
-        messages.insertAdjacentHTML(
-          "beforeend",
-          `
-          <a
-            id="ai-contact-link"
-            href="contact.html"
-            class="ai-contact-button"
-          >
-            お問い合わせする
-          </a>
-          `
-        );
-      }
-
       messages.scrollTop = messages.scrollHeight;
 
     } catch (error) {
