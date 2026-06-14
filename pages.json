@@ -1,0 +1,65 @@
+{
+  "updatedAt": "2026-06-15",
+  "pages": [
+    {
+      "title": "トップ",
+      "url": "https://www.zerquor.com/",
+      "description": "Zerquorのトップページ。中小企業向けセキュリティ教育・内製化支援の概要。"
+    },
+    {
+      "title": "サービス",
+      "url": "https://www.zerquor.com/services.html",
+      "description": "セキュリティ現状把握、従業員研修、社内ルール整備、月額相談の説明。"
+    },
+    {
+      "title": "料金",
+      "url": "https://www.zerquor.com/price.html",
+      "description": "現状把握ライト、現状把握レポート、従業員研修、社内ルール整備、月額相談の料金。"
+    },
+    {
+      "title": "会社情報",
+      "url": "https://www.zerquor.com/company.html",
+      "description": "会社概要、代表プロフィール、保有資格、Zerquorが大切にしていること。"
+    },
+    {
+      "title": "代表実績",
+      "url": "https://www.zerquor.com/about.html",
+      "description": "代表がこれまで参画・支援してきたセキュリティ、クラウド、IT教育の実績。"
+    },
+    {
+      "title": "ブログ",
+      "url": "https://www.zerquor.com/blog.html",
+      "description": "Zennで公開しているセキュリティ・IT関連記事。"
+    },
+    {
+      "title": "セミナー",
+      "url": "https://www.zerquor.com/events.html",
+      "description": "開催予定セミナー・過去セミナー情報。"
+    },
+    {
+      "title": "FAQ",
+      "url": "https://www.zerquor.com/faq.html",
+      "description": "サービス、料金、支援内容、相談方法に関するよくある質問。"
+    },
+    {
+      "title": "お問い合わせ",
+      "url": "https://www.zerquor.com/contact.html",
+      "description": "無料相談・問い合わせフォームへの案内。"
+    },
+    {
+      "title": "プライバシーポリシー",
+      "url": "https://www.zerquor.com/privacy.html",
+      "description": "個人情報の取り扱いに関する方針。"
+    },
+    {
+      "title": "情報セキュリティ基本方針",
+      "url": "https://www.zerquor.com/security-policy.html",
+      "description": "Zerquorの情報セキュリティに関する基本方針。"
+    },
+    {
+      "title": "反社会的勢力排除方針",
+      "url": "https://www.zerquor.com/anti-social-policy.html",
+      "description": "反社会的勢力との関係遮断に関する方針。"
+    }
+  ]
+}
