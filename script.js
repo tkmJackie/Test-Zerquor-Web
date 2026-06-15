@@ -530,6 +530,17 @@ function renderAIActionButtons(responseData) {
 
   let hasButton = false;
 
+  if (responseData.showPageButton && responseData.pageUrl) {
+    const pageButton = createAIButton(
+      responseData.pageButtonText || "詳細を見る",
+      responseData.pageUrl,
+      false
+    );
+
+    buttonGroup.appendChild(pageButton);
+    hasButton = true;
+  }
+
   if (responseData.showContactButton) {
     const contactButton = createAIButton(
       "お問い合わせする",
