@@ -529,7 +529,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   await loadAIChat();
   initializeFadeAnimation();
   await loadEvents();
-  await loadZennArticles();
+  await loadSelfBlogs();
 });
 
 /* =====================================
