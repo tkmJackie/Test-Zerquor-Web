@@ -292,6 +292,96 @@ function formatEventDate(dateString) {
 }
 
 /* =====================================
+   Self Blog Loading
+===================================== */
+
+async function loadSelfBlogs() {
+  const container =
+    document.getElementById("self-blog-list");
+
+  if (!container) {
+    return;
+  }
+
+  try {
+    const response = await fetch("blog_posts.json");
+
+    if (!response.ok) {
+      throw new Error("blog_posts.json の取得に失敗しました");
+    }
+
+    const posts = await response.json();
+
+    if (!Array.isArray(posts) || posts.length === 0) {
+      container.innerHTML = `
+        <div class="blog-loading">
+          記事がまだありません。
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = posts
+      .map((post) => {
+        const title = escapeHtml(post.title || "タイトル未設定");
+        const description = escapeHtml(post.description || "");
+        const category = escapeHtml(post.category || "");
+        const date = escapeHtml(post.date || "");
+        const thumbnail = escapeHtml(post.thumbnail || "");
+        const url = escapeHtml(post.url || "#");
+
+        return `
+          <article class="blog-card">
+
+            ${
+              thumbnail
+                ? `
+                  <img
+                    src="${thumbnail}"
+                    alt="${title}"
+                    class="blog-card-image"
+                  >
+                `
+                : ""
+            }
+
+            <div class="blog-card-content">
+
+              <div class="blog-card-meta">
+                <span>${category}</span>
+                <span>${date}</span>
+              </div>
+
+              <h3>${title}</h3>
+
+              <p>${description}</p>
+
+              <a
+                href="${url}"
+                class="blog-read-button"
+              >
+                記事を読む →
+              </a>
+
+            </div>
+
+          </article>
+        `;
+      })
+      .join("");
+
+  } catch (error) {
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="blog-loading">
+        自社ブログ記事を読み込めませんでした。
+      </div>
+    `;
+  }
+}
+
+/* =====================================
    Zerquor AI Chat
 ===================================== */
 
