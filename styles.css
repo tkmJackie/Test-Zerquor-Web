@@ -2485,4 +2485,235 @@ tr:last-child td {
   .next-chapter {
     padding: 24px;
   }
+
+  /* =========================
+   Blog Article - Qiita / Zenn Style
+========================= */
+
+body {
+  background: #f6f8fa;
+}
+
+.blog-article-hero {
+  padding: 56px 0 24px;
+  background: #f6f8fa;
+}
+
+.blog-article-hero .container {
+  max-width: 1000px;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.breadcrumb a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.blog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.blog-meta span {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.blog-article-hero h1 {
+  max-width: 920px;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+  color: #0f172a;
+}
+
+.blog-article-hero p {
+  max-width: 800px;
+  margin-top: 20px;
+  color: #64748b;
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
+
+.blog-article-section {
+  padding: 24px 0 80px;
+  background: #f6f8fa;
+}
+
+.blog-article-section .container {
+  max-width: 1000px;
+}
+
+.blog-post {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 56px 64px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  color: #1f2937;
+  line-height: 1.95;
+}
+
+.blog-post section {
+  margin-bottom: 56px;
+}
+
+.blog-post section:last-child {
+  margin-bottom: 0;
+}
+
+.blog-post h2 {
+  margin: 56px 0 24px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 1.75rem;
+  line-height: 1.45;
+  color: #0f172a;
+}
+
+.blog-post section:first-child h2 {
+  margin-top: 0;
+}
+
+.blog-post h3 {
+  margin: 36px 0 14px;
+  font-size: 1.28rem;
+  line-height: 1.5;
+  color: #111827;
+}
+
+.blog-post p {
+  margin: 0 0 20px;
+  font-size: 1.03rem;
+}
+
+.blog-post ul,
+.blog-post ol {
+  margin: 20px 0 26px;
+  padding-left: 1.6em;
+}
+
+.blog-post li {
+  margin-bottom: 10px;
+  line-height: 1.85;
+}
+
+.blog-post strong {
+  color: #2563eb;
+  font-weight: 700;
+}
+
+.blog-post a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.blog-post img {
+  display: block;
+  max-width: 100%;
+  margin: 32px auto;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+}
+
+.blog-post blockquote {
+  margin: 28px 0;
+  padding: 16px 20px;
+  background: #f8fafc;
+  border-left: 4px solid #2563eb;
+  color: #475569;
+}
+
+.blog-post code {
+  padding: 0.15em 0.35em;
+  border-radius: 6px;
+  background: #f1f5f9;
+  color: #0f172a;
+  font-size: 0.92em;
+}
+
+.blog-post pre {
+  overflow-x: auto;
+  margin: 28px 0;
+  padding: 20px;
+  border-radius: 14px;
+  background: #0f172a;
+  color: #e5e7eb;
+}
+
+.blog-post pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.next-chapter {
+  max-width: 860px;
+  margin: 32px auto 0;
+  padding: 28px 32px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+}
+
+.next-chapter h3 {
+  margin-bottom: 10px;
+  color: #0f172a;
+}
+
+.next-chapter a {
+  color: #2563eb;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.next-chapter a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .blog-article-hero {
+    padding: 36px 0 20px;
+  }
+
+  .blog-post {
+    padding: 32px 22px;
+    border-radius: 14px;
+  }
+
+  .blog-post h2 {
+    font-size: 1.45rem;
+  }
+
+  .next-chapter {
+    padding: 24px 20px;
+  }
+}
 }
