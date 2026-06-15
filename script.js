@@ -464,7 +464,6 @@ function initializeAIChat() {
 
       aiMessage.textContent = answerText;
       renderAIActionButtons(responseData);
-      renderAIActionButtons(responseData);
 
       messages.scrollTop = messages.scrollHeight;
 
