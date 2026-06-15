@@ -379,59 +379,6 @@ async function loadZennArticles() {
   }
 }
 
-  try {
-    const response = await fetch(ZENN_FEED_WORKER_URL);
-
-    if (!response.ok) {
-      throw new Error("記事の取得に失敗しました");
-    }
-
-   const articleLimit =
-     document.getElementById("zenn-articles") ? articles.length : 3;
-   
-   const html = articles
-     .slice(0, articleLimit)
-     .map((article) => {
-        const date = new Date(article.pubDate).toLocaleDateString("ja-JP");
-
-        return `
-          <article class="blog-card">
-            <time>${date}</time>
-
-            <h3>${article.title}</h3>
-
-            <p>${article.description}</p>
-
-            <a
-              href="${article.link}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="blog-read-button"
-            >
-              記事を読む →
-            </a>
-          </article>
-        `;
-      })
-      .join("");
-
-    containers.forEach((container) => {
-      container.innerHTML = html;
-    });
-
-  } catch (error) {
-    console.error(error);
-
-    containers.forEach((container) => {
-      container.innerHTML = `
-        <div class="blog-loading">
-          記事を読み込めませんでした。
-        </div>
-      `;
-    });
-  }
-}
-
 /* =====================================
    Zerquor AI Chat
 ===================================== */
