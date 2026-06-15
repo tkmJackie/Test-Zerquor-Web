@@ -7,21 +7,21 @@ async function loadCommonParts() {
     const headerArea = document.getElementById("header");
 
     if (headerArea) {
-      const response = await fetch("header.html");
+      const response = await fetch("/header.html");
       headerArea.innerHTML = await response.text();
     }
 
     const footerArea = document.getElementById("footer");
 
     if (footerArea) {
-      const response = await fetch("footer.html");
+      const response = await fetch("/footer.html");
       footerArea.innerHTML = await response.text();
     }
 
     const ctaArea = document.getElementById("cta");
 
     if (ctaArea) {
-      const response = await fetch("cta.html");
+      const response = await fetch("/cta.html");
       ctaArea.innerHTML = await response.text();
     }
 
@@ -393,7 +393,7 @@ async function loadAIChat() {
   }
 
   try {
-    const response = await fetch("ai-chat.html");
+    const response = await fetch("/ai-chat.html");
     const html = await response.text();
 
     container.innerHTML = html;
@@ -470,7 +470,7 @@ function initializeAIChat() {
         <div class="ai-row">
           <div class="ai-avatar">
             <img
-              src="images/logo.png"
+              src="/images/logo.png"
               alt="Zerquor"
             >
           </div>
@@ -495,7 +495,7 @@ function initializeAIChat() {
         <div class="ai-row">
           <div class="ai-avatar">
             <img
-              src="images/logo.png"
+              src="/images/logo.png"
               alt="Zerquor"
             >
           </div>
