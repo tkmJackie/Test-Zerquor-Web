@@ -315,11 +315,12 @@ async function loadZennArticles() {
       throw new Error("記事の取得に失敗しました");
     }
 
-    const articles = await response.json();
-
-    const html = articles
-      .slice(0, 3)
-      .map((article) => {
+   const articleLimit =
+     document.getElementById("zenn-articles") ? articles.length : 3;
+   
+   const html = articles
+     .slice(0, articleLimit)
+     .map((article) => {
         const date = new Date(article.pubDate).toLocaleDateString("ja-JP");
 
         return `
