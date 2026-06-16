@@ -8,21 +8,30 @@ async function loadCommonParts() {
 
     if (headerArea) {
       const response = await fetch("/header.html");
-      headerArea.innerHTML = await response.text();
+
+      if (response.ok) {
+        headerArea.innerHTML = await response.text();
+      }
     }
 
     const footerArea = document.getElementById("footer");
 
     if (footerArea) {
       const response = await fetch("/footer.html");
-      footerArea.innerHTML = await response.text();
+
+      if (response.ok) {
+        footerArea.innerHTML = await response.text();
+      }
     }
 
     const ctaArea = document.getElementById("cta");
 
     if (ctaArea) {
       const response = await fetch("/cta.html");
-      ctaArea.innerHTML = await response.text();
+
+      if (response.ok) {
+        ctaArea.innerHTML = await response.text();
+      }
     }
 
     setCurrentNav();
@@ -87,6 +96,7 @@ function initializeFadeAnimation() {
     faders.forEach((element) => {
       observer.observe(element);
     });
+
   } else {
     faders.forEach((element) => {
       element.classList.add("visible");
@@ -117,13 +127,17 @@ async function loadEvents() {
   }
 
   try {
-    const response = await fetch("/events.json?v=20260616-11");
+    const response = await fetch("/events.json?v=20260616-13");
 
     if (!response.ok) {
       throw new Error("events.json の取得に失敗しました");
     }
 
     const events = await response.json();
+
+    if (!Array.isArray(events)) {
+      throw new Error("events.json の形式が正しくありません");
+    }
 
     const now = new Date();
 
@@ -218,14 +232,14 @@ function createEventCard(event, type) {
       ${
         image
           ? `
-          <div class="event-image-wrap">
-            <img
-              src="${image}"
-              alt="${title}"
-              class="event-image"
-            />
-          </div>
-        `
+            <div class="event-image-wrap">
+              <img
+                src="${image}"
+                alt="${title}"
+                class="event-image"
+              >
+            </div>
+          `
           : ""
       }
 
@@ -234,10 +248,10 @@ function createEventCard(event, type) {
         ${
           category
             ? `
-            <div class="event-category">
-              ${category}
-            </div>
-          `
+              <div class="event-category">
+                ${category}
+              </div>
+            `
             : ""
         }
 
@@ -249,17 +263,23 @@ function createEventCard(event, type) {
           ${title}
         </h3>
 
-        <div class="event-place">
-          ${place}
-        </div>
+        ${
+          place
+            ? `
+              <div class="event-place">
+                ${place}
+              </div>
+            `
+            : ""
+        }
 
         ${
           description
             ? `
-            <p class="event-description">
-              ${description}
-            </p>
-          `
+              <p class="event-description">
+                ${description}
+              </p>
+            `
             : ""
         }
 
@@ -310,7 +330,7 @@ async function loadSelfBlogs() {
   }
 
   try {
-    const response = await fetch("/blog_posts.json?v=20260616-11");
+    const response = await fetch("/blog_posts.json?v=20260616-13");
 
     if (!response.ok) {
       throw new Error("blog_posts.json の取得に失敗しました");
@@ -332,16 +352,30 @@ async function loadSelfBlogs() {
         const title = escapeHtml(post.title || "タイトル未設定");
         const description = escapeHtml(post.description || "");
         const category = escapeHtml(post.category || "");
-        const date = escapeHtml(post.date || "");
+        const date = escapeHtml(formatBlogDate(post.date || ""));
+        const readingTime = escapeHtml(
+          formatReadingTime(
+            post.readingTime ||
+            post.reading_time ||
+            post.readingTimeText ||
+            ""
+          )
+        );
         const thumbnail = escapeHtml(post.thumbnail || "");
-                  
-         const metaItems = [
-           date,
-           category,
-           readingTime ? `読了時間：${readingTime}` : ""
-         ].filter(Boolean);
+
+        const rawUrl =
+          post.file ||
+          post.url ||
+          post.href ||
+          "#";
 
         const url = escapeHtml(normalizeBlogUrl(rawUrl));
+
+        const metaItems = [
+          date,
+          category,
+          readingTime
+        ].filter(Boolean);
 
         return `
           <article class="blog-card">
@@ -360,25 +394,25 @@ async function loadSelfBlogs() {
 
             <div class="blog-card-content">
 
-               <div class="blog-card-meta">
-                 ${
-                   date
-                     ? `<span class="blog-meta-pill">${date.replaceAll("-", "/")}</span>`
-                     : ""
-                 }
-               
-                 <span class="blog-meta-pill">
-                   ${category || "セキュリティリテラシ"}
-                 </span>
-               
-                 <span class="blog-meta-pill">
-                   読了時間：約8分
-                 </span>
-               </div>
+              ${
+                metaItems.length > 0
+                  ? `
+                    <div class="blog-card-meta">
+                      ${metaItems
+                        .map((item) => `<span class="blog-meta-pill">${item}</span>`)
+                        .join("")}
+                    </div>
+                  `
+                  : ""
+              }
 
               <h3>${title}</h3>
 
-              <p>${description}</p>
+              ${
+                description
+                  ? `<p>${description}</p>`
+                  : ""
+              }
 
               <a
                 href="${url}"
@@ -418,6 +452,11 @@ async function loadAIChat() {
 
   try {
     const response = await fetch("/ai-chat.html");
+
+    if (!response.ok) {
+      throw new Error("ai-chat.html の取得に失敗しました");
+    }
+
     const html = await response.text();
 
     container.innerHTML = html;
@@ -491,16 +530,16 @@ function initializeAIChat() {
       messages.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="ai-row">
-          <div class="ai-avatar">
-            <img
-              src="/images/logo.png"
-              alt="Zerquor"
-            >
-          </div>
+          <div class="ai-row">
+            <div class="ai-avatar">
+              <img
+                src="/images/logo.png"
+                alt="Zerquor"
+              >
+            </div>
 
-          <div class="ai-message"></div>
-        </div>
+            <div class="ai-message"></div>
+          </div>
         `
       );
 
@@ -508,6 +547,7 @@ function initializeAIChat() {
         messages.lastElementChild.querySelector(".ai-message");
 
       aiMessage.textContent = answerText;
+
       renderAIActionButtons(responseData);
 
       messages.scrollTop = messages.scrollHeight;
@@ -516,18 +556,18 @@ function initializeAIChat() {
       messages.insertAdjacentHTML(
         "beforeend",
         `
-        <div class="ai-row">
-          <div class="ai-avatar">
-            <img
-              src="/images/logo.png"
-              alt="Zerquor"
-            >
-          </div>
+          <div class="ai-row">
+            <div class="ai-avatar">
+              <img
+                src="/images/logo.png"
+                alt="Zerquor"
+              >
+            </div>
 
-          <div class="ai-message">
-            エラーが発生しました。
+            <div class="ai-message">
+              エラーが発生しました。
+            </div>
           </div>
-        </div>
         `
       );
 
@@ -538,7 +578,6 @@ function initializeAIChat() {
 
 /* =====================================
    AI Chat Action Buttons
-   AIの回答内容に応じて、問い合わせ・セミナー・ブログのボタンを表示する処理
 ===================================== */
 
 function renderAIActionButtons(responseData) {
@@ -657,7 +696,6 @@ function normalizeBlogUrl(url) {
 
   /*
     file が posts/ から始まる古い形だった場合の保険
-    例: posts/security-what-is.html
   */
   if (
     normalizedUrl === "posts/security-what-is.html" ||
@@ -715,6 +753,48 @@ function escapeHtml(text) {
   return div.innerHTML;
 }
 
+function formatBlogDate(dateString) {
+  if (!dateString) {
+    return "";
+  }
+
+  const text = String(dateString).trim();
+
+  const matchedDate = text.match(/^(\d{4})[-/](\d{1,2})[-/](\d{1,2})/);
+
+  if (!matchedDate) {
+    return text;
+  }
+
+  const year = matchedDate[1];
+  const month = matchedDate[2].padStart(2, "0");
+  const day = matchedDate[3].padStart(2, "0");
+
+  return `${year}/${month}/${day}`;
+}
+
+function formatReadingTime(readingTime) {
+  if (!readingTime) {
+    return "";
+  }
+
+  const text = String(readingTime).trim();
+
+  if (!text) {
+    return "";
+  }
+
+  if (text.includes("読了時間")) {
+    return text;
+  }
+
+  if (/^\d+$/.test(text)) {
+    return `読了時間：約${text}分`;
+  }
+
+  return `読了時間：${text}`;
+}
+
 /* =====================================
    Initialize
 ===================================== */
@@ -722,7 +802,9 @@ function escapeHtml(text) {
 document.addEventListener("DOMContentLoaded", async () => {
   await loadCommonParts();
   await loadAIChat();
+
   initializeFadeAnimation();
+
   await loadEvents();
   await loadSelfBlogs();
 });
