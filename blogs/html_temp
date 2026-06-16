@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>記事タイトル | Zerquor</title>
+  <meta name="description" content="記事の説明文を入れます。">
+
+  <link rel="canonical" href="https://www.zerquor.com/blogs/article-file-name.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="記事タイトル">
+  <meta property="og:description" content="記事の説明文を入れます。">
+  <meta property="og:image" content="https://www.zerquor.com/images/blog/ogp.png">
+  <meta property="og:url" content="https://www.zerquor.com/blogs/article-file-name.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../blog-template.css">
+  <link rel="icon" href="../images/logo.png">
+</head>
+
+<body>
+
+  <div id="header"></div>
+
+  <main class="blog-template-page">
+
+    <section class="blog-template-hero">
+      <div class="blog-template-container">
+
+        <nav class="blog-template-breadcrumb">
+          <a href="../index.html">ホーム</a>
+          <span>›</span>
+          <a href="../blog.html">ブログ</a>
+          <span>›</span>
+          <span>記事タイトル</span>
+        </nav>
+
+        <div class="blog-template-meta">
+          <span>2026/06/15</span>
+          <span>カテゴリ名</span>
+          <span>読了時間：約8分</span>
+        </div>
+
+        <h1>
+          記事タイトル
+        </h1>
+
+        <p>
+          この記事の概要文を入れます。
+        </p>
+
+      </div>
+    </section>
+
+    <section class="blog-template-body">
+      <div class="blog-template-container">
+
+        <article class="blog-template-post">
+
+          <section class="blog-template-section">
+            <h2>見出し</h2>
+            <p>
+              本文をここに入れます。
+            </p>
+          </section>
+
+          <section class="blog-template-section">
+            <h2>まとめ</h2>
+            <p>
+              まとめをここに入れます。
+            </p>
+          </section>
+
+        </article>
+
+        <nav class="blog-template-next">
+          <h3>次の記事</h3>
+          <a href="next-article.html">
+            次の記事タイトル
+          </a>
+        </nav>
+
+      </div>
+    </section>
+
+    <div id="cta"></div>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <div id="ai-chat-container"></div>
+
+  <script src="../script.js?v=20260616-3"></script>
+  <script src="../blog-template.js?v=20260616-1"></script>
+
+</body>
+</html>
