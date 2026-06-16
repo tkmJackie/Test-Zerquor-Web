@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-DHX5DH3R9P"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag("js", new Date());
+    gtag("config", "G-DHX5DH3R9P");
+  </script>
+
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x57jrclrq8");
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>第4章 偽メールを見抜こう ～フィッシング詐欺から身を守る方法～ | Zerquor</title>
+
+  <meta
+    name="description"
+    content="フィッシング詐欺の基本を初心者向けに解説。偽メールや偽サイトの見分け方、被害を防ぐための注意点を学びます。"
+  >
+
+  <link
+    rel="canonical"
+    href="https://www.zerquor.com/blog100004-phishing.html"
+  >
+
+  <!-- OGP -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="第4章 偽メールを見抜こう ～フィッシング詐欺から身を守る方法～">
+  <meta property="og:description" content="フィッシング詐欺の基本を初心者向けに解説。偽メールや偽サイトの見分け方、被害を防ぐための注意点を学びます。">
+  <meta property="og:image" content="https://www.zerquor.com/images/blog/security-basic.png">
+  <meta property="og:url" content="https://www.zerquor.com/blog100004-phishing.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css?v=20260616-10">
+
+  <!-- Favicon -->
+  <link rel="icon" href="images/logo.png">
+</head>
+
+<body>
+
+  <div id="header"></div>
+
+  <main>
+
+    <section class="blog-article-hero">
+      <div class="container">
+
+        <nav class="breadcrumb">
+          <a href="index.html">ホーム</a>
+          <span>›</span>
+          <a href="blog.html">ブログ</a>
+          <span>›</span>
+          <span>第4章 偽メールを見抜こう ～フィッシング詐欺から身を守。</span>
+        </nav>
+
+        <div class="blog-meta">
+          <span>2026/06/16</span>
+          <span>セキュリティリテラシ</span>
+          <span>読了時間：約5分</span>
+        </div>
+
+        <h1>
+          第4章 偽メールを見抜こう ～フィッシング詐欺から身を守る方法～
+        </h1>
+
+        <p>
+          フィッシング詐欺の基本を初心者向けに解説。偽メールや偽サイトの見分け方、被害を防ぐための注意点を学びます。
+        </p>
+
+      </div>
+    </section>
+
+    <section class="blog-article-section">
+      <div class="container">
+
+        <article id="blog100004" class="blog-post" data-blog-id="blog100004" data-blog-date="2026-06-16">
+
+          <section>
+            <h2>はじめに</h2>
+            <p>ある日、次のようなメールが届いたとします。</p>
+            <p>件名：お客様のアカウントに異常なログインが確認されました</p>
+            <p>いつもご利用いただきありがとうございます。</p>
+            <p>セキュリティ保護のため、アカウントの確認をお願いいたします。</p>
+            <p>以下のURLより24時間以内にご確認ください。</p>
+            <p>【確認はこちら】<br><a href="https://example-security-check.com">https://example-security-check.com</a></p>
+            <p>あなたならどうしますか？</p>
+            <p>実は、このようなメールの多くは</p>
+            <p><span style="color:red;font-weight:bold;">偽メール（フィッシングメール）</span></p>
+            <p>である可能性があります。</p>
+            <p>近年、フィッシング詐欺による被害は急増しています。</p>
+            <p>しかも攻撃者は年々手口を巧妙化させており、一見すると本物と区別がつかないメールも少なくありません。</p>
+            <p>今回は、偽メールを見抜くポイントと、被害に遭わないための対策について学びましょう。</p>
+
+          </section>
+
+          <section>
+            <h2>フィッシング詐欺とは？</h2>
+            <p>フィッシング（Phishing）とは、</p>
+            <p><strong>本物の企業やサービスになりすまして個人情報を盗む詐欺</strong></p>
+            <p>です。</p>
+            <p>主な目的は、</p>
+            <ul>
+            <li>ID</li>
+            <li>パスワード</li>
+            <li>クレジットカード情報</li>
+            <li>銀行口座情報</li>
+            <li>個人情報</li>
+            </ul>
+            <p>を盗むことです。</p>
+            <p>攻撃者は、</p>
+            <ul>
+            <li>銀行</li>
+            <li>クレジットカード会社</li>
+            <li>Amazon</li>
+            <li>楽天</li>
+            <li>宅配業者</li>
+            <li>税務署</li>
+            <li>通信会社</li>
+            </ul>
+            <p>などを装います。</p>
+            <p>利用者が偽サイトへアクセスし、情報を入力すると、その内容が攻撃者に送信されます。</p>
+
+          </section>
+
+          <section>
+            <h2>なぜ騙されるのか？</h2>
+            <p>「そんなメールに騙される人なんているの？」</p>
+            <p>と思うかもしれません。</p>
+            <p>しかし、攻撃者は人間の心理を巧みに利用しています。</p>
+            <p>例えば、</p>
+            <ul>
+            <li>不安</li>
+            <li>焦り</li>
+            <li>驚き</li>
+            <li>欲</li>
+            </ul>
+            <p>を刺激します。</p>
+            <h3>例1：不安をあおる</h3>
+            <p>「アカウントが停止されます」</p>
+            <p>「不正利用が確認されました」</p>
+            <p>「セキュリティ上の問題があります」</p>
+            <h3>例2：焦らせる</h3>
+            <p>「24時間以内に対応してください」</p>
+            <p>「本日中に確認してください」</p>
+            <p>「期限切れになります」</p>
+            <h3>例3：得をさせる</h3>
+            <p>「ポイントが当選しました」</p>
+            <p>「無料ギフトを受け取れます」</p>
+            <p>「特別キャンペーン実施中」</p>
+            <p>人は冷静な判断ができなくなると、普段なら気付く違和感を見逃してしまいます。</p>
+
+          </section>
+
+          <section>
+            <h2>最近よくある偽メール</h2>
+            <p>最近特に多いのが次のパターンです。</p>
+            <h3>宅配業者を装うメール</h3>
+            <p>お荷物のお届け先が不明です。</p>
+            <p>再配達の手続きをお願いします。</p>
+            <p>宅配を利用する人が多いため非常に効果的です。</p>
+            <h3>Amazonを装うメール</h3>
+            <p>お客様のアカウントに問題が発生しました。</p>
+            <p>支払い情報を更新してください。</p>
+            <p>ネットショッピング利用者を狙っています。</p>
+            <h3>クレジットカード会社を装うメール</h3>
+            <p>不審な利用を検知しました。</p>
+            <p>本人確認をお願いします。</p>
+            <p>実際にカード会社から連絡が来ることもあるため見分けが難しくなります。</p>
+            <h3>銀行を装うメール</h3>
+            <p>セキュリティ強化のため認証をお願いします。</p>
+            <p>口座情報やワンタイムパスワードを狙います。</p>
+
+          </section>
+
+          <section>
+            <h2>本物か偽物かクイズ</h2>
+            <p>次のメールを見てください。</p>
+            <p>件名：Amazonアカウント緊急確認</p>
+            <p>親愛なるお客様</p>
+            <p>あなたのアカウントは異常状態です。</p>
+            <p>24時間以内に認証しない場合、永久停止されます。</p>
+            <p>こちらから確認してください。</p>
+            <p><a href="http://amazon-security-check-login.com">http://amazon-security-check-login.com</a></p>
+            <p>どうでしょうか？</p>
+            <p>違和感はありますか？</p>
+            <h3>答え</h3>
+            <p>偽物の可能性が高いです。</p>
+            <p>理由は、</p>
+            <ul>
+            <li>日本語が不自然</li>
+            <li>過度に焦らせている</li>
+            <li>URLがAmazonではない</li>
+            </ul>
+            <p>からです。</p>
+            <p>本物そっくりでも、</p>
+            <p><strong>URLを見る習慣</strong></p>
+            <p>が非常に重要です。</p>
+
+          </section>
+
+          <section>
+            <h2>偽メールを見抜く7つのポイント</h2>
+            <h3>1. 差出人を確認する</h3>
+            <p>メールアドレスを見てみましょう。</p>
+            <p>例</p>
+            <pre><code class="language-text">amazon-support@gmail.com
+            </code></pre>
+            <p>Amazon公式なのにGmailだったら怪しいですよね。</p>
+            <p>差出人名だけで判断しないようにしましょう。</p>
+            <h3>2. 日本語がおかしい</h3>
+            <p>海外の攻撃者が作成している場合があります。</p>
+            <p>例えば、</p>
+            <ul>
+            <li>敬語がおかしい</li>
+            <li>漢字の使い方がおかしい</li>
+            <li>不自然な文章</li>
+            </ul>
+            <p>などが見られます。</p>
+            <h3>3. 過度に焦らせる</h3>
+            <p>次のような表現は要注意です。</p>
+            <ul>
+            <li>今すぐ</li>
+            <li>本日中</li>
+            <li>24時間以内</li>
+            <li>緊急</li>
+            </ul>
+            <p>焦らせるのは詐欺の定番です。</p>
+            <h3>4. URLを確認する</h3>
+            <p>もっとも重要なポイントです。</p>
+            <p>例えば、</p>
+            <p>本物</p>
+            <pre><code class="language-text">https://amazon.co.jp
+            </code></pre>
+            <p>偽物</p>
+            <pre><code class="language-text">https://amazon-security-login.com
+            </code></pre>
+            <p>一見似ていますが全く別サイトです。</p>
+            <h3>5. 添付ファイルに注意</h3>
+            <p>添付ファイルを開くことで、</p>
+            <ul>
+            <li>ウイルス感染</li>
+            <li>ランサムウェア感染</li>
+            </ul>
+            <p>することがあります。</p>
+            <p>身に覚えのない添付ファイルは開かないようにしましょう。</p>
+            <h3>6. 個人情報を要求してくる</h3>
+            <p>本物の企業はメールで</p>
+            <ul>
+            <li>パスワード</li>
+            <li>暗証番号</li>
+            <li>クレジットカード情報</li>
+            </ul>
+            <p>を聞くことはほとんどありません。</p>
+            <p>要求されたら疑いましょう。</p>
+            <h3>7. クリックする前に考える</h3>
+            <p>もっとも効果的な対策です。</p>
+            <p>クリックする前に、</p>
+            <p>「本当に必要なメールか？」</p>
+            <p>を考えるだけで多くの被害を防げます。</p>
+
+          </section>
+
+          <section>
+            <h2>もしクリックしてしまったら？</h2>
+            <p>誰でも間違えることはあります。</p>
+            <p>重要なのは、</p>
+            <span style="color:red;font-weight:bold;">
+            クリックした後の対応
+            </span>
+
+            <p>です。</p>
+            <h3>URLを開いただけ</h3>
+            <p>すぐに閉じましょう。</p>
+            <p>それだけで被害にならない場合もあります。</p>
+            <h3>パスワードを入力した</h3>
+            <p>すぐに変更しましょう。</p>
+            <p>同じパスワードを使っているサービスも変更します。</p>
+            <h3>クレジットカード情報を入力した</h3>
+            <p>カード会社へ連絡します。</p>
+            <p>利用停止や再発行が必要になる場合があります。</p>
+            <h3>不安な場合</h3>
+            <p>家族や詳しい人へ相談しましょう。</p>
+            <p>一人で抱え込まないことが重要です。</p>
+
+          </section>
+
+          <section>
+            <h2>フィッシング詐欺は進化している</h2>
+            <p>最近はAI技術の発達により、</p>
+            <ul>
+            <li>自然な日本語</li>
+            <li>本物そっくりのサイト</li>
+            <li>本物そっくりのメール</li>
+            </ul>
+            <p>が簡単に作られるようになりました。</p>
+            <p>昔のように、</p>
+            <p>「日本語がおかしいから偽物」</p>
+            <p>とは限りません。</p>
+            <p>そのため、</p>
+            <p><strong>メールの内容ではなく行動で判断する</strong></p>
+            <p>ことが重要です。</p>
+
+          </section>
+
+          <section>
+            <h2>今日からできる対策</h2>
+            <p>次の習慣を身につけましょう。</p>
+            <ul>
+            <li>URLを確認する</li>
+            <li>メールのリンクを直接開かない</li>
+            <li>ブックマークからアクセスする</li>
+            <li>多要素認証を設定する</li>
+            <li>不審な添付ファイルを開かない</li>
+            <li>焦って行動しない</li>
+            </ul>
+            <p>これだけでも被害の大半を防ぐことができます。</p>
+
+          </section>
+
+          <section>
+            <h2>まとめ</h2>
+            <p>今回のポイントを振り返りましょう。</p>
+            <ul>
+            <li>フィッシング詐欺は個人情報を盗む詐欺</li>
+            <li>大手企業になりすますことが多い</li>
+            <li>不安や焦りを利用してくる</li>
+            <li>URL確認が最重要</li>
+            <li>添付ファイルにも注意</li>
+            <li>パスワードやカード情報を安易に入力しない</li>
+            <li>AIによって今後さらに巧妙化する</li>
+            </ul>
+            <span style="color:red;font-weight:bold;">
+            「メールを信じる」のではなく、「確認してから行動する」ことが最大の防御になります。
+            </span>
+
+            <p>次回は、</p>
+            <p><strong>「第5章 危険なWebサイトの見分け方 ～偽サイトに騙されないために～」</strong></p>
+            <p>について解説します。</p>
+            <p>メールだけでなく、Webサイトにも多くの危険が潜んでいます。</p>
+
+          </section>
+
+        </article>
+
+
+        <section class="next-chapter">
+          <h3>次の記事</h3>
+
+          <a href="blog100005-article.html">
+            第5章 危険なWebサイトの見分け方 ～偽サイトに騙されないために～
+          </a>
+        </section>
+
+      </div>
+    </section>
+
+    <div id="cta"></div>
+
+  </main>
+
+  <div id="footer"></div>
+
+  <div id="ai-chat-container"></div>
+
+  <!-- JavaScript -->
+  <script src="script.js?v=20260616-10"></script>
+
+</body>
+</html>
