@@ -2672,3 +2672,50 @@ tr:last-child td {
   font-size: 0.85rem;
   font-weight: 600;
 }
+
+  /* =========================
+   Blog Meta Pills
+   記事一覧のメタ情報バッジ
+========================= */
+
+.blog-card-meta {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 24px;
+}
+
+.blog-card-meta .blog-meta-pill {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  padding: 0 22px;
+
+  border-radius: 999px;
+  background: #e9efff;
+  color: #3167f6;
+
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  white-space: nowrap;
+}
+
+/* スマホでは少し小さくする */
+@media (max-width: 720px) {
+  .blog-card-meta {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .blog-card-meta .blog-meta-pill {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.88rem;
+  }
+}
