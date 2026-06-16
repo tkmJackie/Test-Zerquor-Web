@@ -304,7 +304,7 @@ async function loadSelfBlogs() {
   }
 
   try {
-    const response = await fetch("blog_posts.json");
+    const response = await fetch("/blog_posts.json?v=20260616-11");
 
     if (!response.ok) {
       throw new Error("blog_posts.json の取得に失敗しました");
@@ -328,7 +328,20 @@ async function loadSelfBlogs() {
         const category = escapeHtml(post.category || "");
         const date = escapeHtml(post.date || "");
         const thumbnail = escapeHtml(post.thumbnail || "");
-        const url = escapeHtml(post.url || "#");
+
+        /*
+          JSON側の優先順位:
+          1. file
+          2. url
+          3. href
+        */
+        const rawUrl =
+          post.file ||
+          post.url ||
+          post.href ||
+          "#";
+
+        const url = escapeHtml(normalizeBlogUrl(rawUrl));
 
         return `
           <article class="blog-card">
