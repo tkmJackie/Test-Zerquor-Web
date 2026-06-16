@@ -171,4 +171,20 @@
   .blog-template-hero h1 {
     font-size: 2rem;
   }
+
+/* =========================
+   Blog Section Label
+========================= */
+
+.blog-section-label {
+  display: inline-flex;
+  margin-bottom: 14px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
 }
