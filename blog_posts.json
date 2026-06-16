@@ -1,11 +1,11 @@
 [
   {
-    "id": 1,
+    "id": "blog100001",
     "title": "第1章 情報セキュリティって何？なぜ私たちに必要なのか",
     "description": "情報セキュリティの基本を初心者向けに解説。機密性・完全性・可用性の3要素や、フィッシング詐欺、SNS乗っ取りなど身近な脅威について学びます。",
-    "category": "Security",
-    "sub_category": "literacy",
+    "category": "セキュリティリテラシ",
     "date": "2026-06-15",
-    "url": "blog10001-security-what-is.html"
+    "readingTime": "約8分",
+    "file": "blog10001-security-what-is.html"
   }
 ]
