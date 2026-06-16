@@ -1823,91 +1823,171 @@ tr:last-child td {
 }
 
 /* =========================
-   Blog
+   Blog List
+   記事一覧ページ
 ========================= */
 
+.blog-intro-section,
+.blog-list-section {
+  background: #f6f8fa;
+}
+
 .blog-intro-section {
-  padding: 34px 0;
+  padding: 56px 0 20px;
 }
 
 .blog-list-section {
-  padding: 42px 0 64px;
+  padding: 24px 0 88px;
+}
+
+.blog-list-section .container {
+  max-width: 1080px;
 }
 
 .blog-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: 1fr;
+  gap: 18px;
 }
 
 .blog-card {
   background: #ffffff;
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-  padding: 24px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 30px 36px;
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease;
 }
 
-.blog-card time {
+.blog-card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.08);
+}
+
+.blog-card-content {
   display: block;
-  margin-bottom: 12px;
-  color: var(--accent);
-  font-size: 0.85rem;
-  font-weight: 700;
 }
 
-.blog-card h3 {
-  margin: 0 0 12px;
-  font-size: 1.15rem;
-  line-height: 1.5;
+/* メタ情報 */
+.blog-card-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0 0 22px;
 }
 
-.blog-card p {
-  margin: 0 0 18px;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.blog-card a {
+.blog-meta-pill {
   display: inline-flex;
-  color: var(--accent);
-  font-weight: 800;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  padding: 0 22px;
+
+  border-radius: 999px;
+  background: #e8edff;
+  color: #3167f6;
+
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  white-space: nowrap;
+}
+
+/* タイトル */
+.blog-card h3 {
+  margin: 0 0 18px;
+  color: #172033;
+  font-size: clamp(1.55rem, 3vw, 2.35rem);
+  line-height: 1.35;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+}
+
+/* 説明文 */
+.blog-card p {
+  margin: 0 0 28px;
+  color: #52637a;
+  font-size: 1.05rem;
+  line-height: 1.95;
+  font-weight: 600;
+}
+
+/* 記事を読む */
+.blog-card a.blog-read-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #2563eb !important;
+
+  font-size: 1.02rem;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.blog-card a.blog-read-button:hover,
+.blog-card a.blog-read-button:visited {
+  background: transparent;
+  color: #1d4ed8 !important;
+}
+
+.blog-card a.blog-read-button:hover {
+  text-decoration: underline;
 }
 
 .blog-loading {
   background: #ffffff;
-  border: 1px solid var(--line);
+  border: 1px solid #e5e7eb;
   border-radius: 18px;
-  box-shadow: var(--shadow);
   padding: 24px;
-  color: var(--muted);
+  color: #52637a;
 }
 
-.blog-read-button {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: #2563eb;
-  color: #ffffff;
-  font-weight: 700;
-  text-decoration: none;
-}
+/* スマホ対応 */
+@media (max-width: 720px) {
+  .blog-intro-section {
+    padding: 40px 0 16px;
+  }
 
-.blog-card a.blog-read-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 18px;
-  border-radius: 999px;
-  background: #2563eb;
-  color: #ffffff !important;
-  font-weight: 800;
-  text-decoration: none;
-}
-.blog-card a.blog-read-button:visited,
-.blog-card a.blog-read-button:hover {
-  color: #ffffff !important;
+  .blog-list-section {
+    padding: 20px 0 64px;
+  }
+
+  .blog-card {
+    padding: 22px;
+    border-radius: 14px;
+  }
+
+  .blog-card-meta {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .blog-meta-pill {
+    min-height: 38px;
+    padding: 0 14px;
+    font-size: 0.88rem;
+  }
+
+  .blog-card h3 {
+    font-size: 1.35rem;
+  }
+
+  .blog-card p {
+    font-size: 0.98rem;
+  }
 }
 
 /* =========================
@@ -2472,250 +2552,5 @@ tr:last-child td {
   .blog-meta {
     flex-direction: column;
     align-items: flex-start;
-  }
-}
-
-/* =========================
-   Blog List - Qiita / Zenn Style
-   実際のHTMLクラスに合わせた記事一覧デザイン
-========================= */
-
-.blog-intro-section,
-.blog-list-section {
-  background: #f6f8fa;
-}
-
-.blog-intro-section {
-  padding: 56px 0 20px;
-}
-
-.blog-list-section {
-  padding: 24px 0 88px;
-}
-
-/* 記事一覧ページの横幅を読み物サイト風にする */
-.blog-list-section .container {
-  max-width: 920px;
-}
-
-/* 3列カードをやめて、Qiita/Zenn風の1列リストにする */
-.blog-grid {
-  display: grid;
-  grid-template-columns: 1fr !important;
-  gap: 14px;
-}
-
-/* 記事カード */
-.blog-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
-  border-radius: 14px;
-  padding: 24px 28px;
-  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-  transition:
-    transform 0.18s ease,
-    box-shadow 0.18s ease,
-    border-color 0.18s ease;
-}
-
-.blog-card:hover {
-  transform: translateY(-2px);
-  border-color: #cbd5e1;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
-}
-
-/* カテゴリ・日付 */
-.blog-card time {
-  display: block;
-  margin-bottom: 10px;
-  color: #64748b;
-  font-size: 0.88rem;
-  font-weight: 700;
-  line-height: 1.5;
-}
-
-/* タイトル */
-.blog-card h3 {
-  margin: 0 0 12px;
-  color: #172033;
-  font-size: clamp(1.2rem, 2vw, 1.55rem);
-  line-height: 1.55;
-  font-weight: 800;
-  letter-spacing: -0.02em;
-}
-
-/* 説明文 */
-.blog-card p {
-  margin: 0 0 18px;
-  color: #52637a;
-  font-size: 0.98rem;
-  line-height: 1.9;
-}
-
-/* 「記事を読む」を大きい青ボタンからテキストリンク風に変更 */
-.blog-card a.blog-read-button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-
-  padding: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: #2563eb !important;
-
-  font-size: 0.95rem;
-  font-weight: 800;
-  text-decoration: none;
-  box-shadow: none !important;
-}
-
-.blog-card a.blog-read-button:hover,
-.blog-card a.blog-read-button:visited {
-  background: transparent !important;
-  color: #1d4ed8 !important;
-}
-
-.blog-card a.blog-read-button:hover {
-  text-decoration: underline;
-}
-
-/* スマホ対応 */
-@media (max-width: 720px) {
-  .blog-intro-section {
-    padding: 40px 0 16px;
-  }
-
-  .blog-list-section {
-    padding: 20px 0 64px;
-  }
-
-  .blog-card {
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-/* =========================
-   Blog Article Meta Tags
-   記事詳細ページのタグ表示
-========================= */
-
-.blog-meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  margin-bottom: 28px;
-}
-
-.blog-meta span {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 56px;
-  padding: 0 24px;
-
-  border-radius: 999px;
-  background: #e8edff;
-  color: #3167f6;
-
-  font-size: clamp(1rem, 2.4vw, 1.35rem);
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0.02em;
-
-  border: none;
-  box-shadow: none;
-}
-
-/* スマホでは少し小さくする */
-@media (max-width: 720px) {
-  .blog-meta {
-    gap: 10px;
-    margin-bottom: 22px;
-  }
-
-  .blog-meta span {
-    min-height: 42px;
-    padding: 0 16px;
-    font-size: 0.95rem;
-  }
-}
-
-/* =========================
-   Blog Card Meta
-   Qiita / Zenn Style
-========================= */
-
-.blog-card-meta {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.blog-card-category {
-  display: inline-flex;
-  align-items: center;
-  height: 24px;
-  padding: 0 10px;
-  border-radius: 999px;
-  background: #eef6ff;
-  color: #2563eb;
-  font-size: 0.78rem;
-  font-weight: 800;
-  line-height: 1;
-}
-
-.blog-card-date {
-  color: #64748b;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-
-  /* =========================
-   Blog Meta Pills
-   記事一覧のメタ情報バッジ
-========================= */
-
-.blog-card-meta {
-  display: flex !important;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin: 0 0 24px;
-}
-
-.blog-card-meta .blog-meta-pill {
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-
-  min-height: 46px;
-  padding: 0 22px;
-
-  border-radius: 999px;
-  background: #e9efff;
-  color: #3167f6;
-
-  font-size: 1rem;
-  font-weight: 900;
-  line-height: 1;
-  letter-spacing: 0.02em;
-
-  white-space: nowrap;
-}
-
-/* スマホでは少し小さくする */
-@media (max-width: 720px) {
-  .blog-card-meta {
-    gap: 10px;
-    margin-bottom: 18px;
-  }
-
-  .blog-card-meta .blog-meta-pill {
-    min-height: 38px;
-    padding: 0 14px;
-    font-size: 0.88rem;
   }
 }
