@@ -945,5 +945,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeFadeAnimation();
 
   await loadEvents();
+  await loadTopBlogs();
   await loadSelfBlogs();
 });
