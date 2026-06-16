@@ -334,12 +334,12 @@ async function loadSelfBlogs() {
         const category = escapeHtml(post.category || "");
         const date = escapeHtml(post.date || "");
         const thumbnail = escapeHtml(post.thumbnail || "");
-
-        const rawUrl =
-          post.file ||
-          post.url ||
-          post.href ||
-          "#";
+                  
+         const metaItems = [
+           date,
+           category,
+           readingTime ? `読了時間：${readingTime}` : ""
+         ].filter(Boolean);
 
         const url = escapeHtml(normalizeBlogUrl(rawUrl));
 
