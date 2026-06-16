@@ -360,10 +360,19 @@ async function loadSelfBlogs() {
 
             <div class="blog-card-content">
 
-              <div class="blog-card-meta">
-                <span>${category}</span>
-                <span>${date}</span>
-              </div>
+               <div class="blog-card-meta">
+                 ${
+                   category
+                     ? `<span class="blog-card-category">${category}</span>`
+                     : ""
+                 }
+               
+                 ${
+                   date
+                     ? `<time class="blog-card-date" datetime="${date}">${date}</time>`
+                     : ""
+                 }
+               </div>
 
               <h3>${title}</h3>
 
