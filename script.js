@@ -440,6 +440,145 @@ async function loadSelfBlogs() {
 }
 
 /* =====================================
+   Top Blog Loading
+   トップページに最新ブログ3件を表示する処理
+===================================== */
+
+async function loadTopBlogs() {
+  const container =
+    document.getElementById("top-blog-list");
+
+  if (!container) {
+    return;
+  }
+
+  try {
+    const response = await fetch("/blog_posts.json?v=20260616-16");
+
+    if (!response.ok) {
+      throw new Error("blog_posts.json の取得に失敗しました");
+    }
+
+    const posts = await response.json();
+
+    if (!Array.isArray(posts) || posts.length === 0) {
+      container.innerHTML = `
+        <div class="blog-loading">
+          記事がまだありません。
+        </div>
+      `;
+      return;
+    }
+
+    const latestPosts = posts
+      .slice()
+      .sort((a, b) => {
+        return getBlogTime(b.date) - getBlogTime(a.date);
+      })
+      .slice(0, 3);
+
+    container.innerHTML = latestPosts
+      .map((post) => {
+        const title = escapeHtml(post.title || "タイトル未設定");
+        const description = escapeHtml(post.description || "");
+        const category = escapeHtml(post.category || "");
+        const date = escapeHtml(formatBlogDate(post.date || ""));
+        const readingTime = escapeHtml(formatTopBlogReadingTime(
+          post.readingTime ||
+          post.reading_time ||
+          ""
+        ));
+
+        const rawUrl =
+          post.file ||
+          post.url ||
+          post.href ||
+          "#";
+
+        const url = escapeHtml(normalizeBlogUrl(rawUrl));
+
+        const metaItems = [
+          date,
+          category,
+          readingTime
+        ].filter(Boolean);
+
+        return `
+          <article class="top-blog-card">
+
+            ${
+              metaItems.length > 0
+                ? `
+                  <div class="top-blog-meta">
+                    ${metaItems
+                      .map((item) => `<span>${item}</span>`)
+                      .join("")}
+                  </div>
+                `
+                : ""
+            }
+
+            <h3>${title}</h3>
+
+            ${
+              description
+                ? `<p>${description}</p>`
+                : ""
+            }
+
+            <a href="${url}" class="top-blog-link">
+              記事を読む →
+            </a>
+
+          </article>
+        `;
+      })
+      .join("");
+
+  } catch (error) {
+    console.error(error);
+
+    container.innerHTML = `
+      <div class="blog-loading">
+        最新記事を読み込めませんでした。
+      </div>
+    `;
+  }
+}
+
+function getBlogTime(dateString) {
+  const date = new Date(dateString);
+
+  if (Number.isNaN(date.getTime())) {
+    return 0;
+  }
+
+  return date.getTime();
+}
+
+function formatTopBlogReadingTime(readingTime) {
+  if (!readingTime) {
+    return "";
+  }
+
+  const text = String(readingTime).trim();
+
+  if (!text) {
+    return "";
+  }
+
+  if (text.includes("読了時間")) {
+    return text;
+  }
+
+  if (/^\d+$/.test(text)) {
+    return `読了時間：約${text}分`;
+  }
+
+  return `読了時間：${text}`;
+}
+
+/* =====================================
    Zerquor AI Chat
 ===================================== */
 
