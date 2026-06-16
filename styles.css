@@ -2593,4 +2593,50 @@ tr:last-child td {
     padding: 20px;
     border-radius: 12px;
   }
+
+/* =========================
+   Blog Article Meta Tags
+   記事詳細ページのタグ表示
+========================= */
+
+.blog-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.blog-meta span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 56px;
+  padding: 0 24px;
+
+  border-radius: 999px;
+  background: #e8edff;
+  color: #3167f6;
+
+  font-size: clamp(1rem, 2.4vw, 1.35rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+
+  border: none;
+  box-shadow: none;
+}
+
+/* スマホでは少し小さくする */
+@media (max-width: 720px) {
+  .blog-meta {
+    gap: 10px;
+    margin-bottom: 22px;
+  }
+
+  .blog-meta span {
+    min-height: 42px;
+    padding: 0 16px;
+    font-size: 0.95rem;
+  }
 }
