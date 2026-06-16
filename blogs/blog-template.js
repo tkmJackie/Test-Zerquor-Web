@@ -16,5 +16,7 @@ function addBlogSectionNumbers() {
 
     section.prepend(label);
 
+    document.addEventListener("DOMContentLoaded", function () {
+    addBlogSectionNumbers();
   });
 }
