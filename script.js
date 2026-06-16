@@ -42,7 +42,13 @@ function setCurrentNav() {
   navLinks.forEach((link) => {
     const href = link.getAttribute("href");
 
-    if (href === currentPath) {
+    if (!href) {
+      return;
+    }
+
+    const linkPath = href.split("/").pop();
+
+    if (href === currentPath || linkPath === currentPath) {
       link.classList.add("active");
     }
   });
@@ -111,7 +117,7 @@ async function loadEvents() {
   }
 
   try {
-    const response = await fetch("events.json");
+    const response = await fetch("/events.json?v=20260616-11");
 
     if (!response.ok) {
       throw new Error("events.json の取得に失敗しました");
@@ -329,12 +335,6 @@ async function loadSelfBlogs() {
         const date = escapeHtml(post.date || "");
         const thumbnail = escapeHtml(post.thumbnail || "");
 
-        /*
-          JSON側の優先順位:
-          1. file
-          2. url
-          3. href
-        */
         const rawUrl =
           post.file ||
           post.url ||
@@ -526,28 +526,6 @@ function initializeAIChat() {
 }
 
 /* =====================================
-   Utility
-===================================== */
-
-function escapeHtml(text) {
-  const div = document.createElement("div");
-  div.textContent = text || "";
-  return div.innerHTML;
-}
-
-/* =====================================
-   Initialize
-===================================== */
-
-document.addEventListener("DOMContentLoaded", async () => {
-  await loadCommonParts();
-  await loadAIChat();
-  initializeFadeAnimation();
-  await loadEvents();
-  await loadSelfBlogs();
-});
-
-/* =====================================
    AI Chat Action Buttons
    AIの回答内容に応じて、問い合わせ・セミナー・ブログのボタンを表示する処理
 ===================================== */
@@ -567,7 +545,7 @@ function renderAIActionButtons(responseData) {
   if (responseData.showPageButton && responseData.pageUrl) {
     const pageButton = createAIButton(
       responseData.pageButtonText || "詳細を見る",
-      responseData.pageUrl,
+      normalizeInternalUrl(responseData.pageUrl),
       false
     );
 
@@ -600,8 +578,8 @@ function renderAIActionButtons(responseData) {
   if (responseData.showBlogButton && responseData.blogUrl) {
     const blogButton = createAIButton(
       responseData.blogButtonText || "ブログを読む",
-      responseData.blogUrl,
-      true
+      normalizeBlogUrl(responseData.blogUrl),
+      false
     );
 
     buttonGroup.appendChild(blogButton);
@@ -631,3 +609,109 @@ function createAIButton(label, href, isExternal) {
   return link;
 }
 
+/* =====================================
+   Utility
+===================================== */
+
+function normalizeBlogUrl(url) {
+  if (!url) {
+    return "#";
+  }
+
+  let normalizedUrl = String(url).trim();
+
+  /*
+    旧URL対策:
+    旧ブログURLを新しいルート直下の記事URLへ寄せる
+  */
+  if (
+    normalizedUrl === "/blogs/security-what-is.html" ||
+    normalizedUrl === "blogs/security-what-is.html" ||
+    normalizedUrl === "../blogs/security-what-is.html" ||
+    normalizedUrl === "security-what-is.html" ||
+    normalizedUrl === "/security-what-is.html"
+  ) {
+    return "blog10001-security-what-is.html";
+  }
+
+  /*
+    すでに新しいファイル名ならそのまま返す
+  */
+  if (
+    normalizedUrl === "blog10001-security-what-is.html" ||
+    normalizedUrl === "/blog10001-security-what-is.html"
+  ) {
+    return normalizedUrl.replace(/^\//, "");
+  }
+
+  /*
+    file が posts/ から始まる古い形だった場合の保険
+    例: posts/security-what-is.html
+  */
+  if (
+    normalizedUrl === "posts/security-what-is.html" ||
+    normalizedUrl === "/posts/security-what-is.html" ||
+    normalizedUrl === "posts/blog10001-security-what-is.html" ||
+    normalizedUrl === "/posts/blog10001-security-what-is.html"
+  ) {
+    return "blog10001-security-what-is.html";
+  }
+
+  /*
+    外部URLはそのまま返す
+  */
+  if (
+    normalizedUrl.startsWith("http://") ||
+    normalizedUrl.startsWith("https://")
+  ) {
+    return normalizedUrl;
+  }
+
+  /*
+    先頭の / はルート直下配置では外す
+  */
+  if (normalizedUrl.startsWith("/")) {
+    normalizedUrl = normalizedUrl.replace(/^\//, "");
+  }
+
+  return normalizedUrl;
+}
+
+function normalizeInternalUrl(url) {
+  if (!url) {
+    return "#";
+  }
+
+  const normalizedUrl = String(url).trim();
+
+  if (
+    normalizedUrl.startsWith("http://") ||
+    normalizedUrl.startsWith("https://")
+  ) {
+    return normalizedUrl;
+  }
+
+  if (normalizedUrl.startsWith("/")) {
+    return normalizedUrl.replace(/^\//, "");
+  }
+
+  return normalizedUrl;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement("div");
+  div.textContent = text || "";
+  return div.innerHTML;
+}
+
+/* =====================================
+   Initialize
+===================================== */
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadCommonParts();
+  await loadAIChat();
+  initializeFadeAnimation();
+  await loadEvents();
+  await loadSelfBlogs();
+});
