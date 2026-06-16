@@ -362,16 +362,18 @@ async function loadSelfBlogs() {
 
                <div class="blog-card-meta">
                  ${
-                   category
-                     ? `<span class="blog-card-category">${category}</span>`
+                   date
+                     ? `<span class="blog-meta-pill">${date.replaceAll("-", "/")}</span>`
                      : ""
                  }
                
-                 ${
-                   date
-                     ? `<time class="blog-card-date" datetime="${date}">${date}</time>`
-                     : ""
-                 }
+                 <span class="blog-meta-pill">
+                   ${category || "セキュリティリテラシ"}
+                 </span>
+               
+                 <span class="blog-meta-pill">
+                   読了時間：約8分
+                 </span>
                </div>
 
               <h3>${title}</h3>
