@@ -1400,6 +1400,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   initializeFadeAnimation();
 
   await loadEvents();
+  await loadTopInformation();
+  await loadInformationList();
   await loadTopBlogs();
   await loadSelfBlogs();
   await loadPopularBlogRanking();
