@@ -4,8 +4,6 @@
 
 const SITE_ASSET_VERSION = "20260617-04";
 const EVENTS_JSON_PATH = "/events.json?v=20260616-13";
-
-const EVENTS_JSON_PATH = "/events.json";
 const BLOG_POSTS_JSON_PATH = `/blog_posts.json?v=${SITE_ASSET_VERSION}`;
 
 const ZERQUOR_AI_WORKER_URL =
