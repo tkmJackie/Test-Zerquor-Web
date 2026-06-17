@@ -549,6 +549,7 @@ function normalizeInformationItem(item) {
     body: item.body || item.content || "",
     category: item.category || "お知らせ",
     date: item.date || item.publishedAt || "",
+    file: item.file || "",
     link: item.link || item.url || item.href || ""
   };
 }
@@ -741,17 +742,17 @@ function createInformationCard(item) {
         }
 
         ${
-          item.link
-            ? `
-              <a
-                href="${url}"
-                class="blog-read-button"
-                ${externalAttrs}
-              >
-                詳細を見る →
-              </a>
-            `
-            : ""
+           url && url !== "#"
+             ? `
+               <a
+                 href="${url}"
+                 class="blog-read-button"
+                 ${externalAttrs}
+               >
+                 詳細を見る →
+               </a>
+             `
+             : ""
         }
 
       </div>
@@ -761,18 +762,20 @@ function createInformationCard(item) {
 }
 
 function normalizeInformationUrl(item) {
+  if (item.file) {
+    return normalizeInternalUrl(item.file);
+  }
+
   if (item.link) {
     return normalizeInternalUrl(item.link);
   }
 
-  return `information.html#${item.id}`;
-}
+  if (item.id) {
+    return `${item.id}.html`;
+  }
 
-function isExternalUrl(url) {
-  return (
-    String(url).startsWith("http://") ||
-    String(url).startsWith("https://")
-  );
+  return "#";
+
 }
 
 /* =====================================
