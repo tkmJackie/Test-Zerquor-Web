@@ -3196,3 +3196,26 @@ tr:last-child td {
     min-height: auto;
   }
 }
+
+/* =========================
+   Information List
+   information.html のお知らせ一覧
+========================= */
+
+.blog-list-section #information-list.blog-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 18px !important;
+}
+
+@media (max-width: 980px) {
+  .blog-list-section #information-list.blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 720px) {
+  .blog-list-section #information-list.blog-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
