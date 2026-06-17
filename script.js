@@ -13,9 +13,11 @@ const ZERQUOR_AI_WORKER_URL =
 const BLOG_VIEW_WORKER_URL =
   "https://zerquor-blog.tkm12325.workers.dev";
 
+const INFORMATION_JSON_PATH = `/information.json?v=${SITE_ASSET_VERSION}`;
 const BLOG_RANKING_LIMIT = 5;
 
 let blogPostsCache = null;
+let informationCache = null;
 
 /* =====================================
    Header / Footer / CTA Common Parts
