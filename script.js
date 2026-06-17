@@ -934,6 +934,167 @@ function formatReadingTime(readingTime) {
   return `読了時間：${text}`;
 }
 
+/* =========================
+   Blog Popular Ranking
+========================= */
+
+(() => {
+  const BLOG_POSTS_JSON_PATH = "blog_posts.json";
+  const WORKER_BASE_URL = "https://zerquor-blog.tkm12325.workers.dev";
+  const RANKING_LIMIT = 5;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadPopularBlogRanking();
+  });
+
+  async function loadPopularBlogRanking() {
+    const rankingElement = document.getElementById("popular-blog-ranking");
+
+    if (!rankingElement) {
+      return;
+    }
+
+    try {
+      const [rankingResponse, blogPostsResponse] = await Promise.all([
+        fetch(`${WORKER_BASE_URL}/api/blog/ranking?limit=${RANKING_LIMIT}`),
+        fetch(BLOG_POSTS_JSON_PATH)
+      ]);
+
+      if (!rankingResponse.ok) {
+        throw new Error("人気記事ランキングAPIの取得に失敗しました");
+      }
+
+      if (!blogPostsResponse.ok) {
+        throw new Error("blog_posts.json の取得に失敗しました");
+      }
+
+      const rankingData = await rankingResponse.json();
+      const blogPostsData = await blogPostsResponse.json();
+
+      const ranking = Array.isArray(rankingData.ranking)
+        ? rankingData.ranking
+        : [];
+
+      const blogPosts = normalizeBlogPostsData(blogPostsData);
+
+      if (ranking.length === 0) {
+        rankingElement.innerHTML = `
+          <div class="blog-ranking-empty">
+            まだ閲覧データがありません。記事が読まれるとランキングが表示されます。
+          </div>
+        `;
+        return;
+      }
+
+      const mergedRanking = ranking
+        .map((rankingItem) => {
+          const blog = blogPosts.find((post) => {
+            return post.id === rankingItem.blogId;
+          });
+
+          if (!blog) {
+            return null;
+          }
+
+          return {
+            ...blog,
+            views: Number(rankingItem.views || 0)
+          };
+        })
+        .filter(Boolean);
+
+      if (mergedRanking.length === 0) {
+        rankingElement.innerHTML = `
+          <div class="blog-ranking-empty">
+            ランキングデータはありますが、記事情報と一致しませんでした。
+          </div>
+        `;
+        return;
+      }
+
+      rankingElement.innerHTML = mergedRanking
+        .map((blog, index) => createRankingCard(blog, index))
+        .join("");
+
+    } catch (error) {
+      console.error("人気記事ランキングの表示に失敗しました", error);
+
+      rankingElement.innerHTML = `
+        <div class="blog-ranking-empty">
+          人気記事ランキングを取得できませんでした。
+        </div>
+      `;
+    }
+  }
+
+  function normalizeBlogPostsData(data) {
+    let posts = [];
+
+    if (Array.isArray(data)) {
+      posts = data;
+    } else if (Array.isArray(data.posts)) {
+      posts = data.posts;
+    } else if (Array.isArray(data.blogs)) {
+      posts = data.blogs;
+    }
+
+    return posts.map((post) => {
+      return {
+        id: post.id || post.blogId || "",
+        title: post.title || "無題の記事",
+        description: post.description || post.summary || "",
+        category: post.category || "ブログ",
+        date: post.date || post.publishedAt || "",
+        readTime: post.readTime || post.readingTime || "",
+        file: post.file || post.url || post.path || "#"
+      };
+    });
+  }
+
+  function createRankingCard(blog, index) {
+    return `
+      <a class="blog-ranking-card" href="${escapeAttributeForRanking(blog.file)}">
+
+        <div class="blog-ranking-rank">
+          ${index + 1}
+        </div>
+
+        <h3 class="blog-ranking-title">
+          ${escapeHtmlForRanking(blog.title)}
+        </h3>
+
+        <p class="blog-ranking-description">
+          ${escapeHtmlForRanking(blog.description)}
+        </p>
+
+        <div class="blog-ranking-meta">
+          <span>
+            ${escapeHtmlForRanking(blog.category)}
+          </span>
+
+          <span class="views">
+            ${Number(blog.views).toLocaleString()} views
+          </span>
+        </div>
+
+      </a>
+    `;
+  }
+
+  function escapeHtmlForRanking(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function escapeAttributeForRanking(value) {
+    return escapeHtmlForRanking(value).replaceAll("`", "&#096;");
+  }
+})();
+
 /* =====================================
    Initialize
 ===================================== */
