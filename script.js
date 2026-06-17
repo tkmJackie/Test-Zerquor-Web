@@ -506,6 +506,274 @@ function createSelfBlogCard(post) {
 }
 
 /* =====================================
+   Information Data
+===================================== */
+
+async function loadInformationData() {
+  if (informationCache) {
+    return informationCache;
+  }
+
+  const response = await fetch(INFORMATION_JSON_PATH);
+
+  if (!response.ok) {
+    throw new Error("information.json の取得に失敗しました");
+  }
+
+  const data = await response.json();
+
+  let items = [];
+
+  if (Array.isArray(data)) {
+    items = data;
+  } else if (Array.isArray(data.information)) {
+    items = data.information;
+  } else if (Array.isArray(data.items)) {
+    items = data.items;
+  }
+
+  informationCache = items
+    .map(normalizeInformationItem)
+    .filter((item) => item.id && item.title);
+
+  return informationCache;
+}
+
+function normalizeInformationItem(item) {
+  return {
+    id: item.id || "",
+    title: item.title || "タイトル未設定",
+    description: item.description || item.summary || "",
+    body: item.body || item.content || "",
+    category: item.category || "お知らせ",
+    date: item.date || item.publishedAt || "",
+    link: item.link || item.url || item.href || ""
+  };
+}
+
+function sortInformationByNewest(items) {
+  return items
+    .slice()
+    .sort((a, b) => {
+      return getBlogTime(b.date) - getBlogTime(a.date);
+    });
+}
+
+/* =====================================
+   Top Information Loading
+   トップページに最新お知らせ3件を表示する処理
+===================================== */
+
+async function loadTopInformation() {
+  const container =
+    document.getElementById("top-information-list");
+
+  if (!container) {
+    return;
+  }
+
+  try {
+    const items = sortInformationByNewest(await loadInformationData())
+      .slice(0, 3);
+
+    if (!items.length) {
+      container.innerHTML = `
+        <div class="blog-loading">
+          お知らせはまだありません。
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = items
+      .map((item) => createTopInformationCard(item))
+      .join("");
+
+  } catch (error) {
+    console.error("最新お知らせの読み込みに失敗しました", error);
+
+    container.innerHTML = `
+      <div class="blog-loading">
+        最新お知らせを読み込めませんでした。
+      </div>
+    `;
+  }
+}
+
+function createTopInformationCard(item) {
+  const title = escapeHtml(item.title);
+  const description = escapeHtml(item.description);
+  const category = escapeHtml(item.category);
+  const date = escapeHtml(formatBlogDate(item.date));
+
+  const url = escapeAttribute(
+    normalizeInformationUrl(item)
+  );
+
+  const externalAttrs = isExternalUrl(url)
+    ? ` target="_blank" rel="noopener noreferrer"`
+    : "";
+
+  const metaItems = [
+    date,
+    category
+  ].filter(Boolean);
+
+  return `
+    <article class="top-blog-card">
+
+      ${
+        metaItems.length > 0
+          ? `
+            <div class="top-blog-meta">
+              ${metaItems
+                .map((meta) => `<span>${meta}</span>`)
+                .join("")}
+            </div>
+          `
+          : ""
+      }
+
+      <h3>${title}</h3>
+
+      ${
+        description
+          ? `<p>${description}</p>`
+          : ""
+      }
+
+      <a href="${url}" class="top-blog-link"${externalAttrs}>
+        お知らせを見る →
+      </a>
+
+    </article>
+  `;
+}
+
+/* =====================================
+   Information List Loading
+   information.html に全お知らせを表示する処理
+===================================== */
+
+async function loadInformationList() {
+  const container =
+    document.getElementById("information-list");
+
+  if (!container) {
+    return;
+  }
+
+  try {
+    const items = sortInformationByNewest(await loadInformationData());
+
+    if (!items.length) {
+      container.innerHTML = `
+        <div class="blog-loading">
+          お知らせはまだありません。
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = items
+      .map((item) => createInformationCard(item))
+      .join("");
+
+  } catch (error) {
+    console.error("お知らせ一覧の読み込みに失敗しました", error);
+
+    container.innerHTML = `
+      <div class="blog-loading">
+        お知らせを読み込めませんでした。
+      </div>
+    `;
+  }
+}
+
+function createInformationCard(item) {
+  const id = escapeAttribute(item.id);
+  const title = escapeHtml(item.title);
+  const category = escapeHtml(item.category);
+  const date = escapeHtml(formatBlogDate(item.date));
+
+  const text = escapeHtml(
+    item.body || item.description || ""
+  ).replaceAll("\n", "<br>");
+
+  const url = escapeAttribute(
+    normalizeInformationUrl(item)
+  );
+
+  const externalAttrs = isExternalUrl(url)
+    ? ` target="_blank" rel="noopener noreferrer"`
+    : "";
+
+  const metaItems = [
+    date,
+    category
+  ].filter(Boolean);
+
+  return `
+    <article id="${id}" class="blog-card">
+
+      <div class="blog-card-content">
+
+        ${
+          metaItems.length > 0
+            ? `
+              <div class="blog-card-meta">
+                ${metaItems
+                  .map((meta) => `<span class="blog-meta-pill">${meta}</span>`)
+                  .join("")}
+              </div>
+            `
+            : ""
+        }
+
+        <h3>${title}</h3>
+
+        ${
+          text
+            ? `<p>${text}</p>`
+            : ""
+        }
+
+        ${
+          item.link
+            ? `
+              <a
+                href="${url}"
+                class="blog-read-button"
+                ${externalAttrs}
+              >
+                詳細を見る →
+              </a>
+            `
+            : ""
+        }
+
+      </div>
+
+    </article>
+  `;
+}
+
+function normalizeInformationUrl(item) {
+  if (item.link) {
+    return normalizeInternalUrl(item.link);
+  }
+
+  return `information.html#${item.id}`;
+}
+
+function isExternalUrl(url) {
+  return (
+    String(url).startsWith("http://") ||
+    String(url).startsWith("https://")
+  );
+}
+
+/* =====================================
    Top Blog Loading
    トップページに最新ブログ3件を表示する処理
 ===================================== */
