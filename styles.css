@@ -3219,3 +3219,21 @@ tr:last-child td {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* =========================
+   Event Image Fit
+========================= */
+
+.event-image-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f1f5f9;
+}
+
+.event-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
