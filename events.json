@@ -1,5 +1,176 @@
 [
   {
+  "title": "第1回 情報セキュリティマネジメント試験の全体像",
+  "date": "2026-07-24T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398326/",
+  "image": "images/seminar-sg.png",
+  "description": "情報セキュリティマネジメント試験の概要、出題範囲、科目A・科目Bの違い、学習の進め方を初心者向けに解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第2回 情報セキュリティの基本",
+  "date": "2026-08-07T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398335/",
+  "image": "images/seminar-sg.png",
+  "description": "機密性・完全性・可用性、脅威、脆弱性、リスクなど、情報セキュリティの基本用語を初心者向けにわかりやすく整理するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第3回 サイバー攻撃の基礎",
+  "date": "2026-08-21T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398337/",
+  "image": "images/seminar-sg.png",
+  "description": "マルウェア、フィッシング、ランサムウェア、標的型攻撃、不正アクセスなど、代表的なサイバー攻撃を初心者向けに解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第4回 Web・メールに関する攻撃",
+  "date": "2026-08-28T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398339/",
+  "image": "images/seminar-sg.png",
+  "description": "SQLインジェクション、クロスサイトスクリプティング、CSRF、フィッシングメール、なりすましメールなどを初心者向けに解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第5回 認証とアクセス管理",
+  "date": "2026-09-04T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398340/",
+  "image": "images/seminar-sg.png",
+  "description": "ID、パスワード、多要素認証、アクセス権限、最小権限の原則など、認証とアクセス管理の基本を初心者向けに解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第6回 暗号技術と電子証明書",
+  "date": "2026-09-11T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398341/",
+  "image": "images/seminar-sg.png",
+  "description": "共通鍵暗号、公開鍵暗号、ハッシュ、電子署名、電子証明書、PKIなど、暗号技術の基本を初心者向けに解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第7回 ネットワークとセキュリティ",
+  "date": "2026-09-18T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398342/",
+  "image": "images/seminar-sg.png",
+  "description": "IPアドレス、DNS、HTTP/HTTPS、ファイアウォール、VPN、無線LANなど、ネットワークとセキュリティの基本を解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第8回 セキュリティ対策の基本",
+  "date": "2026-09-25T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398343/",
+  "image": "images/seminar-sg.png",
+  "description": "マルウェア対策、ソフトウェア更新、ログ管理、バックアップ、端末管理など、基本的なセキュリティ対策を解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第9回 情報資産管理",
+  "date": "2026-10-02T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398344/",
+  "image": "images/seminar-sg.png",
+  "description": "顧客情報、社員情報、契約書、システム、端末など、企業が守るべき情報資産の洗い出し・分類・管理方法を解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第10回 リスクマネジメント",
+  "date": "2026-10-09T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398345/",
+  "image": "images/seminar-sg.png",
+  "description": "脅威・脆弱性・リスクの関係、リスクアセスメント、リスク評価、リスク対応の考え方を初心者向けに解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第11回 ISMSとセキュリティポリシー",
+  "date": "2026-10-16T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398346/",
+  "image": "images/seminar-sg.png",
+  "description": "ISMS、PDCAサイクル、セキュリティポリシー、基本方針・対策基準・実施手順の違いを初心者向けに解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第12回 インシデント対応",
+  "date": "2026-10-23T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398347/",
+  "image": "images/seminar-sg.png",
+  "description": "情報漏えい、マルウェア感染、不正アクセス、端末紛失などが発生したときの初動対応・報告・復旧・再発防止を解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第13回 教育・訓練と内部不正対策",
+  "date": "2026-10-30T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398348/",
+  "image": "images/seminar-sg.png",
+  "description": "セキュリティ教育、標的型メール訓練、ルール周知、内部不正を防ぐための権限管理やログ管理を解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第14回 法務・規格・ガイドライン",
+  "date": "2026-11-06T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398350/",
+  "image": "images/seminar-sg.png",
+  "description": "個人情報保護、不正アクセス禁止法、著作権、情報セキュリティ関連の規格やガイドラインを初心者向けに整理するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "第15回 委託管理・監査・まとめ",
+  "date": "2026-11-13T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398351/",
+  "image": "images/seminar-sg.png",
+  "description": "外部委託先の管理、契約時の注意点、委託終了時の対応、システム監査の基本を整理し、全15回の内容を振り返るオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "試験対策 科目B対策①",
+  "date": "2026-11-20T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398352/",
+  "image": "images/seminar-sg-subject-b.png",
+  "description": "情報セキュリティマネジメント試験の科目B対策として、ケース問題の読み方、設問の確認方法、選択肢の判断ポイントを解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "試験対策 科目B対策②",
+  "date": "2026-11-27T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398354/",
+  "image": "images/seminar-sg-subject-b.png",
+  "description": "科目Bで問われやすい情報資産管理、リスクアセスメント、リスク対応のケース問題を中心に、判断の流れを解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "試験対策 科目B対策③",
+  "date": "2026-12-04T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398355/",
+  "image": "images/seminar-sg-subject-b.png",
+  "description": "科目Bで問われやすいインシデント対応、教育・訓練、内部不正対策、外部委託管理のケース問題を解説するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
+  "title": "試験対策④ 科目B対策④",
+  "date": "2026-12-11T20:00:00+09:00",
+  "place": "Teams / オンライン",
+  "url": "https://zerquor.connpass.com/event/398356/",
+  "image": "images/seminar-sg-subject-b.png",
+  "description": "科目B対策の総まとめとして、長文問題の解き方、迷いやすい選択肢の見分け方、本番での時間配分を整理するオンライン勉強会です。",
+  "category": "資格対策"
+  },
+  {
     "title": "あなたは見抜ける？偽メール判定クイズ 初級編",
     "date": "2026-06-12T19:00:00+09:00",
     "place": "Teams / オンライン",
