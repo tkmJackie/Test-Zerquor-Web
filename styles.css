@@ -1349,3 +1349,53 @@ tr:last-child td {
     bottom: 16px;
   }
 }
+
+/* =========================
+   Events Page 4 Columns
+========================= */
+
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.events-list .event-card {
+  max-width: none;
+  width: 100%;
+}
+
+.event-body {
+  padding: 18px;
+}
+
+.event-title {
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.event-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 1180px) {
+  .events-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .events-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .events-list {
+    grid-template-columns: 1fr;
+  }
+}
