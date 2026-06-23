@@ -3237,3 +3237,61 @@ tr:last-child td {
   object-fit: contain;
   object-position: center;
 }
+
+/* =========================
+   Events Card Compact
+========================= */
+
+.event-card {
+  max-width: 420px;
+}
+
+.event-card-image {
+  height: 180px;
+  overflow: hidden;
+}
+
+.event-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.event-card-content {
+  padding: 20px;
+}
+
+.event-card-category {
+  font-size: 0.8rem;
+  padding: 6px 12px;
+}
+
+.event-card-date {
+  margin-top: 16px;
+  font-size: 0.95rem;
+}
+
+.event-card-title {
+  margin-top: 12px;
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+.event-card-place {
+  margin-top: 12px;
+  font-size: 1rem;
+}
+
+.event-card-description {
+  margin-top: 16px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+}
+
+.event-card-button {
+  margin-top: 20px;
+}
