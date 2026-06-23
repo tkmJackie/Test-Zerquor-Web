@@ -3242,10 +3242,6 @@ tr:last-child td {
    Events Card Compact
 ========================= */
 
-.event-card {
-  max-width: 420px;
-}
-
 .event-card-image {
   height: 180px;
   overflow: hidden;
